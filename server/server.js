@@ -9,7 +9,8 @@
       	starts: 1000, 
      		ends: 1060,
       	additional_information: 'Salle toute pourrie',
-        location_id: 2
+        location_id: '2',
+        price: 30
       });
 
       Courses.insert( {
@@ -20,7 +21,20 @@
       	starts: 1200, 
      		ends: 1260,
       	additional_information: 'Interdit au femme de chambre',
-        location_id: 1
+        location_id: '1',
+        price: 100
+        });
+
+      Courses.insert( {
+        title: 'Mario monti', 
+        description: 'Apprenez à tirer les ficelles', 
+        subject: 'Finance internationale', 
+        day_of_week: 4, 
+        starts: 1200, 
+        ends: 1260,
+        additional_information: 'Scrupuleux s\'abstenir',
+        location_id: '1',
+        price: 50
         });
 
     if (Places.find().count() === 0) {
@@ -28,14 +42,14 @@
         title: 'Sofitel de New York',
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
         location: '3 rue de new-york',
-        _id: 1
+        _id: '1'
       });
 
       Places.insert({
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
         location: '3 rue de trévise',
-        _id: 2
+        _id: '2'
       });
 
     };    
