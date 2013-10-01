@@ -6,7 +6,7 @@ Template.course_list.helpers ({
 	var price_max = (Session.get("price_max")) ? Session.get("price_max") : 200;
 	var schedule_min = (Session.get("schedule_min")) ? Session.get("schedule_min") : 0;
 	var schedule_max = (Session.get("schedule_max")) ? Session.get("schedule_max") : 1440;
-
+	console.log(Session.get("current_course"));
     return Courses.find(
     	{   day_of_week : {$in: day_selector}, 
     		price : {$gt : price_min, $lt : price_max}, 
@@ -14,4 +14,5 @@ Template.course_list.helpers ({
     		ends : {$lt : schedule_max}},
     	{ sort: {title : 1}});
 	}
+
 });

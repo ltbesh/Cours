@@ -1,29 +1,14 @@
-<head>
-  <title>cours</title>
-</head>
-
+<head> 
+  <title>Tout les cours</title>
+</head> 
 <body>
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <span class="span3">
-      </span>
-      <span class="span9">
-        {{> search}}
-      </span>
-    </div>
+  <div class="container"> <header class="navbar">
+  <div class="navbar-inner">
+  <a class="brand" href="/">Tout les cours</a>
   </div>
-  
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <span class="span3">
-        {{> calendar_selector}}
-        {{> price_selector}}
-        {{> time_selector}}
-      </span>
-      <span class="span9">
-        {{> course_list}}
-      </span>
-    </div>
+  </header>
+  <div id="main" class="row-fluid">
+  {{renderPage}}
   </div>
-
+  </div> 
 </body>
