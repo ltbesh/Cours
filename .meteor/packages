@@ -8,3 +8,5 @@ autopublish
 insecure
 preserve-inputs
 bootstrap
+jquery-ui
+jquery-ui-bootstrap
