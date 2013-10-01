@@ -1,0 +1,6 @@
+/* CSS declarations go here */
+#amount, #schedule{
+	border: 0; 
+	color: #f6931f; 
+	font-weight: bold;
+}
