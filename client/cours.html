@@ -3,9 +3,24 @@
 </head>
 
 <body>
-
-  {{> calendar_selector}}
+  <div class="row">
+  <span class="span3">
+  </span>
+  <span class="span9">
+  {{> search}}
+  </span>
+  </div>
+  <div class="row">
+  <span class="span3">
+    {{> calendar_selector}}
+    {{> price_selector}}
+    {{> time_selector}}
+  </span>
+  <span class="span9">
   {{> course_list}}
+  </span>
+  </div>
+
 </body>
 
 <template name="course_list">
@@ -25,10 +40,19 @@
 </template>
 
 <template name="price_selector">
+  <p>Quel prix ?</p>
+  <div id="price_selector"></div>
+  <input type="text" id="amount"/>
+</template>
 
+<template name="time_selector">
+  <p>Quel heure ?</p>
+  <div id="time_selector"></div>
+  <input type="text" id="schedule"/>
 </template>
 
 <template name="calendar_selector">
+<p>Quel jours ?</p>
 <input type="checkbox" name="day_selector" class="day_selector" value="1">Lun</input>
 <input type="checkbox" name="day_selector" class="day_selector" value="2">Mar</input>
 <input type="checkbox" name="day_selector" class="day_selector" value="3">Mer</input>
@@ -37,3 +61,9 @@
 <input type="checkbox" name="day_selector" class="day_selector" value="6">Sam</input>
 <input type="checkbox" name="day_selector" class="day_selector" value="7">Dim</input>
 </template>
+
+<template name="search">
+  <input type="text"/>
+  <input type="button" value ="chercher">
+</template>
+
