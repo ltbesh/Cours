@@ -15,3 +15,5 @@ Template.price_selector.rendered = function (){
 	$( "#amount" ).val( "$" + $( "#price_selector" ).slider( "values", 0 ) +
 	" - $" + $( "#price_selector" ).slider( "values", 1 ) );
 };
+
+	

@@ -1,41 +1,39 @@
-// On server startup, create some players if the database is empty.
+// On server startup, create some course if the database is empty.
   Meteor.startup(function () {
     if (Courses.find().count() === 0) {
-      Courses.insert({
-      	title: 'Richard Douyeb', 
-      	description: 'Best KM course in town', 
-      	subject: 'Krav Maga', 
-      	day_of_week: 2, 
-      	starts: 1000, 
-     		ends: 1060,
-      	additional_information: 'Salle toute pourrie',
-        location_id: '2',
-        price: 30
-      });
-
-      Courses.insert( {
-      	title: 'Dominique strauss kahn', 
-      	description: 'Cours de sexe en salle', 
-      	subject: 'Sexe', 
-      	day_of_week: 4, 
-      	starts: 1200, 
-     		ends: 1260,
-      	additional_information: 'Interdit au femme de chambre',
-        location_id: '1',
-        price: 100
-        });
-
-      Courses.insert( {
-        title: 'Mario monti', 
-        description: 'Apprenez à tirer les ficelles', 
-        subject: 'Finance internationale', 
-        day_of_week: 4, 
-        starts: 1200, 
-        ends: 1260,
-        additional_information: 'Scrupuleux s\'abstenir',
-        location_id: '1',
-        price: 50
-        });
+        var title = ["Pour les nuls", "Seulement pour les pros", "Cours confirmés", "Cours experts", "Cours tous niveaux", "Faux débutant"];
+        var description = ["Un très bon cours", 
+                      "Parisien passez votre chemin", 
+                      "Le prof pue des bras", 
+                      "Meuf facile à chopper", 
+                      "Le prof passe le cours sur Facebook",
+                      "On est beaucoup trop nombreux",
+                      "Un cours un peu court"];
+        var subject = ["Sexe en salle", "Danse orientale", "Body step", "Poterie", "Curling", "Javascript", "Tennis", "Escalade"];
+        var additional_information = ["Distributeur de bonbon cassé",
+                                      "Le verrou des douches ne fonctionne pas",
+                                      "Interdit aux femmes",
+                                      "Le cours est rempli de pédophile",
+                                      "Le prof est sympa et souriant",
+                                      "On progresse rapidemment, mais c'est chacun son rythme",
+                                      "Cours pour les connards",
+                                      "Cassez vous ia pas d'ambiance",
+                                      "J'ai préféré Singapour"];
+        for(var i = 0;i<100;i++){
+          var starts = getRandomInt(480, 1380);
+          Courses.insert({
+            title: title[getRandomInt(0,5)],
+            description: description[getRandomInt(0,6)],
+            subject: subject[getRandomInt(0,7)],
+            day_of_week: getRandomInt(1,7),
+            starts: starts,
+            ends: starts + 60,
+            additional_information: additional_information[getRandomInt(0,8)],
+            location_id: getRandomInt(1,2),
+            price: getRandomInt(10, 200)
+          });
+        }
+      }
 
     if (Places.find().count() === 0) {
       Places.insert({
@@ -51,7 +49,9 @@
         location: '3 rue de trévise',
         _id: '2'
       });
+    }
+  });
 
-    };    
-  }});
-
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

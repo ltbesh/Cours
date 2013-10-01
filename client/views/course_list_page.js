@@ -10,8 +10,7 @@ Template.course_list.helpers ({
     	{   day_of_week : {$in: day_selector}, 
     		price : {$gt : price_min, $lt : price_max}, 
     		starts : {$gt : schedule_min},
-    		ends : {$lt : schedule_max}},
-    	{ sort: {title : 1}});
+    		ends : {$lt : schedule_max}});
 	}
 
 });
