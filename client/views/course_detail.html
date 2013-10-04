@@ -9,7 +9,22 @@
 		</div>
 	</div>
 
-	{{> course_detail_information}}
+	<div class="row-fluid">
+		{{> course_detail_information}}
+	</div>
+
+	<div class="row-fluid">
+		{{#if photo_tab }}
+			{{> photo_tab}}
+		{{/if}}
+
+		{{# if info_tab }}
+			{{>info_tab}}
+		{{/if}}
+	</div>
+	
+		
+
 	
 	<div class="row-fluid">
 		<div class="span12">
