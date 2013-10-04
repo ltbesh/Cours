@@ -29,7 +29,7 @@
             starts: starts,
             ends: starts + 60,
             additional_information: course_additionale_information[getRandomInt(0,8)],
-            location_id: getRandomInt(1,10),
+            location_id: getRandomInt(1,2),
             price: getRandomInt(10, 200)
           });
         }
