@@ -1,5 +1,24 @@
 <template name='course_detail'>
-	<h3>{{title}}</h3>
-	<h5>{{subject}}</h5>
-	<p>{{additional_information}}</p>
+	<div class="row-fluid">
+		<div class="span8">
+			<h3>{{title}}</h3>
+			<span>{{place.title}}</span>		
+		</div>
+		<div class="span4">
+			<h2>{{price}}</h2>
+		</div>
+	</div>
+
+	{{> course_detail_information}}
+	
+	<div class="row-fluid">
+		<div class="span12">
+			<h5>{{subject}}</h5>
+			<p>{{additional_information}}</p>
+		</div>
+		
+	</div>
+
+	
 </template>
+
