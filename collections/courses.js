@@ -1,6 +1,4 @@
 Courses = new Meteor.Collection('courses');
-
-
 /*Course
 {
 	title : "string",
@@ -11,13 +9,3 @@ Courses = new Meteor.Collection('courses');
 	schedule : {day_of_week: integer, starts : integer, ends: integer },
 	additional_information : "string"
 }*/
-
-Places = new Meteor.Collection('places');
-
-/* Places
-{
-	title: "string",
-	location: "données géographiques",
-	description: "string"
-}
-*/

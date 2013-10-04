@@ -1,6 +1,11 @@
 /* CSS declarations go here */
-#amount {
+#amount, #schedule{
 	border: 0; 
 	color: #f6931f; 
 	font-weight: bold;
+}
+
+#map{
+	width: 100%;
+    height: 600px;
 }
