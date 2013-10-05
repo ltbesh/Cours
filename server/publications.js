@@ -1,13 +1,18 @@
-Meteor.publish('courses', function(day_selector, price_min, price_max, schedule_min, schedule_max,limit){
- 	return Courses.find({   
- 		day_of_week : {$in: day_selector}, 
-    	price : {$gt : price_min, $lt : price_max}, 
-    	starts : {$gt : schedule_min},
-   		ends : {$lt : schedule_max}},
-   		{sort: {price: -1}, limit: limit});
+Meteor.publish('courses', function(daySelector, priceMin, priceMax, scheduleMin, scheduleMax,limit){
+ 	 var coursesCursor = Courses.find({   
+ 		day_of_week : {$in: daySelector}, 
+    	price : {$gt : priceMin, $lt : priceMax}, 
+    	starts : {$gt : scheduleMin},
+   		ends : {$lt : scheduleMax}},
+   		{sort: {price: 1}, limit: limit});
+
+ 	 var courses = coursesCursor.fetch();
+ 	 var coursesPlacesIds = _.pluck(courses,'placeId');
+ 	 var placesCursor = Places.find({_id : {$in : coursesPlacesIds}});
+
+ 	 return [coursesCursor, placesCursor];
 });
 
-Meteor.publish('places', function(){
-	return Places.find();
+Meteor.publish('place', function(placeId){
+	return Places.findOne({_id : placeId});	
 });
-

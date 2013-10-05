@@ -3,8 +3,10 @@ Session.set('price_min', 0);
 Session.set('price_max', 200);
 Session.set('schedule_min', 0);
 Session.set('schedule_max', 1440);
+Session.set('list_course_limit', 5)
 
 Deps.autorun(function () {
+	console.log("subscribe");
 	course_handle = Meteor.subscribeWithPagination(
 		'courses', 
 		Session.get('day_selector'), 
@@ -12,8 +14,8 @@ Deps.autorun(function () {
 		Session.get("price_max"), 
 		Session.get("schedule_min"), 
 		Session.get("schedule_max"),
-		5);
+		Session.get('list_course_limit'));
+	//console.log(course_handle);
 });
 
-Meteor.subscribe('places');
-
+Meteor.subscribe('place');

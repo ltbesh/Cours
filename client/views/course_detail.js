@@ -1,7 +1,8 @@
 Template.course_detail.helpers ({
 	place: function () {
-		var location_id = this.location_id;
-    	return Places.findOne( { _id: String(location_id) } );
+		var placeId = this.placeId;
+        console.log(this.placeId);
+    	return Places.findOne( { _id: String(placeId) } );
     },
 
     photo_tab: function () {
