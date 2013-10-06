@@ -9,3 +9,8 @@
 	width: 100%;
     height: 600px;
 }
+	
+.google-map img {
+	max-width: none;
+    vertical-align: baseline; 
+}

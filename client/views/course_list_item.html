@@ -1,8 +1,9 @@
 <template name="course_list_item">
-	<a href="{{course_detail_pagePath this}}">{{title}}</a>
+	<a href="{{course_detail_pagePath this}}" class='detail'>{{title}}</a>
 	<p>{{description}}</p>
 	<p>jour : {{day_of_week}}</p>
 	<p>starts : {{starts}}</p>
 	<p>ends : {{ends}}</p>
   	<p>prix : {{price}}</p>
+  	<p>place id : {{placeId}}</p>
 </template>
