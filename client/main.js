@@ -3,7 +3,8 @@ Session.set('price_min', 0);
 Session.set('price_max', 200);
 Session.set('schedule_min', 0);
 Session.set('schedule_max', 1440);
-Session.set('list_course_limit', 5)
+Session.set('list_course_limit', 5);
+Session.set('map', false);
 
 Deps.autorun(function () {
 	course_handle = Meteor.subscribeWithPagination(
