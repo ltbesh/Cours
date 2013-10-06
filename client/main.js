@@ -15,5 +15,6 @@ Deps.autorun(function () {
 		Session.get("schedule_min"), 
 		Session.get("schedule_max"),
 		Session.get('list_course_limit'));
-	Meteor.subscribe('place', Session.get('current_course'));
+	Meteor.subscribe('place', Session.get('current_course_location'));
+	Meteor.subscribe('course', Session.get('current_course'));
 });

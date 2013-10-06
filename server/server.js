@@ -10,7 +10,7 @@
                       "On est beaucoup trop nombreux",
                       "Un cours un peu court"];
         var course_subject = ["Sexe en salle", "Danse orientale", "Body step", "Poterie", "Curling", "Javascript", "Tennis", "Escalade"];
-        var course_additionale_information = ["Distributeur de bonbon cassé",
+        var course_additional_information = ["Distributeur de bonbon cassé",
                                       "Le verrou des douches ne fonctionne pas",
                                       "Interdit aux femmes",
                                       "Le cours est rempli de pédophile",
@@ -28,7 +28,7 @@
             day_of_week: getRandomInt(1,7),
             starts: starts,
             ends: starts + 60,
-            additional_information: course_additionale_information[getRandomInt(0,8)],
+            additional_information: course_additional_information[getRandomInt(0,8)],
             placeId: String(getRandomInt(1,5)),
             price: getRandomInt(10, 200)
           });

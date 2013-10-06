@@ -14,5 +14,10 @@ Meteor.publish('courses', function(daySelector, priceMin, priceMax, scheduleMin,
 });
 
 Meteor.publish('place', function(placeId){
-	return Places.findOne({_id : placeId});	
+	return Places.find(placeId);
+});
+
+
+Meteor.publish('course', function(courseId){
+	return Courses.find(courseId);
 });

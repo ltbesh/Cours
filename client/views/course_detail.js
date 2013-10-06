@@ -11,6 +11,4 @@ Template.course_detail.helpers ({
     info_tab: function () {
     	return Session.equals('course_detail_information_active_tab', 'info_tab');
     }
-
-    
 });
