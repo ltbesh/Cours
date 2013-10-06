@@ -1,7 +1,6 @@
 Template.course_detail.helpers ({
 	place: function () {
 		var placeId = this.placeId;
-        console.log(this.placeId);
     	return Places.findOne( { _id: String(placeId) } );
     },
 

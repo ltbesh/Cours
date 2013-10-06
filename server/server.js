@@ -39,7 +39,9 @@
       Places.insert({
         title: 'Sofitel de New York',
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
-        location: '3 rue de new-york',
+        location: '8 rue des françs bourgeois 75003 Paris',
+        lat: 48.8566874,
+        lng: 2.3636317000000417, 
         _id: '1'
       });
 
@@ -47,25 +49,32 @@
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
         location: '3 rue de trévise',
+        lat: 48.8734518,
+        lng: 2.345295599999986,
         _id: '2'
       });
       Places.insert({
         title: 'Games Workshop',
         description: 'Attention geek en liberté',
-        location: '6 rue de hautefeuille',
+        location: '20 rue de l\'est 75020 Paris',
+        lat: 48.8710324,
+        lng: 2.3940036999999847,
         _id: '3'
       });
-
       Places.insert({
         title: 'Collège François Couperin',
         description: 'Vous y ferez les meilleures rencontres',
-        location: '4 rue François Mirron',
+        location: '10 rue valadon Paris',
+        lat: 48.8570848,
+        lng: 2.3055378999999903,
         _id: '4'
       });
       Places.insert({
         title: 'LE GREAT',
         description: 'Le café a fait la renommé de cet endroit',
-        location: '6 quai des orfèvres',
+        location: '3 rue seguier',
+        lat: 48.854216,
+        lng: 2.342209300000036,
         _id: '5'
       });
     }

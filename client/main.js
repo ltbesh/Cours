@@ -6,7 +6,6 @@ Session.set('schedule_max', 1440);
 Session.set('list_course_limit', 5)
 
 Deps.autorun(function () {
-	console.log("subscribe");
 	course_handle = Meteor.subscribeWithPagination(
 		'courses', 
 		Session.get('day_selector'), 
@@ -15,7 +14,5 @@ Deps.autorun(function () {
 		Session.get("schedule_min"), 
 		Session.get("schedule_max"),
 		Session.get('list_course_limit'));
-	//console.log(course_handle);
+	Meteor.subscribe('place', Session.get('current_course'));
 });
-
-Meteor.subscribe('place');
