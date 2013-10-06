@@ -8,7 +8,7 @@ Template.course_list.helpers ({
 		return ! course_handle.loading();
 	},
 	all_courses_loaded: function(){	
-		return ! course_handle.loading() && Courses.find({}).count() < course_handle.loaded();
+		return ! course_handle.loading() && Courses.find().count() < course_handle.loaded();
 	}
 });
 

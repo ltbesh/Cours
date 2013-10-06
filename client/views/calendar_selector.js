@@ -1,3 +1,11 @@
+Template.calendar_selector.rendered = function(){
+	if(Session.get('day_selector').length < 7){
+		_.each(Session.get('day_selector'), function(day){
+			$('input[value*='+ day + ']').prop('checked', true);
+		});
+	}
+};
+
 Template.calendar_selector.events({
 	'click input.day_selector': function(){
 		var day =[];

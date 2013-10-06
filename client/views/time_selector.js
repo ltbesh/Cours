@@ -3,7 +3,9 @@ Template.time_selector.rendered = function (){
 		range: true,
 		min: 0,
 		max: 1440,
-		values: [ 0, 1440 ],
+		values: [ 
+			Session.get('schedule_min') ? Session.get('schedule_min') : 0,
+			Session.get('schedule_max') ? Session.get('schedule_max') : 1440 ],
 	slide: function( event, ui ) {
 		$( "#schedule" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
 	},

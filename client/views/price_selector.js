@@ -3,7 +3,9 @@ Template.price_selector.rendered = function (){
 		range: true,
 		min: 0,
 		max: 200,
-		values: [ 0, 200 ],
+		values: [ 
+			Session.get('price_min') ? Session.get('price_min') : 0,
+			Session.get('price_max') ? Session.get('price_max') : 200],
 	slide: function( event, ui ) {
 		$( "#amount" ).val( "€" + ui.values[ 0 ] + " - €" + ui.values[ 1 ] );
 	},
