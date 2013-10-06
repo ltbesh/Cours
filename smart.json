@@ -3,6 +3,9 @@
     "jquery-ui": {},
     "jquery-ui-bootstrap": {},
     "router": {},
-    "meteor-gmaps": {}
+    "meteor-gmaps": {},
+    "paginated-subscription": {},
+    "spin": {},
+    "select2": {}
   }
 }

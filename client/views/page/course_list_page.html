@@ -1,16 +1,18 @@
 <template name="course_list_page">
   
     <div class="row-fluid">
-      <span class="span6">
-        {{> map}}
 
-      </span>
       <span class="span6">
         {{> search}}
         {{> calendar_selector}}
         {{> price_selector}}
         {{> time_selector}}
+        <br>
         {{> course_list}}
+      </span>
+
+      <span class="span6">
+        {{> map}}
       </span>
     </div>
 </template>

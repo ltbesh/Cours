@@ -5,7 +5,10 @@
       "jquery-ui": {},
       "jquery-ui-bootstrap": {},
       "router": {},
-      "meteor-gmaps": {}
+      "meteor-gmaps": {},
+      "paginated-subscription": {},
+      "spin": {},
+      "select2": {}
     },
     "packages": {
       "jquery-ui": {
@@ -27,6 +30,21 @@
         "git": "https://github.com/patrickocoffeyo/meteor-gmaps.git",
         "tag": "v0.0.1",
         "commit": "2f4423ba1cf916b96842112e79a2abeb8fc7ac8a"
+      },
+      "paginated-subscription": {
+        "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
+        "tag": "v0.1.2",
+        "commit": "35e0c6112df2b4cfeb60b559276a93cac5ee2dd6"
+      },
+      "spin": {
+        "git": "https://github.com/SachaG/meteor-spin.git",
+        "tag": "v0.2.0",
+        "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
+      },
+      "select2": {
+        "git": "https://github.com/nate-strauser/meteor-select2.git",
+        "tag": "v3.4.3",
+        "commit": "fbe1f33800c90ecdfdcec529970382f8781e3988"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

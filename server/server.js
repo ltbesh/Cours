@@ -9,8 +9,7 @@
                       "Le prof passe le cours sur Facebook",
                       "On est beaucoup trop nombreux",
                       "Un cours un peu court"];
-        var course_subject = ["Sexe en salle", "Danse orientale", "Body step", "Poterie", "Curling", "Javascript", "Tennis", "Escalade"];
-        var course_additionale_information = ["Distributeur de bonbon cassé",
+        var course_additional_information = ["Distributeur de bonbon cassé",
                                       "Le verrou des douches ne fonctionne pas",
                                       "Interdit aux femmes",
                                       "Le cours est rempli de pédophile",
@@ -20,28 +19,28 @@
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
         for(var i = 0;i<100;i++){
-          var starts = getRandomInt(480, 1380);
+          var starts = getRandomInt(16, 42) * 30;
           Courses.insert({
             title: course_title[getRandomInt(0,5)],
             description: course_description[getRandomInt(0,6)],
-            subject: course_subject[getRandomInt(0,7)],
             day_of_week: getRandomInt(1,7),
+            tag_id : getRandomInt(1,8),
             starts: starts,
             ends: starts + 60,
-            additional_information: course_additionale_information[getRandomInt(0,8)],
-            location_id: getRandomInt(1,10),
+            additional_information: course_additional_information[getRandomInt(0,8)],
+            placeId: String(getRandomInt(1,5)),
             price: getRandomInt(10, 200)
           });
         }
       }
 
     if (Places.find().count() === 0) {
-
-      var place_title = ['Sofitel de New York', 'Théatre de trévise', 'College François Couperin', 'Games Workshop', 'Gileleje', ];
       Places.insert({
         title: 'Sofitel de New York',
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
-        location: '3 rue de new-york',
+        location: '8 rue des françs bourgeois 75003 Paris',
+        lat: 48.8566874,
+        lng: 2.3636317000000417, 
         _id: '1'
       });
 
@@ -49,10 +48,73 @@
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
         location: '3 rue de trévise',
+        lat: 48.8734518,
+        lng: 2.345295599999986,
         _id: '2'
       });
+      Places.insert({
+        title: 'Games Workshop',
+        description: 'Attention geek en liberté',
+        location: '20 rue de l\'est 75020 Paris',
+        lat: 48.8710324,
+        lng: 2.3940036999999847,
+        _id: '3'
+      });
+      Places.insert({
+        title: 'Collège François Couperin',
+        description: 'Vous y ferez les meilleures rencontres',
+        location: '10 rue valadon Paris',
+        lat: 48.8570848,
+        lng: 2.3055378999999903,
+        _id: '4'
+      });
+      Places.insert({
+        title: 'LE GREAT',
+        description: 'Le café a fait la renommé de cet endroit',
+        location: '3 rue seguier',
+        lat: 48.854216,
+        lng: 2.342209300000036,
+        _id: '5'
+      });
     }
+
+    if(Tags.find().count() === 0){
+      Tags.insert({
+        _id : '1',
+        name : "Sexe en salle"
+      });
+      Tags.insert({
+        _id : '2',
+        name : "Danse orientale"
+      });
+      Tags.insert({
+        _id : '3',
+        name : "Body step"
+      });
+      Tags.insert({
+        _id : '4',
+        name : "Poterie"
+      });
+      Tags.insert({
+        _id : '5',
+        name : "Curling"
+      });
+      Tags.insert({
+        _id : '6',
+        name : "Javascript"
+      });
+      Tags.insert({
+        _id : '7',
+        name : "Escalade"
+      });
+      Tags.insert({
+        _id : '8',
+        name : "Tennis"
+      });
+    }
+
   });
+
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

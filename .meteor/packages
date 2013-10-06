@@ -10,3 +10,7 @@ bootstrap
 jquery-ui
 jquery-ui-bootstrap
 router
+paginated-subscription
+spin
+underscore
+select2
