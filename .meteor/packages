@@ -13,3 +13,4 @@ router
 paginated-subscription
 spin
 underscore
+select2

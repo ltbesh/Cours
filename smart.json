@@ -5,6 +5,7 @@
     "router": {},
     "meteor-gmaps": {},
     "paginated-subscription": {},
-    "spin": {}
+    "spin": {},
+    "select2": {}
   }
 }

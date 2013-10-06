@@ -9,7 +9,6 @@
                       "Le prof passe le cours sur Facebook",
                       "On est beaucoup trop nombreux",
                       "Un cours un peu court"];
-        var course_subject = ["Sexe en salle", "Danse orientale", "Body step", "Poterie", "Curling", "Javascript", "Tennis", "Escalade"];
         var course_additional_information = ["Distributeur de bonbon cassé",
                                       "Le verrou des douches ne fonctionne pas",
                                       "Interdit aux femmes",
@@ -20,12 +19,12 @@
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
         for(var i = 0;i<100;i++){
-          var starts = getRandomInt(480, 1380);
+          var starts = getRandomInt(16, 42) * 30;
           Courses.insert({
             title: course_title[getRandomInt(0,5)],
             description: course_description[getRandomInt(0,6)],
-            subject: course_subject[getRandomInt(0,7)],
             day_of_week: getRandomInt(1,7),
+            tag_id : getRandomInt(1,8),
             starts: starts,
             ends: starts + 60,
             additional_information: course_additional_information[getRandomInt(0,8)],
@@ -78,7 +77,44 @@
         _id: '5'
       });
     }
+
+    if(Tags.find().count() === 0){
+      Tags.insert({
+        _id : '1',
+        name : "Sexe en salle"
+      });
+      Tags.insert({
+        _id : '2',
+        name : "Danse orientale"
+      });
+      Tags.insert({
+        _id : '3',
+        name : "Body step"
+      });
+      Tags.insert({
+        _id : '4',
+        name : "Poterie"
+      });
+      Tags.insert({
+        _id : '5',
+        name : "Curling"
+      });
+      Tags.insert({
+        _id : '6',
+        name : "Javascript"
+      });
+      Tags.insert({
+        _id : '7',
+        name : "Escalade"
+      });
+      Tags.insert({
+        _id : '8',
+        name : "Tennis"
+      });
+    }
+
   });
+
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

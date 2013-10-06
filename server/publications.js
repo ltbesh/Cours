@@ -21,3 +21,7 @@ Meteor.publish('place', function(placeId){
 Meteor.publish('course', function(courseId){
 	return Courses.find(courseId);
 });
+
+Meteor.publish('tags', function(){
+	return Tags.find({}, {sort: {name: 1}});
+}); 
