@@ -1,5 +1,6 @@
-Meteor.publish('courses', function(daySelector, priceMin, priceMax, scheduleMin, scheduleMax,limit){
- 	 var coursesCursor = Courses.find({   
+Meteor.publish('courses', function(daySelector, priceMin, priceMax, scheduleMin, scheduleMax,subject_search, limit){
+ 	 var coursesCursor = Courses.find({
+ 	 	tag_id: subject_search,   
  		day_of_week : {$in: daySelector}, 
     	price : {$gt : priceMin, $lt : priceMax}, 
     	starts : {$gt : scheduleMin},
