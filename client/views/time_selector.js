@@ -24,7 +24,4 @@ Template.time_selector.rendered = function (){
 		convert_minute_to_time($( "#time_selector" ).slider( "values", 0 ))[1]);
 	$( "#schedule_max" ).html(convert_minute_to_time($( "#time_selector" ).slider( "values", 1 ))[0] + 'h' + 
 		convert_minute_to_time($( "#time_selector" ).slider( "values", 0 ))[1]);
-
-
-
 };
