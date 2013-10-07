@@ -3,6 +3,4 @@ Template.photo_tab.helpers ({
 		var placeId = this.placeId;
     	return Places.findOne( { _id: String(placeId) } );
     },
-
-  
 });
