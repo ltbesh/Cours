@@ -6,7 +6,11 @@ Session.set('schedule_max', 1440);
 Session.set('map', false);
 Session.set('current_course', null);
 Session.set('current_course_place', null);
+<<<<<<< HEAD
 Session.set('course_detail_information_active_tab', 'photo_tab');
+=======
+Session.set('subject_search', null);
+>>>>>>> coursLucas/Develop
 
 
 Deps.autorun(function () {
@@ -22,4 +26,6 @@ course_handle = Meteor.subscribeWithPagination(
 	function(){return Session.get("price_min")}, 
 	function(){return Session.get("price_max")}, 
 	function(){return Session.get("schedule_min")}, 
-	function(){return Session.get("schedule_max")},5);
+	function(){return Session.get("schedule_max")},
+	function(){return Session.get('subject_search')},
+	5);

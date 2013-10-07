@@ -24,7 +24,7 @@
             title: course_title[getRandomInt(0,5)],
             description: course_description[getRandomInt(0,6)],
             day_of_week: getRandomInt(1,7),
-            tag_id : getRandomInt(1,8),
+            tag_id : String(getRandomInt(1,8)),
             starts: starts,
             ends: starts + 60,
             additional_information: course_additional_information[getRandomInt(0,8)],
