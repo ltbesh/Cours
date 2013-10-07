@@ -8,7 +8,8 @@
       "meteor-gmaps": {},
       "paginated-subscription": {},
       "spin": {},
-      "select2": {}
+      "select2": {},
+      "accounts-ui-bootstrap-dropdown": {}
     },
     "packages": {
       "jquery-ui": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/nate-strauser/meteor-select2.git",
         "tag": "v3.4.3",
         "commit": "fbe1f33800c90ecdfdcec529970382f8781e3988"
+      },
+      "accounts-ui-bootstrap-dropdown": {
+        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
+        "tag": "v0.6.5.1",
+        "commit": "c8b29d2e7f8611d6dec9d6d23c1c2b94e000b0fb"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
