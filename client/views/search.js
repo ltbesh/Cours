@@ -1,4 +1,4 @@
-Template.search.rendered = function(){
+Template.tag_search.rendered = function(){
 	function format(item) { return item.name; };
 	Deps.autorun(function(){
 		var tags = Tags.find().fetch();
