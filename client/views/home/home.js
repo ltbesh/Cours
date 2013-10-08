@@ -10,4 +10,10 @@ Template.home.rendered = function(){
       }
     google.maps.event.addDomListener(window, 'onload', initialize);
 
-}
+};
+
+Template.home.events({
+  'click #search': function(e){
+
+  }
+})
