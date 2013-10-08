@@ -4,19 +4,19 @@ Template.map.rendered = function() {
 
     Deps.autorun(function(){
         var places = Places.find().fetch();
-        var placesIds = _.pluck(places,'_id');
+        var places_id = _.pluck(places,'_id');
 
         _.each(gmaps.markerData, function(marker){
-            if(! _.contains(placesIds, marker.id))
+            if(! _.contains(places_id, marker.id))
                 gmaps.removeMarker(marker.id);                 
         });
 
         _.each(places, function(place){
-            if(typeof(place.lat !== undefined) && typeof(place.lng !== undefined)){
+            if(typeof(place.location.coordinates[1] !== undefined) && typeof(place.location.coordinates[0] !== undefined)){
                 var objMarker = {
                     id: place._id,
-                    lat: place.lat,
-                    lng: place.lng,
+                    lat: place.location.coordinates[1],
+                    lng: place.location.coordinates[0],
                     title: place.title
                 };
                 if(!gmaps.markerExists('id', objMarker.id))

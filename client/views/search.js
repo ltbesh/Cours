@@ -17,7 +17,6 @@ Template.tag_search.rendered = function(){
 			$("#subject-search").select2("val", Session.get('subject_search'))	
 
 		$("#subject-search").on("change", function(e) { 
-			console.log(e.val);
 			Session.set('subject_search',e.val);
 		});
 

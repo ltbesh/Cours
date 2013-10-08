@@ -1,5 +1,7 @@
 // On server startup, create some course if the database is empty.
   Meteor.startup(function () {
+    Places._ensureIndex({ location : "2dsphere" });
+
     if (Courses.find().count() === 0) {
         var course_title = ["Pour les nuls", "Seulement pour les pros", "Cours confirmés", "Cours experts", "Cours tous niveaux", "Faux débutant"];
         var course_description = ["Un très bon cours", 
@@ -39,7 +41,7 @@
         title: 'Sofitel de New York',
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
         adress: '8 rue des françs bourgeois 75003 Paris',
-        location : { Type : 'Point', coordinates: [48.8566874, 2.3636317000000417]}, 
+        location : { type : 'Point', coordinates: [2.3636317000000417, 48.8566874]}, 
         _id: '1'
       });
 
@@ -47,28 +49,28 @@
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
         adress: '3 rue de trévise',
-        location : { Type : 'Point', coordinates: [48.8734518, 2.345295599999986]},
+        location : { type : 'Point', coordinates: [2.345295599999986, 48.8734518]},
         _id: '2'
       });
       Places.insert({
         title: 'Games Workshop',
         description: 'Attention geek en liberté',
         adress: '20 rue de l\'est 75020 Paris',
-        location : { Type : 'Point', coordinates: [48.8710324, 2.3940036999999847]},
+        location : { type : 'Point', coordinates: [2.3940036999999847, 48.8710324]},
         _id: '3'
       });
       Places.insert({
         title: 'Collège François Couperin',
         description: 'Vous y ferez les meilleures rencontres',
         adress: '10 rue valadon Paris',
-        location : { Type : 'Point', coordinates: [48.8570848, 2.3055378999999903]},
+        location : { type : 'Point', coordinates: [2.3055378999999903, 48.8570848]},
         _id: '4'
       });
       Places.insert({
         title: 'LE GREAT',
         description: 'Le café a fait la renommé de cet endroit',
         adress: '3 rue seguier',
-        location :  {Type : 'Point', coordinates: [48.854216, 2.342209300000036]},
+        location :  {type : 'Point', coordinates: [2.342209300000036, 48.854216]},
         _id: '5'
       });
     }
