@@ -16,4 +16,4 @@ Template.course_list.events({
 		e.preventDefault();
 		course_handle.loadNextPage();
 	}
-})
+});

@@ -6,15 +6,20 @@ Template.tag_search.rendered = function(){
 	    	tags[i].id = tags[i]['_id'];
 	    	delete tags[i]._id;
 		}
-		$("#subject_search").select2({
+		$("#subject-search").select2({
 			data: { results: tags, text: 'name' },
 		 	placeholder: 'Chercher un cours', 
 			formatSelection: format,
 			formatResult: format,
 			width: '100%'
 		});
-		$("#subject_search").on("change", function(e) { 
+		if(Session.get('subject_search'))
+			$("#subject-search").select2("val", Session.get('subject_search'))	
+
+		$("#subject-search").on("change", function(e) { 
 			Session.set('subject_search',e.val);
 		});
+
+
 	});
 }

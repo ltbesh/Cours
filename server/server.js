@@ -1,5 +1,7 @@
 // On server startup, create some course if the database is empty.
   Meteor.startup(function () {
+    Places._ensureIndex({ location : "2dsphere" });
+
     if (Courses.find().count() === 0) {
         var course_title = ["Pour les nuls", "Seulement pour les pros", "Cours confirmés", "Cours experts", "Cours tous niveaux", "Faux débutant"];
         var course_description = ["Un très bon cours", 
@@ -19,17 +21,17 @@
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
         for(var i = 0;i<100;i++){
-          var starts = getRandomInt(16, 42) * 30;
+          var starts = get_random_int(16, 42) * 30;
           Courses.insert({
-            title: course_title[getRandomInt(0,5)],
-            description: course_description[getRandomInt(0,6)],
-            day_of_week: getRandomInt(1,7),
-            tag_id : String(getRandomInt(1,8)),
+            title: course_title[get_random_int(0,5)],
+            description: course_description[get_random_int(0,6)],
+            day_of_week: get_random_int(1,7),
+            tag_id : String(get_random_int(1,8)),
             starts: starts,
             ends: starts + 60,
-            additional_information: course_additional_information[getRandomInt(0,8)],
-            placeId: String(getRandomInt(1,5)),
-            price: getRandomInt(10, 200)
+            additional_information: course_additional_information[get_random_int(0,8)],
+            place_id: String(get_random_int(1,5)),
+            price: get_random_int(10, 200)
           });
         }
       }
@@ -38,42 +40,37 @@
       Places.insert({
         title: 'Sofitel de New York',
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
-        location: '8 rue des françs bourgeois 75003 Paris',
-        lat: 48.8566874,
-        lng: 2.3636317000000417, 
+        adress: '8 rue des françs bourgeois 75003 Paris',
+        location : { type : 'Point', coordinates: [2.3636317000000417, 48.8566874]}, 
         _id: '1'
       });
 
       Places.insert({
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
-        location: '3 rue de trévise',
-        lat: 48.8734518,
-        lng: 2.345295599999986,
+        adress: '3 rue de trévise',
+        location : { type : 'Point', coordinates: [2.345295599999986, 48.8734518]},
         _id: '2'
       });
       Places.insert({
         title: 'Games Workshop',
         description: 'Attention geek en liberté',
-        location: '20 rue de l\'est 75020 Paris',
-        lat: 48.8710324,
-        lng: 2.3940036999999847,
+        adress: '20 rue de l\'est 75020 Paris',
+        location : { type : 'Point', coordinates: [2.3940036999999847, 48.8710324]},
         _id: '3'
       });
       Places.insert({
         title: 'Collège François Couperin',
         description: 'Vous y ferez les meilleures rencontres',
-        location: '10 rue valadon Paris',
-        lat: 48.8570848,
-        lng: 2.3055378999999903,
+        adress: '10 rue valadon Paris',
+        location : { type : 'Point', coordinates: [2.3055378999999903, 48.8570848]},
         _id: '4'
       });
       Places.insert({
         title: 'LE GREAT',
         description: 'Le café a fait la renommé de cet endroit',
-        location: '3 rue seguier',
-        lat: 48.854216,
-        lng: 2.342209300000036,
+        adress: '3 rue seguier',
+        location :  {type : 'Point', coordinates: [2.342209300000036, 48.854216]},
         _id: '5'
       });
     }
@@ -116,6 +113,6 @@
   });
 
 
-function getRandomInt (min, max) {
+function get_random_int (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
