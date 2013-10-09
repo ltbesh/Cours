@@ -1,11 +1,22 @@
 <template name='home'>
 
-    <div class="row-fluid">
-    	{{> tag_search}}
-    	{{> geographical_search}}
-    	<input type='button' class='btn' value='Trouver un cours'>
-	</div>
+<div id="center-home">
+	<table id="page-table">
+		<tr>
+			<td id="page-td">
+    			<div id="global" class="row-fluid">
+    				<h1>Trouver un cours</h1>
+					<div id="tag-line">Trouver un cours près de chez vous ou de votre travail parmi 200 000 professionnels</div><br>
+				    <div class="span3">{{> tag_search}}</div>
+				    <div class="span3">{{> geographical_search}}</div>
+				    <div class="span3"><input type='button' class='btn' value='Trouver un cours'></div>
+				    <div class="span3"></div>
+   				</div>
+			</td>
+		</tr>
+	</table>
 
+</div>
 	<div id="map" class='google-map'>
 	</div>
 
