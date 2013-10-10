@@ -8,7 +8,7 @@ Session.set('current_course', null);
 Session.set('current_course_place', null);
 Session.set('course_detail_information_active_tab', 'photo_tab');
 Session.set('subject_search', null);
-Session.set('geographical_search', null);
+Session.set('geographical_search', {address : null, location : null});
 
 
 
@@ -17,7 +17,7 @@ Deps.autorun(function () {
 	Meteor.subscribe('course', Session.get('current_course'));
 	Meteor.subscribe('tags');
 });
-
+Meteor.subscribe('owned_places');
 
 course_handle = Meteor.subscribeWithPagination(
 	'courses', 
@@ -27,5 +27,5 @@ course_handle = Meteor.subscribeWithPagination(
 	function(){return Session.get("schedule_min")}, 
 	function(){return Session.get("schedule_max")},
 	function(){return Session.get('subject_search')},
-	function(){return Session.get('geographical_search')},
+	function(){return Session.get('geographical_search').location},
 	5);

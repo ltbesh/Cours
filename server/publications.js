@@ -32,7 +32,6 @@ Meteor.publish('place', function(place_id){
 	return Places.find(place_id);
 });
 
-
 Meteor.publish('course', function(courseId){
 	return Courses.find(courseId);
 });
@@ -40,3 +39,7 @@ Meteor.publish('course', function(courseId){
 Meteor.publish('tags', function(){
 	return Tags.find({}, {sort: {name: 1}});
 }); 
+
+Meteor.publish('owned_places', function(){
+	return Places.find({user_id:this.userId});
+})
