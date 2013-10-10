@@ -26,7 +26,7 @@
 .navbar-fixed-bottom .container {
   width: 100%;
 }
-
+/*
 #main{
 	margin: 0;
 	padding: 0;
@@ -35,33 +35,17 @@
 	margin: 0;
 	padding: 0;
 }
-
+*/
 /*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
-#center-home
-{
-	height: 100%;
+
+#geographical-search{
 	width: 100%;
-	overflow: auto;
-	position: fixed;
+	height: auto;
 }
 
-#page-table {
-    border: 0;
-    height: 100%;
-    margin: 0 auto;
-    position: relative;
-    width: 1000px;
-}
-#page-td{
-	height: 100%;
-	padding: 0;
-	vertical-align: middle;
-}
+#find-btn{
+	width: 100%;
 
-div#global{
-	width: 900px;
-	margin: 20px auto;
-	text-align: left;
 }
 
 h1{
@@ -73,17 +57,40 @@ h1{
 	font-size: 1,3em;
 }
 
-/*-------------------HEADER-------------------*/
-
-.navbar{
-	margin-bottom: 0;
+/* This parent can be any width and height */
+.block {
+  text-align: center;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
 }
 
-#header-title{
-	font-size: 130%;
-	font-weight: bold;
+/* The element to be centered, can
+   also be of any width and height */ 
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 800px;
+}
+
+/*------------------ COURSE LIST PAGE---------------*/
+
+.text{
 	color: #3c3c3c;
+	font-family: Helvetica;
 }
+
+#courses-list{
+	margin-left: 20px;
+}
+
+
 
 
 
