@@ -1,18 +1,25 @@
 <template name="course_list_page">
   
-    <div class="row-fluid">
+    <div id="courses-list" class="row-fluid">
 
-      <span class="span6">
-        {{> tag_search}}
-        {{> calendar_selector}}
-        {{> price_selector}}
-        {{> time_selector}}
-        <br>
-        {{> course_list}}
-      </span>
-
-      <span class="span6">
+    <div class="span4">
         {{> map}}
-      </span>
+      </div>
+
+      <div class="span7">
+        <div class="row-fluid">
+          <div class="span4">{{>tag_search}}</div>
+          <div class="span4">{{>geographical_search}}</div>
+          <div class="span4"><input id="find-btn" type='button' class='btn' value='Trouver un cours'></div>
+        </div>
+      <br>
+      
+      {{> calendar_selector}}
+      <br>
+      {{> price_selector}}<br>
+      {{> time_selector}}<br>
+      {{> course_list}}
+      </div>
+      
     </div>
 </template>
