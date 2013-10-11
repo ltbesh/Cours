@@ -13,7 +13,6 @@ Template.create_course.rendered = function(){
 		 	placeholder: 'Matière ?',
 			formatSelection: format,
 			formatResult: format,
-		 	width:"300px"
 		});
 
 		var places = Places.find({user_id : Meteor.userId()}).fetch();   		 
@@ -28,7 +27,6 @@ Template.create_course.rendered = function(){
 		 	placeholder: 'Lieu ?',
 			formatSelection: format,
 			formatResult: format,
-			width: '300px'
 		});
 	});
 

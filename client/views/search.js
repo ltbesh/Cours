@@ -11,7 +11,6 @@ Template.tag_search.rendered = function(){
 		 	placeholder: 'Chercher un sport', 
 			formatSelection: format,
 			formatResult: format,
-			width: '100%'
 		});
 		
 		if(Session.get('subject_search'))

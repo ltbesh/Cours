@@ -16,7 +16,11 @@ Template.course_detail.helpers ({
     }
 });
 
-Template.course_detail.destroyed= function(){
+Template.course_detail.rendered = function(){
+    Session.set('current_course_place', this.data.place_id);
+} 
+
+Template.course_detail.destroyed = function(){
     Session.set('current_course', null);
     Session.set('current_course_place', null);
 }

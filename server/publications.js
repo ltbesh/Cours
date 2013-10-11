@@ -22,9 +22,6 @@ Meteor.publish('courses',
 			var places_cursor = Places.find({_id : {$in : courses_places_id}}, {fields: {description:0 }});
 			return [courses_cursor, places_cursor];
 		}
-
-
-
 	}
 );
 
