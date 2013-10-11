@@ -4,7 +4,8 @@ Template.course_page.helpers({
 	},
 	place: function () {
 	var place_id = this.place_id;
-	return Places.findOne( { _id: String(place_id) } );
+	console.log('test place');
+	return Places.findOne( { _id: String(place_id) });
     },
     subject: function(){
         return Tags.find(this.tag_id).fetch()[0].title;
