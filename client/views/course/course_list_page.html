@@ -1,33 +1,35 @@
 <template name="course_list_page">
-    
-    {{#each courses}}
-      {{> course_item}}
-    {{/each}}
-
-    {{#if courses_ready}}
-      {{#unless all_courses_loaded}}
-        <a class="load-more" href="#">Load more</a> 
-      {{/unless}}
-    {{else}}
-      {{> loading}}
-    {{/if}}
-
-    <div>
-    {{> map}}
+    <div class="span6">
+      {{> map}}
     </div>
 
-    <div class="span7">
+    <div class="span6">
       <div class="row-fluid">
         <div class="span4">{{>tag_selector}}</div>
         <div class="span4">{{>geographical_selector}}</div>
         <div class="span4"><input id="find-btn" type='button' class='btn' value='Trouver un cours'></div>
       </div>
-    <br>
-    
-    {{> calendar_selector}}
-    <br>
-    {{> price_selector}}<br>
-    {{> time_selector}}<br>
-    {{> course_list}}
-    </div>
+
+      <div class="row-fluid">  
+        {{> calendar_selector}}
+        <br>
+        {{> price_selector}}<br>
+        {{> time_selector}}<br>
+        {{> course_list}}    
+      <br>
+      </div>
+        <div class="row-fluid">  
+          {{#each courses}}
+            {{> course_item}}
+          {{/each}}
+
+          {{#if courses_ready}}
+            {{#unless all_courses_loaded}}
+              <a class="load-more" href="#">Load more</a> 
+            {{/unless}}
+          {{else}}
+            {{> loading}}
+          {{/if}}    
+        </div>
+      </div>
 </template>
