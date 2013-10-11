@@ -6,11 +6,13 @@
 </head> 
 <body>
 
-  <div class="container"> 
-    {{> header}}
-    <div id="main" class="row-fluid">
-      {{renderPage}}
-    </div>
-  </div>
+	<div id='container-header' class="container">
+    	{{> header}}
+	</div>
+	<div id='center-page' class="container">
+    	<div id="main" class="row-fluid">
+      		{{renderPage}}
+    	</div>
+  	</div>
 
 </body>

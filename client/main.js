@@ -11,7 +11,6 @@ Session.set('subject_search', null);
 Session.set('geographical_search', null);
 
 
-
 Deps.autorun(function () {
 	Meteor.subscribe('place', Session.get('current_course_place'));
 	Meteor.subscribe('course', Session.get('current_course'));

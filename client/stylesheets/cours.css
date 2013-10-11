@@ -16,16 +16,13 @@
 }
 /* -------------------PAGE SIZE-------------------*/
 
-.container {
+#container-header
+{
+	margin: 0;
+	padding: 0;
 	width: 100%;
 }
 
-.container,
-.navbar-static-top .container,
-.navbar-fixed-top .container,
-.navbar-fixed-bottom .container {
-  width: 100%;
-}
 /*
 #main{
 	margin: 0;
@@ -39,14 +36,30 @@
 /*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
 
 #geographical-search{
-	width: 100%;
-	height: auto;
+	margin: 0;
 }
 
 #find-btn{
 	width: 100%;
 
 }
+*/
+
+#button-home1{
+	margin: 0;
+	padding: 0;
+}
+
+#button-home2{
+	margin: 0;
+	padding: 0;
+}
+
+#button-home3{
+	margin: 0;
+	padding: 0;
+}
+
 
 h1{
 	color: #3c3c3c;
@@ -75,7 +88,7 @@ h1{
    also be of any width and height */ 
 .centered {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: middle -1px;
   width: 800px;
 }
 
