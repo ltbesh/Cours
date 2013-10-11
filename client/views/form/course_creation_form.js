@@ -1,4 +1,4 @@
-Template.create_course.rendered = function(){
+Template.course_creation_form.rendered = function(){
 	function format(item) { return item.title; };
 	Deps.autorun(function(){
 		var tags = Tags.find().fetch();
@@ -57,7 +57,7 @@ Template.create_course.rendered = function(){
  	}    
 }
 
-Template.create_course.events({ 
+Template.course_creation_form.events({ 
 	'submit form': function(e) {
 		e.preventDefault();
 

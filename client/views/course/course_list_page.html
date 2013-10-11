@@ -1,5 +1,21 @@
 <template name="course_list_page">
-  
+    
+    {{#each courses}}
+      {{> course_item}}
+    {{/each}}
+
+    {{#if courses_ready}}
+      {{#unless all_courses_loaded}}
+        <a class="load-more" href="#">Load more</a> 
+      {{/unless}}
+    {{else}}
+      {{> loading}}
+    {{/if}}
+
+    <div>
+    {{> map}}
+    </div>
+
     <div class="span7">
       <div class="row-fluid">
         <div class="span4">{{>tag_selector}}</div>

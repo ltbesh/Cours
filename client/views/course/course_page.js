@@ -11,11 +11,11 @@ Template.course_page.helpers({
     }
 });
 
-Template.course_detail_page.destroyed = function(){
+Template.course_page.destroyed = function(){
 	Session.set('current_course', null);
 	Session.set('current_course_place', null);
 }
 
-Template.course_detail_page.rendered = function(){
+Template.course_page.rendered = function(){
     Session.set('current_course_place', this.data.place_id);
 } 

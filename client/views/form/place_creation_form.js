@@ -1,4 +1,4 @@
-Template.create_place.events({
+Template.place_creation_form.events({
 	'submit form': function(e){
 		e.preventDefault();
 		console.log('Session : ' + Session.get('geographical_search').address);
