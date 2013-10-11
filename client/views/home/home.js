@@ -1,4 +1,6 @@
 Template.home.events({
-  'click #search': function(e){
+  'click #find-btn': function(e){
+  	console.log('search');
+  	Meteor.Router.to('/search');
   }
 })
