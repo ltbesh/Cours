@@ -6,6 +6,6 @@ Template.course_item.helpers({
 
 Template.course_item.events({
 	'click .detail' : function(e){
-		Session.set('current_course_place', this.placeId);
+		Session.set('current_course_place', this.place_id);
 	}
 })
