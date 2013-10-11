@@ -1,15 +1,21 @@
+// Selector for courses search
 Session.set('day_selector', [1,2,3,4,5,6,7]);
 Session.set('price_min', 0);
 Session.set('price_max', 200);
 Session.set('schedule_min', 0);
 Session.set('schedule_max', 1440);
-Session.set('map', false);
+Session.set('subject_search', null);
+Session.set('geographical_search', {address : null, location : null});
+
+// Id of the place and course that the user is currently looking at
 Session.set('current_course', null);
 Session.set('current_course_place', null);
-Session.set('course_detail_information_active_tab', 'photo_tab');
-Session.set('subject_search', null);
-Session.set('geographical_search', null);
 
+// Set the default active tab for course detail
+Session.set('course_detail_information_active_tab', 'photo_tab');
+
+// Used to draw the map
+Session.set('map', false);
 
 Deps.autorun(function () {
 	Meteor.subscribe('place', Session.get('current_course_place'));
@@ -17,7 +23,11 @@ Deps.autorun(function () {
 	Meteor.subscribe('tags');
 });
 
+// Suscribe to the places the user owns
+Meteor.subscribe('owned_places');
 
+
+// Subscribe to the courses and places that match the user criterion
 course_handle = Meteor.subscribeWithPagination(
 	'courses', 
 	function(){return Session.get('day_selector')}, 
@@ -26,5 +36,5 @@ course_handle = Meteor.subscribeWithPagination(
 	function(){return Session.get("schedule_min")}, 
 	function(){return Session.get("schedule_max")},
 	function(){return Session.get('subject_search')},
-	function(){return Session.get('geographical_search')},
+	function(){return Session.get('geographical_search').location},
 	5);

@@ -1,6 +1,6 @@
 <template name="course_list">
     {{#each courses}}
-      {{> course_list_item}}
+      {{> course_item}}
     {{/each}}
 
     {{#if courses_ready}}
@@ -8,7 +8,7 @@
         <a class="load-more" href="#">Load more</a> 
       {{/unless}}
     {{else}}
-      <div>{{> spinner}}</div>
+      {{> loading}}
     {{/if}}
 </template>
 

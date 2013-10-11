@@ -1,4 +1,4 @@
-Template.course_list.helpers ({
+Template.course_list_page.helpers ({
 	courses: function () {
     var courses =  Courses.find({});
     return courses;
@@ -11,7 +11,7 @@ Template.course_list.helpers ({
 	}
 });
 
-Template.course_list.events({
+Template.course_list_page.events({
 	'click .load-more' : function(e){
 		e.preventDefault();
 		course_handle.loadNextPage();

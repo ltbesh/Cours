@@ -1,19 +1,6 @@
-Template.home.rendered = function(){
-    function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-      }
-    google.maps.event.addDomListener(window, 'onload', initialize);
-
-};
-
 Template.home.events({
-  'click #search': function(e){
-
+  'click #find-btn': function(e){
+  	console.log('search');
+  	Meteor.Router.to('/search');
   }
 })
