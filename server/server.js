@@ -2,6 +2,12 @@
   Meteor.startup(function () {
     Places._ensureIndex({ location : "2dsphere" });
 
+    if(Meteor.users.find().count() === 0){
+      var id_ltbesh = Accounts.createUser({username: 'ltbesh', password: 'admin'});
+      var id_alex = Accounts.createUser({username: 'dada', password: 'admin'});
+      var id_lucas = Accounts.createUser({username: 'lucas', password: 'admin'});
+    }
+
     if (Courses.find().count() === 0) {
         var course_title = ["Pour les nuls", "Seulement pour les pros", "Cours confirmés", "Cours experts", "Cours tous niveaux", "Faux débutant"];
         var course_description = ["Un très bon cours", 
@@ -40,37 +46,42 @@
       Places.insert({
         title: 'Sofitel de New York',
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
-        adress: '8 rue des françs bourgeois 75003 Paris',
+        address: '8 rue des françs bourgeois 75003 Paris',
         location : { type : 'Point', coordinates: [2.3636317000000417, 48.8566874]}, 
+        user_id : id_ltbesh,
         _id: '1'
       });
 
       Places.insert({
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
-        adress: '3 rue de trévise',
+        address: '3 rue de trévise',
         location : { type : 'Point', coordinates: [2.345295599999986, 48.8734518]},
+        user_id : id_ltbesh,
         _id: '2'
       });
       Places.insert({
         title: 'Games Workshop',
         description: 'Attention geek en liberté',
-        adress: '20 rue de l\'est 75020 Paris',
+        address: '20 rue de l\'est 75020 Paris',
         location : { type : 'Point', coordinates: [2.3940036999999847, 48.8710324]},
+        user_id : id_ltbesh,
         _id: '3'
       });
       Places.insert({
         title: 'Collège François Couperin',
         description: 'Vous y ferez les meilleures rencontres',
-        adress: '10 rue valadon Paris',
+        address: '10 rue valadon Paris',
         location : { type : 'Point', coordinates: [2.3055378999999903, 48.8570848]},
+        user_id : id_alex,
         _id: '4'
       });
       Places.insert({
         title: 'LE GREAT',
         description: 'Le café a fait la renommé de cet endroit',
-        adress: '3 rue seguier',
+        address: '3 rue seguier',
         location :  {type : 'Point', coordinates: [2.342209300000036, 48.854216]},
+        user_id : id_alex,
         _id: '5'
       });
     }
@@ -78,35 +89,35 @@
     if(Tags.find().count() === 0){
       Tags.insert({
         _id : '1',
-        name : "Sexe en salle"
+        title : "Sexe en salle"
       });
       Tags.insert({
         _id : '2',
-        name : "Danse orientale"
+        title : "Danse orientale"
       });
       Tags.insert({
         _id : '3',
-        name : "Body step"
+        title : "Body step"
       });
       Tags.insert({
         _id : '4',
-        name : "Poterie"
+        title : "Poterie"
       });
       Tags.insert({
         _id : '5',
-        name : "Curling"
+        title : "Curling"
       });
       Tags.insert({
         _id : '6',
-        name : "Javascript"
+        title : "Javascript"
       });
       Tags.insert({
         _id : '7',
-        name : "Escalade"
+        title : "Escalade"
       });
       Tags.insert({
         _id : '8',
-        name : "Tennis"
+        title : "Tennis"
       });
     }
 

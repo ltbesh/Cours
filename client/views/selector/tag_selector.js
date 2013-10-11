@@ -1,5 +1,5 @@
-Template.tag_search.rendered = function(){
-	function format(item) { return item.name; };
+Template.tag_selector.rendered = function(){
+	function format(item) { return item.title; };
 	Deps.autorun(function(){
 		var tags = Tags.find().fetch();
 		for(var i = 0; i < tags.length; i++){
@@ -11,8 +11,8 @@ Template.tag_search.rendered = function(){
 		 	placeholder: 'Chercher un cours', 
 			formatSelection: format,
 			formatResult: format,
-			width: '100%'
 		});
+		
 		if(Session.get('subject_search'))
 			$("#subject-search").select2("val", Session.get('subject_search'))	
 
