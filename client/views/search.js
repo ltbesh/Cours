@@ -8,7 +8,7 @@ Template.tag_search.rendered = function(){
 		}
 		$("#subject-search").select2({
 			data: { results: tags, text: 'name' },
-		 	placeholder: 'Chercher un sport', 
+		 	placeholder: 'Chercher un cours', 
 			formatSelection: format,
 			formatResult: format,
 			width: '100%'

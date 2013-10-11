@@ -1,4 +1,4 @@
-/* CSS declarations go here */
+
 #amount, #schedule{
 	border: 0; 
 	color: #f6931f; 
@@ -14,3 +14,84 @@
 	max-width: none;
     vertical-align: baseline; 
 }
+/* -------------------PAGE SIZE-------------------*/
+
+.container {
+	width: 100%;
+}
+
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 100%;
+}
+/*
+#main{
+	margin: 0;
+	padding: 0;
+}
+#header{
+	margin: 0;
+	padding: 0;
+}
+*/
+/*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
+
+#geographical-search{
+	width: 100%;
+	height: auto;
+}
+
+#find-btn{
+	width: 100%;
+
+}
+
+h1{
+	color: #3c3c3c;
+}
+
+#tag-line{
+	color: #3c3c3c;
+	font-size: 1,3em;
+}
+
+/* This parent can be any width and height */
+.block {
+  text-align: center;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */ 
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 800px;
+}
+
+/*------------------ COURSE LIST PAGE---------------*/
+
+.text{
+	color: #3c3c3c;
+	font-family: Helvetica;
+}
+
+#courses-list{
+	margin-left: 20px;
+}
+
+
+
+
+
+
