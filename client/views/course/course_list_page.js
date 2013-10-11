@@ -1,6 +1,7 @@
 Template.course_list_page.helpers ({
 	courses: function () {
     var courses =  Courses.find({});
+    console.log(courses);
     return courses;
 	},
 	courses_ready: function(){

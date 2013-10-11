@@ -14,6 +14,7 @@ Template.course_page.helpers({
 Template.course_page.destroyed = function(){
 	Session.set('current_course', null);
 	Session.set('current_course_place', null);
+	console.log('toto');
 }
 
 Template.course_page.rendered = function(){
