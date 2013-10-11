@@ -1,0 +1,106 @@
+<template name='course_creation_form'>
+	<form class='form-horizontal'>
+
+		<div class='control-group'>
+			<label class='control-label' for='input-title'>Titre</label>
+			<div class="controls">
+				<input type='text' id='input-title' placeholder='Titre'>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='input-description'>Description</label>
+			<div class="controls">
+				<textarea id='input-description' rows='5' placeholder='Description'></textarea>
+			</div>
+		</div>	
+
+		<div class='control-group'>
+			<label class='control-label'>Quel jour ?</label>
+			<div class="controls">
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-1" value="1" > Lun
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-2" value="2" > Mar
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-3" value="3" > Mer
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-4" value="4" > Jeu
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-5" value="5" > Ven
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-6" value="6" > Sam
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="input-day" id="options-radios-7" value="7" > Dim
+				</label>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='input-price'>Prix</label>
+			<div class="controls">
+				<input type='text' id='input-price' rows='5' placeholder='Prix'>
+			</div>
+		</div>	
+
+		<div class='control-group'>
+			<label class='control-label' for='input-tags'>Matière</label>	
+			<div class="controls">
+				<input type='hidden' id="input-tags"></input>
+			</div>
+		</div>
+
+		<div class='control-group'>			
+			<label class='control-label' for='input-start-hour'>Heure de début</label>
+			<div class="controls">
+				<select id='input-start-hour' class='time-picker'>
+			
+			</select>
+			:
+			<select id='input-start-minute' class='time-picker'>
+			</select>
+			</div>
+		</div>	
+
+		<div class='control-group'>
+			<label class='control-label' for='input-end-hour'>Heure de fin</label>
+			<div class="controls">
+				<select id='input-end-hour' class='time-picker'>
+				</select>
+				:
+				<select id='input-end-minute' class='time-picker'>
+				</select>
+			</div>
+		</div>	
+
+		<div class='control-group'>
+			<label class='control-label' for='input-place'>Lieu</label>
+			<div class="controls">
+				<input type='hidden' id="input-place"></input>
+			</div>
+		</div>
+
+		<div class='control-group'>
+			<label class='control-label' for='input-additional-information'>Information complementaire</label>
+			<div class="controls">
+				<textarea rows='10' cols='140' id='input-additional-information' placeholder='Information complementaire'></textarea>
+			</div>
+		</div>
+		<div class="control-group"> <div class="controls">
+			<input type="submit" value="Submit" class="btn btn-primary"/> </div>
+		</div>
+	</form>
+
+</template>
+
+
+<!--        
+            place_id: String(get_random_int(1,5))-->
+
+
