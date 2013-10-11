@@ -1,5 +1,18 @@
+
+// Publish the Courses and Places that corresponds to selectors passed as arguments
 Meteor.publish('courses', 
-	function(day_selector, price_min, price_max, schedule_min, schedule_max,subject_search, geographical_search, limit){
+	function(
+		day_selector /* Array of int beetwen 1 and 7 */, 
+		price_min /* int course price must be higher*/, 
+		price_max /* int course price must be lower*/, 
+		schedule_min /* int beetwen 0 and 1440, courses must start after that time*/, 
+		schedule_max /* int beetwen 0 and 1440, courses must finish before that time*/,
+		subject_search /* id of a tag object, tag_id of course must match this*/, 
+		geographical_search /* geoJSON point, Places are looked for around that point*/, 
+		limit /* number of results per page*/){
+
+
+		// Find places that are near the geographical search
 		if(geographical_search){
 			var places_id = Places.find({location: {$near: geographical_search, $maxDistance : 2000}}, {fields : {_id : 1}}).fetch();
 			var places_id_array = [];
@@ -8,6 +21,7 @@ Meteor.publish('courses',
 				places_id_array.push(id_object._id);
 			});
 		}
+		// Find courses that match all the criterion
 		if(places_id){
 			var courses_cursor = Courses.find({
 				tag_id: subject_search,   
@@ -17,26 +31,33 @@ Meteor.publish('courses',
 				starts : {$gt : schedule_min},
 				ends : {$lt : schedule_max}},
 				{sort: {price: 1}, limit: limit, fields: {description: 0, additional_information: 0}});
+
+			// Find the places linked to the courses we found
 			var courses = courses_cursor.fetch();
 			var courses_places_id = _.pluck(courses,'place_id');
 			var places_cursor = Places.find({_id : {$in : courses_places_id}}, {fields: {description:0 }});
+
+			// Return both cursor, one for places and one fory
 			return [courses_cursor, places_cursor];
 		}
 	}
 );
-
+// Publish only one place given an id
 Meteor.publish('place', function(place_id){
 	return Places.find(place_id);
 });
 
+// Publish only one course given an id
 Meteor.publish('course', function(courseId){
 	return Courses.find(courseId);
 });
 
+// Publish all tags
 Meteor.publish('tags', function(){
-	return Tags.find({}, {sort: {name: 1}});
+	return Tags.find({});
 }); 
 
+// Publish places owned by the user
 Meteor.publish('owned_places', function(){
 	return Places.find({user_id:this.userId});
 })
