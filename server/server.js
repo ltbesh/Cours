@@ -51,7 +51,6 @@
         user_id : id_ltbesh,
         _id: '1'
       });
-
       Places.insert({
         title: 'Théatre de trévise',
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',

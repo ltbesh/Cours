@@ -5,8 +5,8 @@ Meteor.Router.add({
 		to: 'course_page', 
 		and: function(id) {Session.set('current_course', id);}
 	},
-	'/create/place': 'create_place',
-	'/create/course': 'create_course'
+	'/create/place': 'place_creation_form',
+	'/create/course': 'course_creation_form'
 });
 
 Meteor.Router.filters({
@@ -28,10 +28,10 @@ Meteor.Router.filters({
 			return page;
 		}
 		else{
-			return 'create_place';
+			return 'place_creation_form';
 		}
 	}
 });
 
-Meteor.Router.filter('login_required', {only: ['create_course', 'create_place']});
-Meteor.Router.filter('place_required', {only: 'create_course'});
+Meteor.Router.filter('login_required', {only: ['course_creation_form', 'place_creation_form']});
+Meteor.Router.filter('place_required', {only: 'course_creation_form'});

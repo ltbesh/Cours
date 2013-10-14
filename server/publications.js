@@ -12,9 +12,10 @@ Meteor.publish('courses',
 		limit /* number of results per page*/){
 
 
-		// Find places that are near the geographical search
+		// Find the id of places that are near the geographical search
 		if(geographical_search){
-			var places_id = Places.find({location: {$near: geographical_search, $maxDistance : 2000}}, {fields : {_id : 1}}).fetch();
+			console.log(geographical_search);
+			var places_id = Places.find({location: {$near: geographical_search, $maxDistance : 2000}}, {fields : {_id : true}}).fetch();
 			var places_id_array = [];
 
 			_.each(places_id, function(id_object){
@@ -30,7 +31,7 @@ Meteor.publish('courses',
 				price : {$gt : price_min, $lt : price_max}, 
 				starts : {$gt : schedule_min},
 				ends : {$lt : schedule_max}},
-				{sort: {price: 1}, limit: limit, fields: {description: 0, additional_information: 0}});
+				{sort: {price: 1}, limit: limit, fields: {description: false, additional_information: false}});
 
 			// Find the places linked to the courses we found
 			var courses = courses_cursor.fetch();
@@ -40,16 +41,16 @@ Meteor.publish('courses',
 			// Return both cursor, one for places and one fory
 			return [courses_cursor, places_cursor];
 		}
-	}
-);
+});
+
 // Publish only one place given an id
 Meteor.publish('place', function(place_id){
 	return Places.find(place_id);
 });
 
 // Publish only one course given an id
-Meteor.publish('course', function(courseId){
-	return Courses.find(courseId);
+Meteor.publish('course', function(course_id){
+	return Courses.find(course_id);
 });
 
 // Publish all tags
@@ -59,5 +60,8 @@ Meteor.publish('tags', function(){
 
 // Publish places owned by the user
 Meteor.publish('owned_places', function(){
+	console.log('user id ', this.userId);
+	var place = Places.find({user_id:this.userId});
+	console.log(place.fetch());
 	return Places.find({user_id:this.userId});
-})
+});

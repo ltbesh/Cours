@@ -1,9 +1,14 @@
 Template.map.rendered = function() {
-    if(!Session.get('map'))
+    console.log('map rendered');
+    if(!Session.get('map')){
+        console.log('map initialize');
         gmaps.initialize();
+    }
 
     Deps.autorun(function(){
-        var places = Places.find().fetch();
+        console.log(Session.get('geographical_search'));
+        var places = Places.find({}).fetch();
+        console.log('places : ', places)
         var places_id = _.pluck(places,'_id');
 
         _.each(gmaps.markerData, function(marker){
@@ -13,14 +18,14 @@ Template.map.rendered = function() {
 
         _.each(places, function(place){
             if(typeof(place.location.coordinates[1] !== undefined) && typeof(place.location.coordinates[0] !== undefined)){
-                var objMarker = {
+                var obj_marker = {
                     id: place._id,
                     lat: place.location.coordinates[1],
                     lng: place.location.coordinates[0],
                     title: place.title
                 };
-                if(!gmaps.markerExists('id', objMarker.id))
-                    gmaps.addMarker(objMarker)
+                if(!gmaps.markerExists('id', obj_marker.id))
+                    gmaps.addMarker(obj_marker)
             }
         });
     });
