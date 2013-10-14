@@ -10,7 +10,7 @@
     height: 600px;
 }
 	
-.google-map img {
+.google-map {
 	max-width: none;
     vertical-align: baseline; 
 }

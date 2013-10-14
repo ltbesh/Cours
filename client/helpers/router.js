@@ -6,7 +6,8 @@ Meteor.Router.add({
 		and: function(id) {Session.set('current_course', id);}
 	},
 	'/create/place': 'place_creation_form',
-	'/create/course': 'course_creation_form'
+	'/create/course': 'course_creation_form',
+	'*': '404'
 });
 
 Meteor.Router.filters({

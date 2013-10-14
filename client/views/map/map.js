@@ -1,14 +1,9 @@
 Template.map.rendered = function() {
-    console.log('map rendered');
-    if(!Session.get('map')){
-        console.log('map initialize');
+    if(!Session.get('map'))
         gmaps.initialize();
-    }
 
     Deps.autorun(function(){
-        console.log(Session.get('geographical_search'));
         var places = Places.find({}).fetch();
-        console.log('places : ', places)
         var places_id = _.pluck(places,'_id');
 
         _.each(gmaps.markerData, function(marker){
@@ -32,5 +27,6 @@ Template.map.rendered = function() {
 };
 
 Template.map.destroyed = function(){
+    console.log('map destroyed');
     Session.set('map', false);
 }
