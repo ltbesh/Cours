@@ -14,7 +14,6 @@ Meteor.publish('courses',
 
 		// Find the id of places that are near the geographical search
 		if(geographical_search){
-			console.log(geographical_search);
 			var places_id = Places.find({location: {$near: geographical_search, $maxDistance : 2000}}, {fields : {_id : true}}).fetch();
 			var places_id_array = [];
 
@@ -60,8 +59,6 @@ Meteor.publish('tags', function(){
 
 // Publish places owned by the user
 Meteor.publish('owned_places', function(){
-	console.log('user id ', this.userId);
 	var place = Places.find({user_id:this.userId});
-	console.log(place.fetch());
 	return Places.find({user_id:this.userId});
 });
