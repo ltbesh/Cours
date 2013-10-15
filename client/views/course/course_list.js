@@ -1,4 +1,4 @@
-Template.course_list.helpers ({
+Template.course_list.helpers({
 	courses: function () {
 	    var courses =  Courses.find({});
 	    return Courses.find({});

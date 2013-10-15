@@ -27,6 +27,5 @@ Template.map.rendered = function() {
 };
 
 Template.map.destroyed = function(){
-    console.log('map destroyed');
     Session.set('map', false);
 }

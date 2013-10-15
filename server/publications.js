@@ -59,6 +59,9 @@ Meteor.publish('tags', function(){
 
 // Publish places owned by the user
 Meteor.publish('owned_places', function(){
-	var place = Places.find({user_id:this.userId});
-	return Places.find({user_id:this.userId});
+	return get_owned_places(this.userId);
+});
+
+Meteor.publish('owned_courses', function(){
+	return get_owned_courses(this.userId);
 });

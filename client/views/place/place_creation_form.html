@@ -1,25 +1,30 @@
-<template name='place_creation_form'>
+<template name="place_creation_form">
 
-	<form class='form-horizontal'>
+    <div id="alert" class="alert alert-error alert-block">
+	    <button type="button" class="close">&times;</button>
+	    <h4></h4>
+    </div>
 
-		<div class='control-group'>
-			<label class='control-label' for='input-title'>Titre</label>
+	<form class="form-horizontal">
+
+		<div class="control-group">
+			<label class="control-label" for="input-title">Titre</label>
 			<div class="controls">
-				<input type='text' id='input-title' placeholder='Titre'>
+				<input type="text" id="input-title" placeholder="Titre">
 			</div>
 		</div>
 
-		<div class='control-group'>
-			<label class='control-label' for='input-description'>Description</label>
+		<div class="control-group">
+			<label class="control-label" for="input-description">Description</label>
 			<div class="controls">
-				<textarea id='input-description' rows='5' placeholder='Description'></textarea>
+				<textarea id="input-description" rows="5" placeholder="Description"></textarea>
 			</div>
 		</div>	
 
-		<div class='control-group'>
-			<label class='control-label' for='input-description'>Adresse</label>
+		<div class="control-group">
+			<label class="control-label" for="input-description">Adresse</label>
 			<div class="controls">
-				{{> geographical_search}}
+				{{> geographical_selector}}
 			</div>
 		</div>
 
