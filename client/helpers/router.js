@@ -1,6 +1,6 @@
 Meteor.Router.add({
 	"/" : "home",
-	"/search" : "course_list_page",
+	"/search" : "place_search_page",
 	"/course/:_id" : {
 		to: "course_page", 
 		and: function(id) {Session.set("current_course", id);}

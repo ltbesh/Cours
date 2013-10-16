@@ -37,10 +37,9 @@ Meteor.methods({
 			Match.test(place_attributes.address, String);
 		}
 
-		var place = _.extend(_.pick(place_attributes, 'title', 'description', 'location', 'adress'), {
+		var place = _.extend(_.pick(place_attributes, 'title', 'description', 'location', 'address'), {
 			user_id: user._id
 		});
-
 		var place_id = Places.insert(place);
 
 		return place_id;

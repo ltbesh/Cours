@@ -26,7 +26,7 @@
                                       "Cours pour les connards",
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
-        for(var i = 0;i<100;i++){
+        for(var i = 0;i<50;i++){
           var starts = get_random_int(16, 42) * 30;
           Courses.insert({
             title: course_title[get_random_int(0,5)],

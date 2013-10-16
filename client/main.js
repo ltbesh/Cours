@@ -19,18 +19,19 @@ Session.set('map', false);
 
 Deps.autorun(function () {
 	Meteor.subscribe('place', Session.get('current_course_place'));
+});
+Deps.autorun(function () {
 	Meteor.subscribe('course', Session.get('current_course'));
-	Meteor.subscribe('tags');
 });
 
 // Suscribe to the places the user owns
 Meteor.subscribe('owned_places');
 Meteor.subscribe('owned_courses');
-
+Meteor.subscribe('tags');
 
 // Subscribe to the courses and places that match the user criterion
-course_handle = Meteor.subscribeWithPagination(
-	'courses', 
+place_handle = Meteor.subscribeWithPagination(
+	'searched_places', 
 	function(){return Session.get('day_selector')}, 
 	function(){return Session.get("price_min")}, 
 	function(){return Session.get("price_max")}, 

@@ -17,11 +17,13 @@ Template.place_creation_form.events({
 			location: Session.get("geographical_search").location,
 			address: Session.get("geographical_search").address
 		};
-		console.log(place);
 		Meteor.call("insert_place", place, function(error, course_id){
 			if(error){
 				$("#alert > h4").html(error.reason);
 				$("#alert").show();
+			}
+			else{
+				Meteor.Router.to("user_edit"); 
 			}
 		});
 	}
