@@ -23,20 +23,45 @@
 	width: 100%;
 }
 
-/*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
+#container-main{
+	width: 100%;
+}
 
-#geographical-search{
+/*-------------------HEADER--------------------*/
+
+#header{
 	margin: 0;
 }
 
-#find-btn{
-	width: 100%;
+#post-cours{
 
 }
+
+#post-cours a{
+	color: white;
+	text-shadow: 0 0px 0 ;
+}
+
+#sign-in li a{
+	color: white;
+	text-shadow: 0 0px 0 ;
+}
+#sign-in{
+	margin-right: 20px;
+	color: #3c3c3c;
+	text-align: left;
+	text-shadow: 0 0px 0;
+}
+
+/*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
 
 #button-home1{
 	margin: 0;
 	padding: 0;
+}
+
+#s2id_subject-search{
+	width: 95%;
 }
 
 #button-home2{
@@ -44,11 +69,19 @@
 	padding: 0;
 }
 
+#geographical-search{
+	margin: 0;
+	width: 95%;
+}
+
 #button-home3{
 	margin: 0;
 	padding: 0;
 }
 
+#find-btn{
+	width: 95%;
+}
 
 h1{
 	color: #3c3c3c;
@@ -62,6 +95,7 @@ h1{
 /* This parent can be any width and height */
 .block {
   text-align: center;
+  height: 600px;
 }
  
 /* The ghost, nudged to maintain perfect centering */
@@ -78,7 +112,7 @@ h1{
 .centered {
   display: inline-block;
   vertical-align: middle -1px;
-  width: 800px;
+  width: 600px;
 }
 
 /*------------------ COURSE LIST PAGE---------------*/
@@ -92,7 +126,11 @@ h1{
 	margin-left: 20px;
 }
 
+/*-------------------404-----------------------*/
 
+#error404{
+	background-image: url(matrix.jpg);
+}
 
 
 
