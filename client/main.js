@@ -25,6 +25,7 @@ Deps.autorun(function () {
 
 // Suscribe to the places the user owns
 Meteor.subscribe('owned_places');
+Meteor.subscribe('owned_courses');
 
 
 // Subscribe to the courses and places that match the user criterion

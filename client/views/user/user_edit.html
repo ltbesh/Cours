@@ -1,0 +1,19 @@
+<template name="user_edit">
+{{#with user}}
+	{{user.email}}</br>
+	{{user.username}}</br></br>
+
+	<a href="{{place_creation_formPath}}">Ajouter un lieux</a>
+	<p>Mes lieux :</p>
+	{{#each places}}
+		{{> place_item}}</br>
+	{{/each}}
+
+	<a href="{{course_creation_formPath}}">Ajouter un cours</a>
+	<p>Mes cours :</p>
+	{{#each courses}}
+		{{> course_item}}</br>
+	{{/each}}
+
+{{/with}}
+</template>

@@ -7,11 +7,13 @@
 
 <body>
 
-	<div id='container-header' class="container">
-    	{{> header}}
-	</div>
-	<div id='container-main' class="container row-fluid carousel slide">
-		{{renderPage}}
-	</div>
+  <div id='container-header' class="container"> 
+    {{> nav}}
+  </div>
+  
+  <div id="container-main" class="container row-fluid carousel slide">
+      {{renderPage}}    
+  </div>
+
 
 </body>
