@@ -1,4 +1,4 @@
-/* CSS declarations go here */
+
 #amount, #schedule{
 	border: 0; 
 	color: #f6931f; 
@@ -14,3 +14,124 @@
 	max-width: none;
     vertical-align: baseline; 
 }
+/* -------------------PAGE SIZE-------------------*/
+
+#container-header
+{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#container-main{
+	width: 100%;
+}
+
+/*-------------------HEADER--------------------*/
+
+#header{
+	margin: 0;
+}
+
+#post-cours{
+
+}
+
+#post-cours a{
+	color: white;
+	text-shadow: 0 0px 0 ;
+}
+
+#sign-in li a{
+	color: white;
+	text-shadow: 0 0px 0 ;
+}
+#sign-in{
+	margin-right: 20px;
+	color: #3c3c3c;
+	text-align: left;
+	text-shadow: 0 0px 0;
+}
+
+/*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
+
+#button-home1{
+	margin: 0;
+	padding: 0;
+}
+
+#s2id_subject-search{
+	width: 95%;
+}
+
+#button-home2{
+	margin: 0;
+	padding: 0;
+}
+
+#geographical-search{
+	margin: 0;
+	width: 95%;
+}
+
+#button-home3{
+	margin: 0;
+	padding: 0;
+}
+
+#find-btn{
+	width: 95%;
+}
+
+h1{
+	color: #3c3c3c;
+}
+
+#tag-line{
+	color: #3c3c3c;
+	font-size: 1,3em;
+}
+
+/* This parent can be any width and height */
+.block {
+  text-align: center;
+  height: 600px;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */ 
+.centered {
+  display: inline-block;
+  vertical-align: middle -1px;
+  width: 600px;
+}
+
+/*------------------ COURSE LIST PAGE---------------*/
+
+.text{
+	color: #3c3c3c;
+	font-family: Helvetica;
+}
+
+#courses-list{
+	margin-left: 20px;
+}
+
+/*-------------------404-----------------------*/
+
+#error404{
+	background-image: url(error404.png);
+}
+
+
+
+
