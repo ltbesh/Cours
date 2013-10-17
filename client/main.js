@@ -18,15 +18,15 @@ Session.set('course_detail_information_active_tab', 'photo_tab');
 Session.set('map', false);
 
 Deps.autorun(function () {
-	Meteor.subscribe('place', Session.get('current_course_place'));
+	Meteor.subscribe('current_place', Session.get('current_course_place'));
 });
 Deps.autorun(function () {
-	Meteor.subscribe('course', Session.get('current_course'));
+	Meteor.subscribe('current_course', Session.get('current_course'));
 });
 
 // Suscribe to the places the user owns
-Meteor.subscribe('owned_places');
-Meteor.subscribe('owned_courses');
+//Meteor.subscribe('owned_places');
+//Meteor.subscribe('owned_courses');
 Meteor.subscribe('tags');
 
 // Subscribe to the courses and places that match the user criterion

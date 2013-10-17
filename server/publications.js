@@ -10,18 +10,17 @@ Meteor.publish('searched_places',function(
 	geographical_search /* geoJSON point, Places are looked for around that point*/, 
 	limit /* number of results per page*/){
 
-	var cursors = get_searched_courses(day_selector, price_min, price_max, schedule_min, schedule_max, subject_search, geographical_search, limit)
 	// Return both cursor, one for places and one for courses
-	return [cursors[0], cursors[1]];
+	return get_searched_places(day_selector, price_min, price_max, schedule_min, schedule_max, subject_search, geographical_search, limit)
 });
 
 // Publish only one place given an id
-Meteor.publish('place', function(place_id){
+Meteor.publish('current_place', function(place_id){
 	return Places.find(place_id);
 });
 
 // Publish only one course given an id
-Meteor.publish('course', function(course_id){
+Meteor.publish('current_course', function(course_id){
 	return Courses.find(course_id);
 });
 

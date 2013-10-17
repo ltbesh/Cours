@@ -3,7 +3,17 @@ Template.map.rendered = function() {
         gmaps.initialize();
 
     Deps.autorun(function(){
-        var places = Places.find({}).fetch();
+        var places_cursor =  get_searched_places(   
+            Session.get('day_selector'), 
+            Session.get('price_min'), 
+            Session.get('price_max'), 
+            Session.get('schedule_min'), 
+            Session.get('schedule_max'),
+            Session.get('subject_search'), 
+            Session.get('geographical_search').location, 
+            5);
+        if (places_cursor)
+            var places = places_cursor[0].fetch();
         var places_id = _.pluck(places,'_id');
 
         _.each(gmaps.markerData, function(marker){

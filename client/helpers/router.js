@@ -8,13 +8,13 @@ Meteor.Router.add({
 	"/create/place": "place_creation_form",
 	"/create/course": "course_creation_form",
 	"/user/:_id": {
-		to: 'user_page', 
+		to: "user_page", 
 		and: function(id) {Session.set("current_user", id);}
 	},
-	'/signin':'user_signin',
-    '/signup':'user_signup',
-    '/account':'user_edit',
-	"*": '404'
+	"/signin":"user_signin",
+    "/signup":"user_signup",
+    "/account":"user_edit",
+	"*": "404"
 });
 
 Meteor.Router.filters({
