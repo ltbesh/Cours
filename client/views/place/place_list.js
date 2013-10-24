@@ -11,7 +11,6 @@ Template.place_list.helpers({
 			5);
 	    if (places_cursor)
 	    	var places = places_cursor[0];
-	    console.log('inside list : ', places);
 	    return places;
 	},
 	places_ready: function(){
