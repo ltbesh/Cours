@@ -18,20 +18,13 @@ Template.map.rendered = function() {
 
         var places_id = _.pluck(places,'_id');
 
-        //console.log(places_id);
-        //console.log('before remove : ', gmaps.marker_data);
+        //Remove the markers that are no longer in the places_id array
 
-        // Remove the markers that are no longer in the places_id array
         _.each(gmaps.marker_data, function(marker){
-            //console.log('marker id : ', marker.id);
             if(! _.contains(places_id, marker.id)){
                 gmaps.remove_marker(marker.id);  
-               //console.log('remove marker id : ', marker.id);
-                }
+            }
         });
-        //console.log('after remove : ', gmaps.marker_data);
-
-        console.log('before adding : ', gmaps.marker_data);
         _.each(places, function(place){
             if(typeof(place.location.coordinates[1] !== undefined) && typeof(place.location.coordinates[0] !== undefined)){
                 var obj_marker = {
@@ -40,20 +33,11 @@ Template.map.rendered = function() {
                     lng: place.location.coordinates[0],
                     title: place.title
                 };
-                if(!gmaps.marker_exists('id', obj_marker.id)){
+                var marker_not_exists = ! gmaps.marker_exists('id', obj_marker.id);
+                if(marker_not_exists)
                     gmaps.add_marker(obj_marker);
-                    console.log('add marker : ', obj_marker.id);
-                }
-                else{
-                    console.log('did not add marker : ', obj_marker.id);
-                }
-            }
-            else{
-                console.log("probleme with place : ", place);
             }
         });
-        console.log('after adding : ', gmaps.marker_data);
-
     });
 };
 
