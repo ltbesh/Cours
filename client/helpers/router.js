@@ -1,9 +1,9 @@
 Meteor.Router.add({
 	"/" : "home",
 	"/search" : "place_search_page",
-	"/course/:_id" : {
-		to: "course_page", 
-		and: function(id) {Session.set("current_course", id);}
+	"/place/:_id" : {
+		to: "place_page", 
+		and: function(id) {Session.set("current_place", id);}
 	},
 	"/create/place": "place_creation_form",
 	"/create/course": "course_creation_form",

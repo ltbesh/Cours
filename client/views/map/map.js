@@ -19,7 +19,6 @@ Template.map.rendered = function() {
         var places_id = _.pluck(places,'_id');
 
         //Remove the markers that are no longer in the places_id array
-
         _.each(gmaps.marker_data, function(marker){
             if(! _.contains(places_id, marker.id)){
                 gmaps.remove_marker(marker.id);  
@@ -34,7 +33,7 @@ Template.map.rendered = function() {
                     title: place.title
                 };
                 var marker_not_exists = ! gmaps.marker_exists('id', obj_marker.id);
-                if(marker_not_exists)
+                if(! gmaps.marker_exists('id', obj_marker.id))
                     gmaps.add_marker(obj_marker);
             }
         });

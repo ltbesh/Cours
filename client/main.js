@@ -9,16 +9,16 @@ Session.set('geographical_search', {address : null, location : null});
 
 // Id of the place and course that the user is currently looking at
 Session.set('current_course', null);
-Session.set('current_course_place', null);
+Session.set('current_place', null);
 
 // Set the default active tab for course detail
-Session.set('course_detail_information_active_tab', 'photo_tab');
+Session.set("place_detail_information_active_tab", 'photo_tab');
 
 // Used to draw the map
 Session.set('map', false);
 
 Deps.autorun(function () {
-	Meteor.subscribe('current_place', Session.get('current_course_place'));
+	Meteor.subscribe('current_place', Session.get('current_place'));
 });
 Deps.autorun(function () {
 	Meteor.subscribe('current_course', Session.get('current_course'));

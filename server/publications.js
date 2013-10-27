@@ -16,12 +16,7 @@ Meteor.publish('searched_places',function(
 
 // Publish only one place given an id
 Meteor.publish('current_place', function(place_id){
-	return Places.find(place_id);
-});
-
-// Publish only one course given an id
-Meteor.publish('current_course', function(course_id){
-	return Courses.find(course_id);
+	return [Places.find(place_id), Courses.find({place_id : place_id})];
 });
 
 // Publish all tags
