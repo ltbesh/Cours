@@ -37,6 +37,8 @@ Template.map.rendered = function() {
                     gmaps.add_marker(obj_marker);
             }
         });
+
+        gmaps.calc_bounds();
     });
 };
 
