@@ -19,29 +19,20 @@ Template.map.rendered = function() {
             var places_id = _.pluck(places,'_id');
 
             //Remove the markers that are no longer in the places_id array
-            for(var i = gmaps.marker_data.length - 1; i >= 0; i --){
-                var marker = gmaps.marker_data[i];
-                console.log()
-                if(! _.contains(places_id, marker.id)){
-                    gmaps.remove_marker_with_index(i); 
-                }
-            }
+            gmaps.remove_markers(places_id);
 
             for(var i = 0, places_length = places.length; i < places_length; i ++){
                 var place = places[i];
-                if(typeof(place.location.coordinates[1] !== undefined) && typeof(place.location.coordinates[0] !== undefined)){
-                    var obj_marker = {
-                        id: place._id,
-                        lat: place.location.coordinates[1],
-                        lng: place.location.coordinates[0],
-                        title: place.title
-                    };
-                    var marker_not_exists = ! gmaps.marker_exists('id', obj_marker.id);
-                    if(! gmaps.marker_exists('id', obj_marker.id))
+                if(!gmaps.marker_exists('id', place.id) && typeof(place.location.coordinates[1] !== undefined) && typeof(place.location.coordinates[0] !== undefined)){
+                        var obj_marker = {
+                            id: place._id,
+                            lat: place.location.coordinates[1],
+                            lng: place.location.coordinates[0],
+                            title: place.title
+                        };
                         gmaps.add_marker(obj_marker);
+                    }
                 }
-            }
-
             gmaps.calc_bounds();
         }
     });
