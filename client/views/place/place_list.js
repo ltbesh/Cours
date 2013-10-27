@@ -13,9 +13,14 @@ Template.place_list.helpers({
 	    	var places = places_cursor[0];
 	    return places;
 	},
+	search: function(){
+		return Session.get("geographical_search").location !== null && Session.get("subject_search") !== null;
+	},
+
 	places_ready: function(){
 		return ! place_handle.loading();
 	},
+
 	all_places_loaded: function(){	
 		return ! place_handle.loading() && Places.find().count() < place_handle.loaded();
 	}
