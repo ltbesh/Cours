@@ -1,6 +1,6 @@
 Template.map.rendered = function() {
-    if(!Session.get('map'))
-        gmaps.initialize();
+    if(!search_map)
+        var search_map = new Course_map('#search_map');
 
     Deps.autorun(function(){
         var places_cursor =  get_searched_places(   
@@ -19,25 +19,15 @@ Template.map.rendered = function() {
             var places_id = _.pluck(places,'_id');
 
             //Remove the markers that are no longer in the places_id array
-            gmaps.remove_markers(places_id);
-
+            search_map.remove_markers(places_id);
+            
+            // Add all the marker in places
             for(var i = 0, places_length = places.length; i < places_length; i ++){
-                var place = places[i];
-                if(!gmaps.marker_exists('id', place.id) && typeof(place.location.coordinates[1] !== undefined) && typeof(place.location.coordinates[0] !== undefined)){
-                        var obj_marker = {
-                            id: place._id,
-                            lat: place.location.coordinates[1],
-                            lng: place.location.coordinates[0],
-                            title: place.title
-                        };
-                        gmaps.add_marker(obj_marker);
-                    }
-                }
-            gmaps.calc_bounds();
+                search_map.add_marker(places[i]);
+            }
+
+            // Recenter the map to focus on the marker area
+            search_map.calc_bounds();
         }
     });
 };
-
-Template.map.destroyed = function(){
-    Session.set('map', false);
-}
