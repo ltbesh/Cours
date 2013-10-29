@@ -1,25 +1,50 @@
 Template.tag_selector.rendered = function(){
-	function format(item) { return item.title; };
-	Deps.autorun(function(){
-		var tags = Tags.find().fetch();
-		for(var i = 0; i < tags.length; i++){
-	    	tags[i].id = tags[i]['_id'];
-	    	delete tags[i]._id;
-		}
-		$("#subject-search").select2({
-			data: { results: tags, text: 'title' },
-		 	placeholder: 'Chercher un sport', 
-			formatSelection: format,
-			formatResult: format,
-		});
-		
-		if(Session.get('subject_search'))
-			$("#subject-search").select2("val", Session.get('subject_search'))	
+    function format(item) { return item.title; };
 
-		$("#subject-search").on("change", function(e) { 
-			Session.set('subject_search',e.val);
-		});
+    Deps.autorun(function(){
+        // If the template is used on a place detail page display only the tags available for this place 
+        if(Session.get("current_place")){
+            var courses = Courses.find({place_id: Session.get("current_place")},{fields : {tag_id: 1}}).fetch();
+            courses = _.pluck(courses, "tag_id");
+            var tags = Tags.find({_id : {$in : courses}}).fetch();
+        }
+        // If the template is used in search then return all the tags
+        else{
+            var tags = Tags.find().fetch();
+        }
 
+        if(tags){
+            for(var i = 0; i < tags.length; i++){
+                tags[i].id = tags[i]['_id'];
+                delete tags[i]._id;
+            }
+            $("#subject-search").select2({
+                data: { results: tags, text: 'title' },
+                placeholder: 'Chercher un sport', 
+                formatSelection: format,
+                formatResult: format,
+            });
+            
+            // For the detail page
+            if(Session.get("current_place")){
+                if(Session.get("current_course")){
+                    var course = Courses.findOne(Session.get("current_course"));
+                    var current_tag = course.tag_id;
+                    $("#subject-search").select2("val", current_tag); 
+                }
+            }
+            // If there is already a search made
+            else if (Session.get('subject_search')){
+                $("#subject-search").select2("val", Session.get('subject_search'));
+            } 
+            // If there is no search yet
+            else{
+                $("#subject-search").on("change", function(e) { 
+                    Session.set('subject_search',e.val);
+                });
+            }
+            
 
-	});
+        }
+    });
 }

@@ -3,7 +3,13 @@ Meteor.Router.add({
 	"/search" : "place_search_page",
 	"/place/:_id" : {
 		to: "place_page", 
-		and: function(id) {Session.set("current_place", id);}
+		and: function(id) {
+			Session.set("current_place", id);
+			if(Session.get("subject_search")){
+				var course = Courses.findOne({place_id : id, tag_id : Session.get("subject_search")});
+				Session.set("current_course", course._id);
+			}
+		}
 	},
 	"/create/place": "place_creation_form",
 	"/create/course": "course_creation_form",

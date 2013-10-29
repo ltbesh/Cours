@@ -28,16 +28,19 @@
                                       "J'ai préféré Singapour"];
         for(var i = 0;i<50;i++){
           var starts = get_random_int(16, 42) * 30;
+
           Courses.insert({
             title: course_title[get_random_int(0,5)],
             description: course_description[get_random_int(0,6)],
-            day_of_week: get_random_int(1,7),
             tag_id : String(get_random_int(1,8)),
-            starts: starts,
-            ends: starts + 60,
             additional_information: course_additional_information[get_random_int(0,8)],
             place_id: String(get_random_int(1,5)),
-            price: get_random_int(10, 200)
+            price: get_random_int(10, 200),
+
+            day_of_week: get_random_int(1,7),
+            starts: starts,
+            ends: starts + 60
+
           });
         }
       }
