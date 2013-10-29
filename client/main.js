@@ -24,6 +24,7 @@ Deps.autorun(function () {
 	Meteor.subscribe('current_course', Session.get('current_course'));
 });
 
+
 // Suscribe to the places the user owns
 //Meteor.subscribe('owned_places');
 //Meteor.subscribe('owned_courses');

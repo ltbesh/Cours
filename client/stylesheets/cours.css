@@ -133,5 +133,14 @@ h1{
 }
 
 
+/*--------------IMAGE GALLERY--------------------*/
+
+#galleria{ 
+	width: 700px; 
+	height: 400px; 
+	background: #000 
+}
+
+
 
 

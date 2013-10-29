@@ -48,6 +48,7 @@
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
         address: '8 rue des françs bourgeois 75003 Paris',
         location : { type : 'Point', coordinates: [2.3636317000000417, 48.8566874]}, 
+        images: ["ROAD_MISC_010.jpg", "STARTLINE_COLOR_011.jpg"],
         user_id : id_ltbesh,
         _id: '1'
       });
@@ -56,6 +57,7 @@
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
         address: '3 rue de trévise',
         location : { type : 'Point', coordinates: [2.345295599999986, 48.8734518]},
+        images: ["interessant.jpg", "To do.png"],
         user_id : id_ltbesh,
         _id: '2'
       });

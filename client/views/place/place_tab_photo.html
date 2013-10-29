@@ -3,7 +3,11 @@
 <div class="row-fluid">		
 
     	<div class="span8">
-			<img src="/kravmaga.jpg" alt="kravmaga" />
+	<div id="galleria">
+		{{#each images}}
+			<img src="/places/{{this}}">
+		{{/each}}
+	</div>
 		</div>
 		<div class="span4">
 			Place :  {{place.description}}
