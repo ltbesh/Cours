@@ -28,10 +28,13 @@ Template.tag_selector.rendered = function(){
             // For the detail page
             if(Session.get("current_place")){
                 if(Session.get("current_course")){
-                    var course = Courses.findOne(Session.get("current_course"));
-                    var current_tag = course.tag_id;
-                    $("#subject-search").select2("val", current_tag); 
+                    var current_course_tag = Courses.findOne(Session.get("current_course")).tag_id;
+                    $("#subject-search").select2("val", current_course_tag); 
                 }
+                $("#subject-search").on("change", function(e) { 
+                    var current_course = Courses.findOne({place_id : Session.get("current_place"), tag_id : e.val}, {field : {_id : true}})._id;
+                    Session.set("current_course",current_course);
+                });
             }
             // If there is already a search made
             else if (Session.get('subject_search')){

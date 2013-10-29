@@ -6,6 +6,9 @@
 			<div class="span8">
 				<h3>{{title}}</h3>	
 				<h6> {{address}}</h6>
+				{{#if price}}
+				<p>prix : {{price}}</p>
+				{{/ if}}
 				{{> tag_selector}}
 			</div>
 			<div class="span4">
