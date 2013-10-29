@@ -1,11 +1,9 @@
-Template.course_item.helpers({
-	subject: function(){
-		return Tags.findOne(this.tag_id).name;
+Template.place_item.helpers({
+	price: function(place_id){
+		return  Courses.findOne({place_id : place_id, tag_id : Session.get("subject_search")}, {fields : { price : true}}).price;
+	},
+	time_slots: function(place_id){
+		var course_id = Courses.findOne({place_id : place_id, tag_id : Session.get("subject_search")}, {fields: {_id : true}})._id;
+		return TimeSlots.find({course_id : course_id});
 	}
-})
-
-Template.course_item.events({
-	'click .detail' : function(e){
-		Session.set('current_course_place', this.place_id);
-	}
-})
+});

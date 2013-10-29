@@ -13,6 +13,12 @@ Template.place_list.helpers({
 	    	var places = places_cursor[0];
 	    return places;
 	},
+	price: function(course){
+
+	},
+	time_slots: function(course){
+
+	},
 	search: function(){
 		return Session.get("geographical_search").location !== null && Session.get("subject_search") !== null;
 	},
