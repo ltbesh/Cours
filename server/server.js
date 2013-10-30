@@ -85,7 +85,9 @@ Meteor.startup(function () {
                                       "Cours pour les connards",
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
-
+        var contacts = ["Jean Paul Dubois "," Robert Duval", "Martine Mato", "Ahmed Berkane", "Jules Bodineau"];
+        var materiels = [ "one pair black boots", "String léopard", "Gant de boxe", "Marteau et enclume", "Ventilateur"];
+        var price_explanations = ["C'est cher mais c'est bien", "Si vous êtes une fille c'est gratos", "Si vous trouvez ça trop cher, vous pouvez toujours allez voir ailleurs"];
 
         for (var j = 1; j < 4; j ++){
             for(var k = 1; k < 6; k ++){
@@ -97,7 +99,10 @@ Meteor.startup(function () {
                         tag_id : String(j),
                         additional_information: course_additional_information[get_random_int(0,8)],
                         place_id: String(k),
-                        price: get_random_int(10, 200)
+                        price: get_random_int(10, 200),
+                        contact : contacts[get_random_int(0,4)],
+                        required_materiel : materiels[get_random_int(0,4)],
+                        price_explanation : price_explanations[get_random_int(0,2)]
                     });
 
                     var number_of_slots = get_random_int(1,4);

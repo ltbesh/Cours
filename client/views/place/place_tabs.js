@@ -6,7 +6,12 @@ Template.place_tabs.helpers ({
     info_tab: function () {
     	return Session.equals('place_detail_information_active_tab', 'info_tab');
     },
-
+    price_tab: function () {
+      return Session.equals('place_detail_information_active_tab', 'price_tab');
+    },
+    schedule_tab: function () {
+      return Session.equals('place_detail_information_active_tab', 'schedule_tab');
+    },
     active: function (tab_name) {
     	return Session.equals("place_detail_information_active_tab", tab_name) ? "active" : '';
     },

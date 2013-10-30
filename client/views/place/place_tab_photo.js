@@ -1,7 +1,6 @@
 Template.place_tab_photo.helpers ({
 	place: function () {
-		var place = Places.findOne({_id: this.place_id});
-		return place;
+		return Places.findOne(Session.get("current_place"));
     },
     images: function(){
     	var place =  Places.find({_id : Session.get("current_place")}, {fields : {images: 1}}).fetch()[0];
