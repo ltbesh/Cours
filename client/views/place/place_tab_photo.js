@@ -3,9 +3,9 @@ Template.place_tab_photo.helpers ({
 		return Places.findOne(Session.get("current_place"));
     },
     images: function(){
-    	var place =  Places.find({_id : Session.get("current_place")}, {fields : {images: 1}}).fetch()[0];
-    	var images = place.images;
-    	images = _.map(images, function(image){ return Session.get("current_place") + "/" + image;});
+    	var course =  Courses.find({_id : Session.get("current_course")}, {fields : {images: 1}}).fetch()[0];
+        
+    	var images = course.images;
     	return images
     }
 });

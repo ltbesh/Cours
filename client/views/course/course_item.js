@@ -1,6 +1,6 @@
 Template.course_item.helpers({
 	subject: function(){
-		return Tags.findOne(this.tag_id).name;
+		return Tags.findOne(this.tag_id).title;
 	}
 })
 

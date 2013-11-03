@@ -14,7 +14,6 @@ Meteor.startup(function () {
         description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
         address: '8 rue des françs bourgeois 75003 Paris',
         location : { type : 'Point', coordinates: [2.3636317000000417, 48.8566874]}, 
-        images: ["ROAD_MISC_010.jpg", "STARTLINE_COLOR_011.jpg"],
         user_id : id_ltbesh,
         _id: '1'
       });
@@ -23,7 +22,6 @@ Meteor.startup(function () {
         description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
         address: '3 rue de trévise',
         location : { type : 'Point', coordinates: [2.345295599999986, 48.8734518]},
-        images: ["interessant.jpg", "To do.png"],
         user_id : id_ltbesh,
         _id: '2'
       });
@@ -88,6 +86,7 @@ Meteor.startup(function () {
         var contacts = ["Jean Paul Dubois "," Robert Duval", "Martine Mato", "Ahmed Berkane", "Jules Bodineau"];
         var materiels = [ "one pair black boots", "String léopard", "Gant de boxe", "Marteau et enclume", "Ventilateur"];
         var price_explanations = ["C'est cher mais c'est bien", "Si vous êtes une fille c'est gratos", "Si vous trouvez ça trop cher, vous pouvez toujours allez voir ailleurs"];
+        var photos = [["8.jpg", "9.jpg", "10.jpg"], ["1.jpg", "2.jpg", "3.jpg", "4.jpg"], ["5.jpg", "6.jpg", "7.jpg"]];
 
         var time_slots_november = [1383310800,1383314400,1383318000,1383321600,1383325200,1383328800,1383332400,1383336000,1383339600,1383343200,1383346800,1383350400,1383354000,1383357600,
         1383397200,1383400800,1383404400,1383408000,1383411600,1383415200,1383418800,1383422400,1383426000,1383429600,1383433200,1383436800,1383440400,1383444000,
@@ -108,6 +107,7 @@ Meteor.startup(function () {
                         tag_id : String(j),
                         additional_information: course_additional_information[get_random_int(0,8)],
                         place_id: String(k),
+                        images : photos[j-1],
                         price: get_random_int(10, 200),
                         contact : contacts[get_random_int(0,4)],
                         required_materiel : materiels[get_random_int(0,4)],

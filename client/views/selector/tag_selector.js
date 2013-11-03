@@ -36,18 +36,16 @@ Template.tag_selector.rendered = function(){
                     Session.set("current_course",current_course);
                 });
             }
-            // If there is already a search made
-            else if (Session.get('subject_search')){
-                $("#subject-search").select2("val", Session.get('subject_search'));
-            } 
-            // If there is no search yet
-            else{
+
+            // For the search page
+            else {
                 $("#subject-search").on("change", function(e) { 
                     Session.set('subject_search',e.val);
                 });
-            }
-            
 
+                if (Session.get('subject_search'))
+                    $("#subject-search").select2("val", Session.get('subject_search'));
+            }
         }
     });
 }
