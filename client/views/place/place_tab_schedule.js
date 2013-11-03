@@ -1,18 +1,22 @@
 Template.place_tab_schedule.rendered = function(){
-    $(document).ready(function() {
+        Deps.autorun(function(){
 
-    // page is now ready, initialize the calendar...
+            $('#calendar').fullCalendar( 'destroy' );
+            var source_time_slots = TimeSlots.find({course_id : Session.get("current_course")}).fetch();
+            var events = repeat_events(source_time_slots);
 
-        $('#calendar').fullCalendar({
-            weekends: false,
-            defaultView : "agendaWeek",
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month, agendaWeek'
-            },
-            dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
-        });
-
+            // page is now ready, initialize the calendar...
+            $('#calendar').fullCalendar({
+                weekends: true,
+                defaultView : "agendaWeek",
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month, agendaWeek'
+                },
+                dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                events: events
+            });
     });
 }
