@@ -44,8 +44,13 @@ Meteor.Router.filters({
 		else{
 			return "place_creation_form";
 		}
+	},
+	"clear_alerts": function(page) {
+		clear_alerts();
+		return page; 
 	}
 });
 
 Meteor.Router.filter("login_required", {only: ["course_creation_form", "place_creation_form"]});
 Meteor.Router.filter("place_required", {only: "course_creation_form"});
+Meteor.Router.filter('clear_alerts');

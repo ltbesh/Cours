@@ -4,7 +4,7 @@ Template.geographical_selector.rendered = function(){
 
 	autocomplete = new google.maps.places.Autocomplete(input, options);
 	Deps.autorun(function(){
-		if(Session.get('geographical_search').address)
+		if(Session.get('geographical_search').address && Session.get("search_page"))
 			$('#geographical-search').attr('placeholder', Session.get('geographical_search').address);
 
 		google.maps.event.addListener(autocomplete, 'place_changed', function() {
