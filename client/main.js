@@ -1,5 +1,5 @@
 // Selector for courses search
-Session.set("day_selector", [1,2,3,4,5,6,7]);
+Session.set("day_selector", [0,1,2,3,4,5,6]);
 Session.set("price_min", 0);
 Session.set("price_max", 200);
 Session.set("schedule_min", 0);

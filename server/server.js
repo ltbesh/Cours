@@ -124,6 +124,9 @@ Meteor.startup(function () {
                             title : time_slots_title[get_random_int(0,2)],
                             start: start,
                             end: end,
+                            day_of_week : start.getDay(),
+                            start_time: start.getHours() * 60 + start.getMinutes(),
+                            end_time: end.getHours() * 60 + end.getMinutes(),
                             all_day : false,
                             repeat : true,
                             repeat_frequency : 7
