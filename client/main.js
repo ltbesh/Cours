@@ -17,12 +17,16 @@ Session.set("place_detail_information_active_tab", "photo_tab");
 // Used to draw the map
 Session.set("map", false);
 
-Deps.autorun(function () {
-	Meteor.subscribe("current_place", Session.get("current_place"));
+Meteor.startup( function() {
+    filepicker.setKey("AbMQbak12TuefvS5Uz1mVz");
 });
 
 Deps.autorun(function () {
-	Meteor.subscribe("current_course_time_slots", Session.get("current_course"));
+    Meteor.subscribe("current_place", Session.get("current_place"));
+});
+
+Deps.autorun(function () {
+    Meteor.subscribe("current_course_time_slots", Session.get("current_course"));
 });
 
 
@@ -33,12 +37,12 @@ Meteor.subscribe("tags");
 
 // Subscribe to the courses and places that match the user criterion
 place_handle = Meteor.subscribeWithPagination(
-	"searched_places", 
-	function(){return Session.get("day_selector")}, 
-	function(){return Session.get("price_min")}, 
-	function(){return Session.get("price_max")}, 
-	function(){return Session.get("schedule_min")}, 
-	function(){return Session.get("schedule_max")},
-	function(){return Session.get("subject_search")},
-	function(){return Session.get("geographical_search").location},
-	5);
+    "searched_places", 
+    function(){return Session.get("day_selector")}, 
+    function(){return Session.get("price_min")}, 
+    function(){return Session.get("price_max")}, 
+    function(){return Session.get("schedule_min")}, 
+    function(){return Session.get("schedule_max")},
+    function(){return Session.get("subject_search")},
+    function(){return Session.get("geographical_search").location},
+    5);
