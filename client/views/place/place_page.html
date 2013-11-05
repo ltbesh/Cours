@@ -1,0 +1,31 @@
+<template name='place_page'>
+	<a href="{{place_search_pagePath}}" class='detail'>Retour à la recherche</a>
+	<toto>
+		<div class="row-fluid">
+			<div class="span8">
+				<h3>{{place.title}}</h3>	
+				<h6> {{place.address}}</h6>
+				{{#if course}}
+				<p>prix : {{course.price}}</p>
+				{{/ if}}
+				{{> tag_selector}}
+			</div>
+			<div class="span4">
+			</div>
+		</div>
+		
+		{{# with course}}
+			{{> place_tabs}}
+		{{/ with}}
+
+		<div class="row-fluid">
+			<div class="span12">
+			{{#if course}}
+				course description : {{course.description}}
+			{{/ if}}
+
+			</div>
+			
+		</div>
+</template>
+

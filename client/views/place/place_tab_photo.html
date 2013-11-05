@@ -1,0 +1,16 @@
+<template name="place_tab_photo">
+
+<div class="row-fluid">     
+    <div class="span8">
+        <div id="galleria">
+            {{#each images}}
+                <img src="/course_images/{{this}}">
+            {{/each}}
+        </div>
+    </div>
+    <div class="span4">
+        Place description :  {{place.description}}
+    </div>
+</div>
+
+</template>

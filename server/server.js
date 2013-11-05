@@ -1,5 +1,5 @@
 // On server startup, create some course if the database is empty.
-  Meteor.startup(function () {
+Meteor.startup(function () {
     Places._ensureIndex({ location : "2dsphere" });
 
     if(Meteor.users.find().count() === 0){
@@ -7,40 +7,6 @@
       var id_alex = Accounts.createUser({username: 'dada', password: 'admin'});
       var id_lucas = Accounts.createUser({username: 'lucas', password: 'admin'});
     }
-
-    if (Courses.find().count() === 0) {
-        var course_title = ["Pour les nuls", "Seulement pour les pros", "Cours confirmés", "Cours experts", "Cours tous niveaux", "Faux débutant"];
-        var course_description = ["Un très bon cours", 
-                      "Parisien passez votre chemin", 
-                      "Le prof pue des bras", 
-                      "Meuf facile à chopper", 
-                      "Le prof passe le cours sur Facebook",
-                      "On est beaucoup trop nombreux",
-                      "Un cours un peu court"];
-        var course_additional_information = ["Distributeur de bonbon cassé",
-                                      "Le verrou des douches ne fonctionne pas",
-                                      "Interdit aux femmes",
-                                      "Le cours est rempli de pédophile",
-                                      "Le prof est sympa et souriant",
-                                      "On progresse rapidemment, mais c'est chacun son rythme",
-                                      "Cours pour les connards",
-                                      "Cassez vous ia pas d'ambiance",
-                                      "J'ai préféré Singapour"];
-        for(var i = 0;i<100;i++){
-          var starts = get_random_int(16, 42) * 30;
-          Courses.insert({
-            title: course_title[get_random_int(0,5)],
-            description: course_description[get_random_int(0,6)],
-            day_of_week: get_random_int(1,7),
-            tag_id : String(get_random_int(1,8)),
-            starts: starts,
-            ends: starts + 60,
-            additional_information: course_additional_information[get_random_int(0,8)],
-            place_id: String(get_random_int(1,5)),
-            price: get_random_int(10, 200)
-          });
-        }
-      }
 
     if (Places.find().count() === 0) {
       Places.insert({
@@ -88,40 +54,89 @@
     if(Tags.find().count() === 0){
       Tags.insert({
         _id : '1',
-        title : "Sexe en salle"
+        title : "Danse"
       });
       Tags.insert({
         _id : '2',
-        title : "Danse orientale"
-      });
-      Tags.insert({
-        _id : '3',
-        title : "Body step"
-      });
-      Tags.insert({
-        _id : '4',
         title : "Poterie"
       });
       Tags.insert({
-        _id : '5',
-        title : "Curling"
-      });
-      Tags.insert({
-        _id : '6',
-        title : "Javascript"
-      });
-      Tags.insert({
-        _id : '7',
-        title : "Escalade"
-      });
-      Tags.insert({
-        _id : '8',
+        _id : '3',
         title : "Tennis"
       });
     }
 
-  });
+    if (Courses.find().count() === 0) {
+        var course_description = ["Un très bon cours", 
+                      "Parisien passez votre chemin", 
+                      "Le prof pue des bras", 
+                      "Meuf facile à chopper", 
+                      "Le prof passe le cours sur Facebook",
+                      "On est beaucoup trop nombreux",
+                      "Un cours un peu court"];
+        var course_additional_information = ["Distributeur de bonbon cassé",
+                                      "Le verrou des douches ne fonctionne pas",
+                                      "Interdit aux femmes",
+                                      "Le cours est rempli de pédophile",
+                                      "Le prof est sympa et souriant",
+                                      "On progresse rapidemment, mais c'est chacun son rythme",
+                                      "Cours pour les connards",
+                                      "Cassez vous ia pas d'ambiance",
+                                      "J'ai préféré Singapour"];
+        var contacts = ["Jean Paul Dubois "," Robert Duval", "Martine Mato", "Ahmed Berkane", "Jules Bodineau"];
+        var materiels = [ "one pair black boots", "String léopard", "Gant de boxe", "Marteau et enclume", "Ventilateur"];
+        var price_explanations = ["C'est cher mais c'est bien", "Si vous êtes une fille c'est gratos", "Si vous trouvez ça trop cher, vous pouvez toujours allez voir ailleurs"];
+        var photos = [["8.jpg", "9.jpg", "10.jpg"], ["1.jpg", "2.jpg", "3.jpg", "4.jpg"], ["5.jpg", "6.jpg", "7.jpg"]];
 
+        var time_slots_november = [1383310800,1383314400,1383318000,1383321600,1383325200,1383328800,1383332400,1383336000,1383339600,1383343200,1383346800,1383350400,1383354000,1383357600,
+        1383397200,1383400800,1383404400,1383408000,1383411600,1383415200,1383418800,1383422400,1383426000,1383429600,1383433200,1383436800,1383440400,1383444000,
+        1383483600,1383487200,1383490800,1383494400,1383498000,1383501600,1383505200,1383508800,1383512400,1383516000,1383519600,1383523200,1383526800,1383530400,
+        1383570000,1383573600,1383577200,1383580800,1383584400,1383588000,1383591600,1383595200,1383598800,1383602400,1383606000,1383609600,1383613200,1383616800,
+        1383656400,1383660000,1383663600,1383667200,1383670800,1383674400,1383678000,1383681600,1383685200,1383688800,1383692400,1383696000,1383699600,1383703200,
+        1383742800,1383746400,1383750000,1383753600,1383757200,1383760800,1383764400,1383768000,1383771600,1383775200,1383778800,1383782400,1383786000,1383789600,
+        1383829200,1383832800,1383836400,1383840000,1383843600,1383847200,1383850800,1383854400,1383858000,1383861600,1383865200,1383868800,1383872400,1383876000];
+        
+        var time_slots_title = ["Debutants", "Confirmés", "Experts"];
+
+        for (var j = 1; j < 4; j ++){
+            for(var k = 1; k < 6; k ++){
+                var is_course = get_random_int(1,3);
+                if(is_course !==3){
+                    var id = Courses.insert({
+                        description: course_description[get_random_int(0,6)],
+                        tag_id : String(j),
+                        additional_information: course_additional_information[get_random_int(0,8)],
+                        place_id: String(k),
+                        images : photos[j-1],
+                        price: get_random_int(10, 200),
+                        contact : contacts[get_random_int(0,4)],
+                        required_materiel : materiels[get_random_int(0,4)],
+                        price_explanation : price_explanations[get_random_int(0,2)]
+                    });
+
+                    var number_of_slots = get_random_int(1,4);
+                    for (var l = 1; l <= number_of_slots; l++){
+                        var time_november = get_random_int(0,104);
+                        var start = new Date(time_slots_november[time_november] * 1000);
+                        var end = new Date(time_slots_november[time_november] * 1000 + 60 * 60 * 1000);
+                        TimeSlots.insert({
+                            course_id : id,
+                            title : time_slots_title[get_random_int(0,2)],
+                            start: start,
+                            end: end,
+                            day_of_week : start.getDay(),
+                            start_time: start.getHours() * 60 + start.getMinutes(),
+                            end_time: end.getHours() * 60 + end.getMinutes(),
+                            all_day : false,
+                            repeat : true,
+                            repeat_frequency : 7
+                        });
+                    }
+                }
+            }
+        }
+    }
+});
 
 function get_random_int (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

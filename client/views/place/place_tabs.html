@@ -1,4 +1,4 @@
-<template name ='course_tabs'>
+<template name ='place_tabs'>
 
     <div class="row-fluid">
 		<div class="span8">
@@ -20,18 +20,28 @@
 
 		<div class="span4">	
     </div>
-    {{#with current_course}}
 
     <div class="row-fluid">
+    {{#with this}}
+
         {{#if photo_tab }}
-            {{> course_tab_photo}}
+            {{> place_tab_photo}}
         {{/if}}
 
         {{# if info_tab }}
-            {{> course_tab_info}}
+            {{> place_tab_info}}
         {{/if}}
+
+        {{# if schedule_tab}}
+            {{> place_tab_schedule}}
+        {{/if}}
+
+        {{# if price_tab}}
+            {{> place_tab_price}}
+        {{/if}}
+        
+    {{/ with}}
     </div>
-    {{/with}}
 
 				
 </template>

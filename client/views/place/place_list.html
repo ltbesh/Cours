@@ -1,0 +1,22 @@
+<template name="place_list">
+    {{#each places}}
+      {{> place_item}}</br>
+    {{else}}
+      {{#if search}}
+        <p> Pas de résultat pour votre recherche</p>
+      {{else}}
+        <p> Veuillez entrer une recherche de cours</p>
+      {{/if}} 
+    {{/each}}
+
+
+    {{#if search}}
+      {{#if places_ready}}
+        {{#unless all_places_loaded}}
+          <a class="load-more" href="#">Load more</a> 
+        {{/unless}}
+      {{else}}
+        {{> loading}}
+      {{/if}} 
+    {{/if}}
+</template>

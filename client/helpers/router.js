@@ -1,20 +1,26 @@
 Meteor.Router.add({
 	"/" : "home",
-	"/search" : "course_list_page",
-	"/course/:_id" : {
-		to: "course_page", 
-		and: function(id) {Session.set("current_course", id);}
+	"/search" : "place_search_page",
+	"/place/:_id" : {
+		to: "place_page", 
+		and: function(id) {
+			Session.set("current_place", id);
+			if(Session.get("subject_search")){
+				var course = Courses.findOne({place_id : id, tag_id : Session.get("subject_search")});
+				Session.set("current_course", course._id);
+			}
+		}
 	},
 	"/create/place": "place_creation_form",
 	"/create/course": "course_creation_form",
 	"/user/:_id": {
-		to: 'user_page', 
+		to: "user_page", 
 		and: function(id) {Session.set("current_user", id);}
 	},
-	'/signin':'user_signin',
-    '/signup':'user_signup',
-    '/account':'user_edit',
-	"*": '404'
+	"/signin":"user_signin",
+    "/signup":"user_signup",
+    "/account":"user_edit",
+	"*": "404"
 });
 
 Meteor.Router.filters({
@@ -38,8 +44,13 @@ Meteor.Router.filters({
 		else{
 			return "place_creation_form";
 		}
+	},
+	"clear_alerts": function(page) {
+		clear_alerts();
+		return page; 
 	}
 });
 
 Meteor.Router.filter("login_required", {only: ["course_creation_form", "place_creation_form"]});
 Meteor.Router.filter("place_required", {only: "course_creation_form"});
+Meteor.Router.filter('clear_alerts');
