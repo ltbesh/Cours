@@ -6,6 +6,7 @@ Template.place_tab_photo.helpers ({
     	var course =  Courses.find({_id : Session.get("current_course")}, {fields : {pictures: 1}}).fetch()[0];
         
     	var pictures = course.pictures;
+        console.log(pictures);
     	return pictures
     }
 });

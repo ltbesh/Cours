@@ -1,7 +1,6 @@
 Template.course_creation_form.rendered = function(){
 
     function format(item) { return item.title; };
-        console.log("tags");
 
     Deps.autorun(function(){
         var tags = Tags.find().fetch();
@@ -38,7 +37,7 @@ Template.course_creation_form.events({
     "change #image-picker": function(e){
         var images = Session.get("create_course_pictures");
         for(var i = 0; i< e.fpfiles.length;i++){
-            images.push(e.fpfiles[i]);
+            images.push(e.fpfiles[i].url);
         }
         Session.set("create_course_pictures", images);  
     },
@@ -57,21 +56,20 @@ Template.course_creation_form.events({
             price_explanation: $(e.target).find("#input-price-explanation").val()
         };
 
-        Meteor.call("insert_course", course, function(error, course_id){
+        Meteor.call("insert_course", course, function(error){
             if(error){
-
-                $("#alert > h4").html(error.reason);
-                $("#alert").show();
+                insert_alert(error.reason,"error");
             }
             else{
-                Meteor.Router.to("course_detail_page", course_id); 
+                insert_alert("Votre cours a été ajouté avec succès","success");
+                Meteor.Router.to("user_edit"); 
             }
         });
 
     }
 });
 
-Template.course_creation_form.rendered = function(){
+Template.course_creation_form.destroyed = function(){
     Session.set("create_course_pictures", []);
 
 }

@@ -15,12 +15,11 @@ Meteor.methods({
                 "Merci de renseigner un sujet pour votre cours");
         }
         else{
-            var place = Places.find(course_attributes.place_id);
+            var place = Places.find({_id:course_attributes.place_id}).fetch()[0];
             if (place.user_id !== user._id){
                 throw new Meteor.Error(422, "Ce lieu ne vous appartient pas, vous ne pouvez pas y ajouter de cours");
             }
         }
-
 
         //Tag
         if(!course_attributes.tag_id){
@@ -28,9 +27,9 @@ Meteor.methods({
                 "Merci de renseigner un sujet pour votre cours");
         }
         else{
-            var course = Courses.find({tag_id : course_attributes.tag_id, place_id : course_attributes.tag_id});
 
-            if(course !==null)
+            var course = Courses.find({tag_id : course_attributes.tag_id, place_id : course_attributes.place_id}).fetch();
+            if(course.length > 0)
                 throw new Meteor.Error(422, 
                     "Un cours sur ce sujet existe déjà pour ce lieu, choisissez un autre lieu ou un autre sujet");
         }
@@ -58,7 +57,7 @@ Meteor.methods({
         }
 
         //Pictures
-        if(!course_attributes.pictures){
+        if(course_attributes.pictures.length === 0){
             throw new Meteor.Error(422, 
                 "Merci d'uploader au moins une photo pour votre cours");
         }

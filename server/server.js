@@ -86,7 +86,7 @@ Meteor.startup(function () {
         var contacts = ["Jean Paul Dubois "," Robert Duval", "Martine Mato", "Ahmed Berkane", "Jules Bodineau"];
         var materiels = [ "one pair black boots", "String léopard", "Gant de boxe", "Marteau et enclume", "Ventilateur"];
         var price_explanations = ["C'est cher mais c'est bien", "Si vous êtes une fille c'est gratos", "Si vous trouvez ça trop cher, vous pouvez toujours allez voir ailleurs"];
-        var photos = [["8.jpg", "9.jpg", "10.jpg"], ["1.jpg", "2.jpg", "3.jpg", "4.jpg"], ["5.jpg", "6.jpg", "7.jpg"]];
+        var photos = [["/8.jpg", "/9.jpg", "/10.jpg"], ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"], ["/5.jpg", "/6.jpg", "/7.jpg"]];
 
         var time_slots_november = [1383310800,1383314400,1383318000,1383321600,1383325200,1383328800,1383332400,1383336000,1383339600,1383343200,1383346800,1383350400,1383354000,1383357600,
         1383397200,1383400800,1383404400,1383408000,1383411600,1383415200,1383418800,1383422400,1383426000,1383429600,1383433200,1383436800,1383440400,1383444000,
