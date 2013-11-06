@@ -1,11 +1,8 @@
 Template.course_creation_form.rendered = function(){
 
-    $("#alert").hide();
-    $(".alert .close").live("click", function(e) {
-    $(this).parent().hide();
-    });
-
     function format(item) { return item.title; };
+        console.log("tags");
+
     Deps.autorun(function(){
         var tags = Tags.find().fetch();
         var tags_name =[];
@@ -34,64 +31,30 @@ Template.course_creation_form.rendered = function(){
             formatSelection: format,
             formatResult: format,
         });
-    });
-
-    for (var i = 0; i < 24; i++)
-    {
-        if(i<10)
-            i = "0"+i;
-
-        $("#input-start-hour")
-            .append($("<option></option>")
-            .attr("value",i)
-            .text(i));
-        $("#input-end-hour")
-            .append($("<option></option>")
-            .attr("value",i)
-            .text(i));
-
-        if(i<12){
-            $("#input-start-minute")
-                .append($("<option></option>")
-                .attr("value",i*5)
-                .text(i*5));
-            $("#input-end-minute")
-                .append($("<option></option>")
-                .attr("value",i*5)
-                .text(i*5));
-        }
-    }    
+    });  
 }
-
-Template.course_creation_form.helpers({
-    "days": function(){
-        return [{value : 1, title : "Lun"}, 
-        {value : 2, title : "Mar"}, 
-        {value : 3, title : "Mer"},
-        {value : 4, title : "Jeu"},
-        {value : 5, title : "Ven"},
-        {value : 6, title : "Sam"},
-        {value : 7, title : "Dim"}];
-    }
-});
 
 Template.course_creation_form.events({ 
     "change #image-picker": function(e){
-        console.log(JSON.stringify(e.fpfile));
-        console.log($("#image-picker").value;
+        var images = Session.get("create_course_pictures");
+        for(var i = 0; i< e.fpfiles.length;i++){
+            images.push(e.fpfiles[i]);
+        }
+        Session.set("create_course_pictures", images);  
     },
     "submit form": function(e) {
         e.preventDefault();
 
         var course = {
             description: $(e.target).find("#input-description").val(), 
-            day_of_week: $(e.target).find("[name=input-day]:checked").val(),
-            price: $(e.target).find("#input-price").val(),      
             tag_id: $(e.target).find("#input-tags").select2("val")[0],
-            starts: Number($(e.target).find("#input-start-hour").val() * 60) + Number($(e.target).find("#input-start-minute").val()),
-            ends: Number($(e.target).find("#input-end-hour").val() * 60) + Number($(e.target).find("#input-end-minute").val()),
+            additional_information: $(e.target).find("#input-additional-information").val(),
             place_id: $(e.target).find("#input-place").select2("val"),
-            additional_information: $(e.target).find("#input-additional-information").val()
+            pictures: Session.get("create_course_pictures"),
+            price: $(e.target).find("#input-price").val(),
+            contact: $(e.target).find("#input-contact").val(),
+            required_materiel: $(e.target).find("#input-required-material").val(),
+            price_explanation: $(e.target).find("#input-price-explanation").val()
         };
 
         Meteor.call("insert_course", course, function(error, course_id){
@@ -108,4 +71,7 @@ Template.course_creation_form.events({
     }
 });
 
+Template.course_creation_form.rendered = function(){
+    Session.set("create_course_pictures", []);
 
+}

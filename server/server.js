@@ -107,7 +107,7 @@ Meteor.startup(function () {
                         tag_id : String(j),
                         additional_information: course_additional_information[get_random_int(0,8)],
                         place_id: String(k),
-                        images : photos[j-1],
+                        pictures : photos[j-1],
                         price: get_random_int(10, 200),
                         contact : contacts[get_random_int(0,4)],
                         required_materiel : materiels[get_random_int(0,4)],

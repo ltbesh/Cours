@@ -14,6 +14,8 @@ Session.set("current_place", null);
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
 
+Session.set("create_course_pictures",[]);
+
 // Used to draw the map
 Session.set("map", false);
 

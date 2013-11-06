@@ -9,7 +9,33 @@ Meteor.methods({
             throw new Meteor.Error(401, 
                 "Vous devez être connecté pour pouvoir créer des cours");
 
-        //description
+        //Place
+        if(!course_attributes.place_id){
+            throw new Meteor.Error(422, 
+                "Merci de renseigner un sujet pour votre cours");
+        }
+        else{
+            var place = Places.find(course_attributes.place_id);
+            if (place.user_id !== user._id){
+                throw new Meteor.Error(422, "Ce lieu ne vous appartient pas, vous ne pouvez pas y ajouter de cours");
+            }
+        }
+
+
+        //Tag
+        if(!course_attributes.tag_id){
+            throw new Meteor.Error(422, 
+                "Merci de renseigner un sujet pour votre cours");
+        }
+        else{
+            var course = Courses.find({tag_id : course_attributes.tag_id, place_id : course_attributes.tag_id});
+
+            if(course !==null)
+                throw new Meteor.Error(422, 
+                    "Un cours sur ce sujet existe déjà pour ce lieu, choisissez un autre lieu ou un autre sujet");
+        }
+
+        //Description
         if(!course_attributes.description){
             throw new Meteor.Error(422, 
                 "Merci de renseigner une description pour votre cours");
@@ -18,19 +44,7 @@ Meteor.methods({
             Match.test(course_attributes.description, String);
         }
 
-        //day
-        if(!course_attributes.day_of_week){
-            throw new Meteor.Error(422, 
-                "Merci de renseigner un jour pour votre cours");
-        }
-        else {
-            Match.test(course_attributes.day_of_week, Number);
-            if(course_attributes.day_of_week > 7 || course_attributes.day_of_week < 0 ){
-                throw new Meteor.Error(422, 
-                    "Merci de renseigner un jour compris entre 1 et 7 pour votre cours");
-            }
-        }
-
+        //Price
         if(!course_attributes.price){
             throw new Meteor.Error(422, 
                 "Merci de renseigner un prix pour votre cours");
@@ -43,38 +57,20 @@ Meteor.methods({
             }
         }
 
-        if(!course_attributes.starts){
+        //Pictures
+        if(!course_attributes.pictures){
             throw new Meteor.Error(422, 
-                "Merci de renseigner une heure de début pour votre cours");
-        }
-        else {
-            Match.test(course_attributes.starts, Number);
-            if(course_attributes.starts > 1439 || course_attributes.starts < 0 ){
-                throw new Meteor.Error(422, 
-                    "Merci de renseigner une heure comprise entre 00h00 et 23h59 le début pour votre cours");
-            }
+                "Merci d'uploader au moins une photo pour votre cours");
         }
 
-        if(!course_attributes.ends){
-            throw new Meteor.Error(422, "Merci de renseigner une heure de fin pour votre cours");
-        }
-        else {
-            Match.test(course_attributes.ends, Number);
-            if(course_attributes.ends > 1439 || course_attributes.ends < 0 ){
-                throw new Meteor.Error(422, 
-                    "Merci de renseigner une heure comprise entre 00h00 et 23h59 la fin pour votre cours");
-            }
-            else if (course_attributes.ends <= course_attributes.starts){
-                throw new Meteor.Error(422, 
-                    "Merci de renseigner une heure de fin posterieure à l\"heure de début pour votre cours");
-            }
-        }
-        
+        Match.test(course_attributes.price_explanation, String);
+        Match.test(course_attributes.contact, String);
+        Match.test(course_attributes.required_materiel, String);
         Match.test(course_attributes.additional_information, String);
 
         var course = _.pick(course_attributes, 
-            "description", "day_of_week", "price", "starts", "ends", 
-            "additional_information", "tag_id", "place_id")
+            "description", "tag_id", "additional_information", "place_id",
+             "price", "pictures", "contact", "required_materiel","price_explanation")
 
         var course_id = Courses.insert(course);
 

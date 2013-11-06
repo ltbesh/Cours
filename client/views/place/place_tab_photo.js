@@ -2,11 +2,11 @@ Template.place_tab_photo.helpers ({
 	place: function () {
 		return Places.findOne(Session.get("current_place"));
     },
-    images: function(){
-    	var course =  Courses.find({_id : Session.get("current_course")}, {fields : {images: 1}}).fetch()[0];
+    pictures: function(){
+    	var course =  Courses.find({_id : Session.get("current_course")}, {fields : {pictures: 1}}).fetch()[0];
         
-    	var images = course.images;
-    	return images
+    	var pictures = course.pictures;
+    	return pictures
     }
 });
 
