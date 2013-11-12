@@ -30,6 +30,22 @@ Template.course_creation_form.rendered = function(){
             formatSelection: format,
             formatResult: format,
         });
+
+        // page is now ready, initialize the calendar...
+            $('#calendar').fullCalendar({
+                weekends: true,
+                defaultView : "agendaWeek",
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month, agendaWeek'
+                },
+                dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                dayClick : function(){
+                    console.log("click");
+                }
+            });
     });  
 }
 
@@ -71,5 +87,4 @@ Template.course_creation_form.events({
 
 Template.course_creation_form.destroyed = function(){
     Session.set("create_course_pictures", []);
-
 }
