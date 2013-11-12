@@ -44,10 +44,15 @@ Template.course_creation_form.rendered = function(){
                 dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
                 dayClick : function(){
                     console.log("click");
+                    Session.set("show_create_time_slot", true);
                 }
             });
     });  
 }
+
+Template.course_creation_form.show_create_time_slot = function () {
+    return Session.get("show_create_time_slot");
+};
 
 Template.course_creation_form.events({ 
     "change #image-picker": function(e){

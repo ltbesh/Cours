@@ -1,9 +1,10 @@
 <template name="course_creation_form">
 
-    <form method="POST" class="form-horizontal">
+  {{#if show_create_time_slot}}
+    {{> create_time_slot_modal}}
+  {{/if}}
 
-                        time slots
-                        
+    <form method="POST" class="form-horizontal">                        
         <div class="control-group">
             <label class="control-label" for="input-place">Lieu</label>
             <div class="controls">
@@ -79,9 +80,3 @@
     </form>
 
 </template>
-
-
-<!--        
-            place_id: String(get_random_int(1,5))-->
-
-

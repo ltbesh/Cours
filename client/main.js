@@ -15,6 +15,7 @@ Session.set("current_place", null);
 Session.set("place_detail_information_active_tab", "photo_tab");
 
 Session.set("create_course_pictures",[]);
+Session.set("show_create_time_slot", false);
 
 // Used to draw the map
 Session.set("map", false);
