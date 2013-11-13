@@ -9,7 +9,8 @@
       "paginated-subscription": {},
       "spin": {},
       "select2": {},
-      "accounts-ui-bootstrap-dropdown": {}
+      "accounts-ui-bootstrap-dropdown": {},
+      "impicker": {}
     },
     "packages": {
       "jquery-ui": {
@@ -51,6 +52,11 @@
         "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
         "tag": "v0.6.5.1",
         "commit": "c8b29d2e7f8611d6dec9d6d23c1c2b94e000b0fb"
+      },
+      "impicker": {
+        "git": "https://github.com/wulx/impicker.git",
+        "tag": "v1.1.2",
+        "commit": "26f1b4a6ed8f90762c699ad845264ff1065e8ebb"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
