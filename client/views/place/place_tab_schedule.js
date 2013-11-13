@@ -16,6 +16,9 @@ Template.place_tab_schedule.rendered = function(){
                 },
                 dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
                 dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                allDaySlot: false,
+                minTime: 6,
+                axisFormat : "HH:mm",
                 events: events
             });
     });

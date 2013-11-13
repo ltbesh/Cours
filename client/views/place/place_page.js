@@ -9,5 +9,6 @@ Template.place_page.helpers({
 });
 Template.place_page.destroyed = function(){
     Session.set('current_place', null);
+    Session.set("place_detail_information_active_tab", "photo_tab");
 }
 

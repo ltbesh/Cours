@@ -30,8 +30,36 @@ Template.course_creation_form.rendered = function(){
             formatSelection: format,
             formatResult: format,
         });
+        var events = repeat_events(Session.get("new_time_slots"));
+        console.log(events)
+        // page is now ready, initialize the calendar...
+            $('#calendar').fullCalendar({
+                weekends: true,
+                defaultView : "agendaWeek",
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month, agendaWeek'
+                },
+                dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                dayClick : function(date, allDay, jsEvent, view){
+                    Session.set("new_time_slot_date", date);
+                    Session.set("new_time_slot_all_day", allDay);
+                    Session.set("show_create_time_slot", true);
+                },
+                allDaySlot: false,
+                minTime : 6,
+                axisFormat : "HH:mm",
+                events: events
+
+            });
     });  
 }
+
+Template.course_creation_form.show_create_time_slot = function () {
+    return Session.get("show_create_time_slot");
+};
 
 Template.course_creation_form.events({ 
     "change #image-picker": function(e){
@@ -71,5 +99,5 @@ Template.course_creation_form.events({
 
 Template.course_creation_form.destroyed = function(){
     Session.set("create_course_pictures", []);
-
+    Session.set("new_time_slots",[])
 }
