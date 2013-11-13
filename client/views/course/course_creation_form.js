@@ -31,7 +31,6 @@ Template.course_creation_form.rendered = function(){
             formatResult: format,
         });
         var events = repeat_events(Session.get("new_time_slots"));
-        console.log(events)
         // page is now ready, initialize the calendar...
             $('#calendar').fullCalendar({
                 weekends: true,
@@ -84,13 +83,23 @@ Template.course_creation_form.events({
             price_explanation: $(e.target).find("#input-price-explanation").val()
         };
 
-        Meteor.call("insert_course", course, function(error){
+        Meteor.call("insert_course", course, function(error, result){
             if(error){
                 insert_alert(error.reason,"error");
             }
             else{
+                var course_id = result;
+                var new_time_slots = Session.get("new_time_slots");
+                for(var i = 0, nb_time_slots = new_time_slots.length; i < nb_time_slots;i++){
+                    new_time_slots[i].course_id = course_id;
+                    Meteor.call("insert_time_slot", new_time_slots[i], function(error, result){
+                        if(error){
+                            // Display error
+                        }
+                    });
+                }
                 insert_alert("Votre cours a été ajouté avec succès","success");
-                Meteor.Router.to("user_edit"); 
+                Meteor.Router.to("user_edit");
             }
         });
 
