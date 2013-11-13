@@ -141,6 +141,8 @@ h1{
 	background: #000 
 }
 
-
+#create_time_slot_modal .modal-body {
+	max-height: 800px;
+}
 
 
