@@ -4,7 +4,6 @@ Template.place_tab_schedule.rendered = function(){
             $('#calendar').fullCalendar( 'destroy' );
             var source_time_slots = TimeSlots.find({course_id : Session.get("current_course")}).fetch();
             var events = repeat_events(source_time_slots);
-
             // page is now ready, initialize the calendar...
             $('#calendar').fullCalendar({
                 weekends: true,

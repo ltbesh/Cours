@@ -5,11 +5,9 @@
       <button type="button" class="close cancel">&times;</button>
       <h3>Ajouter un créneau horaire</h3>
     </div>
-
     <div class="modal-body">
-      {{#if error}}
-        <div class="alert alert-error">{{error}}</div>
-      {{/if}}
+    {{> alerts}}
+
     <form method="POST" class="form-horizontal"> 
 
         <div class="control-group">
@@ -17,7 +15,7 @@
           <div class="controls">
             <input type="text" name="input-title" id="input-title">
           </div>
-        </div> 
+        </div>
 
         <div class="control-group">
           <label class="control-label" for="input-day-starts">Jour de début</label>

@@ -6,9 +6,8 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.5/gmaps.min.js"></script>
         
         <!-- File picker -->
-        <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
-
-
+        <!-- <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+        -->
         <!-- Calendar -->
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js"></script>
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css"/>
@@ -16,15 +15,15 @@
 
         <!-- Localize date picker -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/i18n/jquery.ui.datepicker-fr.js"></script>
-
-        
 </head> 
 
 <body>
 
     <div id='container-header' class="container"> 
     {{> nav}}
-    {{> alerts}}
+    {{#unless show_modal}}
+        {{> alerts}}
+    {{/unless}}
     </div>
 
     <div id="container-main" class="container row-fluid carousel slide">
