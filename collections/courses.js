@@ -12,7 +12,7 @@ Meteor.methods({
         //Place
         if(!course_attributes.place_id){
             throw new Meteor.Error(422, 
-                "Merci de renseigner un sujet pour votre cours");
+                "Merci de renseigner un lieu pour votre cours");
         }
         else{
             var place = Places.find({_id:course_attributes.place_id}).fetch()[0];

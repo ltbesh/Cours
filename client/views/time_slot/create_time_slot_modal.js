@@ -1,4 +1,5 @@
 Template.create_time_slot_modal.rendered = function(){
+    Session.set("show_modal", true);
     var date = Session.get("new_time_slot_date");
     var month = date.getMonth() + 1;
     var formated_date = date.getDate() + "/" + month + "/" + date.getFullYear()
@@ -48,8 +49,10 @@ Template.create_time_slot_modal.rendered = function(){
 Template.create_time_slot_modal.events({
     "click .cancel" : function(){
         Session.set("show_create_time_slot", false);
+        clear_alerts();
     },
     "click .save" : function(){
+        clear_alerts();
         var time_slots = Session.get("new_time_slots");
         var start = new Date($("#date-starts").datepicker("getDate").getTime() + 1000 * 60 * (Number($("#input-hour-starts").val()) * 60 + Number($("#input-minute-starts").val())));
         var end = new Date($("#date-starts").datepicker("getDate").getTime() + 1000 * 60 * (Number($("#input-hour-ends").val()) * 60 + Number($("#input-minute-ends").val())));
@@ -64,9 +67,21 @@ Template.create_time_slot_modal.events({
             repeat : $("#repeat").prop("checked"),
             repeat_frequency : $("#repeat").prop("checked") ? 7 : 0
         };
-        time_slots.push(new_time_slot);
-        Session.set("new_time_slots", time_slots);
-        Session.set("show_create_time_slot", false);
+        Meteor.call("insert_time_slot", new_time_slot, function(error, result){
+            if(error){
+                insert_alert(error.reason,"error");
+            }
+            else{
+                time_slot_id = result;
+                time_slots.push(time_slot_id);
+                Session.set("new_time_slots", time_slots);
+                Session.set("show_create_time_slot", false);
+            }
+        });
     }
 
 });
+
+Template.create_time_slot_modal.destroyed = function(){
+    Session.set("show_modal", false);
+}

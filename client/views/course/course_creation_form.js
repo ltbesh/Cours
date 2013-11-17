@@ -1,7 +1,5 @@
 Template.course_creation_form.rendered = function(){
-
     function format(item) { return item.title; };
-
     Deps.autorun(function(){
         var tags = Tags.find().fetch();
         var tags_name =[];
@@ -23,51 +21,61 @@ Template.course_creation_form.rendered = function(){
             places[i].id = places[i]["_id"];
             delete places[i]._id;
         }
-
-        $("#input-place").select2({
-            data: { results: places, text: "title" },
-            placeholder: "Lieu ?",
-            formatSelection: format,
-            formatResult: format,
-        });
-        var events = repeat_events(Session.get("new_time_slots"));
-        // page is now ready, initialize the calendar...
-            $('#calendar').fullCalendar({
-                weekends: true,
-                defaultView : "agendaWeek",
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month, agendaWeek'
-                },
-                dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-                dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-                dayClick : function(date, allDay, jsEvent, view){
-                    Session.set("new_time_slot_date", date);
-                    Session.set("new_time_slot_all_day", allDay);
-                    Session.set("show_create_time_slot", true);
-                },
-                allDaySlot: false,
-                minTime : 6,
-                axisFormat : "HH:mm",
-                events: events
-
+            $("#input-place").select2({
+                data: { results: places, text: "title" },
+                placeholder: "Lieu ?",
+                formatSelection: format,
+                formatResult: format,
             });
-    });  
+            var events = repeat_events(Session.get("new_time_slots"));
+            // page is now ready, initialize the calendar...
+                $('#calendar').fullCalendar({
+                    weekends: true,
+                    defaultView : "agendaWeek",
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month, agendaWeek'
+                    },
+                    dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                    dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                    dayClick : function(date, allDay, jsEvent, view){
+                        clear_alerts();
+                        Session.set("new_time_slot_date", date);
+                        Session.set("new_time_slot_all_day", allDay);
+                        Session.set("show_create_time_slot", true);
+                    },
+                    allDaySlot: false,
+                    minTime : 6,
+                    axisFormat : "HH:mm",
+                    events: events
+
+                });
+        
+            var element = document.getElementById("image-picker");
+            element.type="filepicker-dragdrop"; 
+        
+            element.onchange = function(e){        
+                e.preventDefault();
+                var images = Session.get("create_course_pictures");
+                for(var i = 0; i< e.fpfiles.length;i++){
+                    images.push(e.fpfiles[i].url);
+                }
+                Session.set("create_course_pictures", images); 
+            }; 
+        if(!Session.get("show_create_time_slot")){
+            filepicker.constructWidget(element);
+        }
+    });
 }
 
-Template.course_creation_form.show_create_time_slot = function () {
-    return Session.get("show_create_time_slot");
-};
+Template.course_creation_form.helpers({
+        show_create_time_slot : function () {
+            return Session.get("show_create_time_slot");
+        }    
+});
 
 Template.course_creation_form.events({ 
-    "change #image-picker": function(e){
-        var images = Session.get("create_course_pictures");
-        for(var i = 0; i< e.fpfiles.length;i++){
-            images.push(e.fpfiles[i].url);
-        }
-        Session.set("create_course_pictures", images);  
-    },
     "submit form": function(e) {
         e.preventDefault();
 
@@ -84,6 +92,7 @@ Template.course_creation_form.events({
         };
 
         Meteor.call("insert_course", course, function(error, result){
+            clear_alerts();
             if(error){
                 insert_alert(error.reason,"error");
             }
@@ -102,7 +111,6 @@ Template.course_creation_form.events({
                 Meteor.Router.to("user_edit");
             }
         });
-
     }
 });
 

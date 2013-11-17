@@ -1,19 +1,20 @@
-<template name="place_creation_form">
+<template name="place_update_form">
+    {{#with current_place}}
     <form class="form-horizontal">
 
         <div class="control-group">
             <label class="control-label" for="input-title">Titre</label>
             <div class="controls">
-                <input type="text" id="input-title" placeholder="Titre" value={{title}}>
+                <input type="text" id="input-title" value="{{title}}">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-description">Description</label>
             <div class="controls">
-                <textarea id="input-description" rows="5" placeholder="Description"></textarea>
+                <textarea id="input-description" rows="5">{{description}}</textarea>
             </div>
-        </div>  
+        </div>
 
         <div class="control-group">
             <label class="control-label" for="input-description">Adresse</label>
@@ -28,4 +29,5 @@
             </div>
         </div>
     </form>
+    {{/with}}
 </template>

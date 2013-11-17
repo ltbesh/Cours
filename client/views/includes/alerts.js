@@ -1,4 +1,5 @@
-Template.alerts.helpers({ errors: function() {
+Template.alerts.helpers({ 
+	errors: function() {
 	return Alerts.find(); }
 });
 

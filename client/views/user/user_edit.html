@@ -3,24 +3,27 @@
     <div class="span10">
     </div>
     <div class="span10">
-	<p> Mon compte </p>
-	{{#with user}}
-		{{user.email}}</br>
-		{{user.username}}</br></br>
+    <p> Mon compte </p>
+    {{#with user}}
+        {{user.email}}</br>
+        {{user.username}}</br></br>
 
-		<a href="{{place_creation_formPath}}">Ajouter un lieux</a>
-		<p>Mes lieux :</p>
-		{{#each places}}
-			{{> place_item}}</br>
-		{{/each}}
+        <a href="{{place_creation_formPath}}">Ajouter un lieux</a>
+        <p>Mes lieux :</p>
+        {{#each places}}
+            {{> place_item}}</br>
+            <a href="{{place_update_formPath this._id}}" class=" button btn">Modifier ce lieu</a></br>
+            <a class="button btn btn-danger delete-place" id="{{this._id}}">Supprimer ce lieu</a></br>
 
-		<a href="{{course_creation_formPath}}">Ajouter un cours</a>
-		<p>Mes cours :</p>
-		{{#each courses}}
-			{{> course_item}}</br>
-		{{/each}}
+        {{/each}}
 
-	{{/with}}
+        <a href="{{course_creation_formPath}}">Ajouter un cours</a>
+        <p>Mes cours :</p>
+        {{#each courses}}
+            {{> course_item}}</br>
+        {{/each}}
+
+    {{/with}}
 
     </div>
 </div>

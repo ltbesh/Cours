@@ -1,14 +1,16 @@
 Places = new Meteor.Collection("places");
 
+Places.allow({
+    remove: owns_document
+});
 
 Meteor.methods({
-    insert_place : function(place_attributes){
+    insert_or_update_place : function(place_attributes){
         var user = Meteor.user();
-
         //user
         if(!user)
             throw new Meteor.Error(401, 
-                "Vous devez être connecté pour pouvoir créer un lieu");
+                "Vous devez être connecté pour pouvoir créer ou modifier un lieu");
 
         //title
         if(!place_attributes.title){
@@ -42,16 +44,8 @@ Meteor.methods({
         var place = _.extend(_.pick(place_attributes, "title", "description", "location", "address"), {
             user_id: user._id
         });
-        var place_id = Places.insert(place);
+        var place_id = Places.upsert({_id:place_attributes._id}, place);
 
         return place_id;
     }
 });
-
-/* Places
-{
-    title: "string",
-    location: "données géographiques",
-    description: "string"
-}
-*/

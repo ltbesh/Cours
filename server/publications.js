@@ -38,3 +38,7 @@ Meteor.publish("owned_places", function(){
 Meteor.publish("owned_courses", function(){
     return get_owned_courses(this.userId);
 });
+
+Meteor.publish("new_time_slots", function(time_slots_id){
+    return TimeSlots.find({_id : {$in : time_slots_id}});
+});

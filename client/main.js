@@ -16,12 +16,13 @@ Session.set("place_detail_information_active_tab", "photo_tab");
 
 Session.set("create_course_pictures",[]);
 Session.set("show_create_time_slot", false);
-
+Session.set("place_update_page", false);
 // Used to draw the map
 Session.set("map", false);
 
 $.datepicker.setDefaults($.datepicker.regional[ "fr" ]);
 Session.set("new_time_slots", []);
+Session.set("show_modal", false);
 
 Meteor.startup( function() {
     filepicker.setKey("AbMQbak12TuefvS5Uz1mVz");
@@ -35,11 +36,19 @@ Deps.autorun(function () {
     Meteor.subscribe("current_course_time_slots", Session.get("current_course"));
 });
 
+Deps.autorun(function () {
+Meteor.subscribe("new_time_slots", Session.get("new_time_slots"));
+});
+
+Handlebars.registerHelper('show_modal', function() {
+  return Session.get("show_modal");
+});
 
 // Suscribe to the places the user owns
 Meteor.subscribe("owned_places");
 Meteor.subscribe("owned_courses");
 Meteor.subscribe("tags");
+
 
 // Subscribe to the courses and places that match the user criterion
 place_handle = Meteor.subscribeWithPagination(
