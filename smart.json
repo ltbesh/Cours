@@ -10,6 +10,7 @@
     "accounts-ui-bootstrap-dropdown": {},
     "impicker": {},
     "bootstrap-3": {},
-    "filepicker": {}
+    "filepicker": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }

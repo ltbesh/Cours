@@ -4,28 +4,28 @@
 
         <div class="control-group">
             <label class="control-label" for="input-title">Titre</label>
-            <div class="controls">
+            <div>
                 <input type="text" id="input-title" value="{{title}}">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-description">Description</label>
-            <div class="controls">
+            <div>
                 <textarea id="input-description" rows="5">{{description}}</textarea>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-description">Adresse</label>
-            <div class="controls">
+            <div>
                 {{> geographical_selector}}
             </div>
         </div>
 
         <div class="control-group"> 
             <div class="controls">
-                <input type="submit" value="Submit" class="btn btn-primary"/> 
+                <button type="submit" value="Submit" class="btn bnt-sm btn-primary"></button> 
             </div>
         </div>
     </form>

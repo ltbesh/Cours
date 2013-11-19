@@ -12,8 +12,8 @@ paginated-subscription
 spin
 underscore
 select2
-accounts-ui-bootstrap-dropdown
 accounts-password
 accounts-facebook
-bootstrap
 filepicker
+bootstrap-3
+accounts-ui-bootstrap-3
