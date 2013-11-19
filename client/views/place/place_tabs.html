@@ -1,7 +1,7 @@
 <template name ='place_tabs'>
 
-    <div class="row-fluid">
-		<div class="span8">
+    <div class="row">
+		<div class="col-md-8">
 			<ul class="nav nav-tabs">
     			<li class="tab {{active 'photo_tab'}}">
    			 		<a id="photo_tab" href="#">Photos</a>
@@ -18,11 +18,11 @@
     		</ul>
 		</div>
 
-    	<div class="span4">	
+    	<div class="col-md-4">	
         </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
     {{#with this}}
 
         {{#if photo_tab }}
