@@ -63,28 +63,42 @@ margin-bottom: 0px;
 #button-home2{
 	margin: 0;
 	padding: 0;
+	height: 26px;
 }
 
 #geographical-search{
 	margin: 0;
 	width: 95%;
+	height: 26px;
 }
 
 #button-home3{
 	margin: 0;
 	padding: 0;
+	height: 26px;
 }
 
 #find-btn{
 	width: 95%;
+	height: 26px;
 }
 
 h1{
-	color: #3c3c3c;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,  
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
 }
 
 #tag-line{
-	color: #3c3c3c;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,  
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
 	font-size: 1,3em;
 }
 
@@ -92,6 +106,8 @@ h1{
 .block {
   text-align: center;
   height: 600px;
+  position: relative;
+  z-index: 100;
 }
  
 /* The ghost, nudged to maintain perfect centering */
@@ -141,4 +157,10 @@ h1{
 	max-height: 800px;
 }
 
+/*--------------MAIN CAROUSEL--------------------*/
+
+#imgCarousel{
+	position: absolute;
+	z-index: 1;
+}
 
