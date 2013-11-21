@@ -45,6 +45,7 @@ Handlebars.registerHelper('show_modal', function() {
 });
 
 // Suscribe to the places the user owns
+Meteor.subscribe("owned_time_slots");
 Meteor.subscribe("owned_places");
 Meteor.subscribe("owned_courses");
 Meteor.subscribe("tags");

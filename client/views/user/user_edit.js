@@ -11,13 +11,12 @@ Template.user_edit.helpers({
 });
 
 Template.user_edit.events({
-	"click .delete-place": function(e){
-		e.preventDefault();
-		
-		if(confirm("Supprimer ce lieu ?")){
-			var place_id = e.target.id
-			Places.remove(place_id);
-		}
-	}
-
+    "click .delete-place": function(e){
+        e.preventDefault();
+        
+        if(confirm("Supprimer ce lieu ?")){
+            var place_id = e.target.id
+            Places.remove(place_id);
+        }
+    }
 });

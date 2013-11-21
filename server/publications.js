@@ -39,6 +39,10 @@ Meteor.publish("owned_courses", function(){
     return get_owned_courses(this.userId);
 });
 
+Meteor.publish("owned_time_slots", function(){
+    return get_owned_time_slots(this.userId);
+});
+
 Meteor.publish("new_time_slots", function(time_slots_id){
     return TimeSlots.find({_id : {$in : time_slots_id}});
 });

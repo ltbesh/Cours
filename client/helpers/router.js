@@ -11,8 +11,7 @@
             }
         }
     },
-    "/create/place": "place_creation_form",
-    "/create/course": "course_creation_form",
+    "/edit/place": "place_edit_form",
     "/update/place:_id": {
         to: "place_update_form",
         and: function(id){
@@ -26,6 +25,7 @@
                 });
         }
     },
+    "/edit/course": "course_edit_form",
     "/user/:_id": {
         to: "user_page", 
         and: function(id) {Session.set("current_user", id);}

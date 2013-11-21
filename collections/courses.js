@@ -1,6 +1,20 @@
 Courses = new Meteor.Collection("courses");
 
 Meteor.methods({
+    insert_base_course: function(course_attributes){
+        var user = Meteor.user();
+        //user
+        if(!user)
+            throw new Meteor.Error(401, 
+                "Vous devez être connecté pour pouvoir créer des cours");
+
+        var new_course = {user_id: user._id, status:"adding"};
+
+        new_course._id = Courses.insert(new_course);
+
+        return new_course;
+
+    },
     insert_course : function(course_attributes){
         var user = Meteor.user();
 
@@ -67,9 +81,9 @@ Meteor.methods({
         Match.test(course_attributes.required_materiel, String);
         Match.test(course_attributes.additional_information, String);
 
-        var course = _.pick(course_attributes, 
+        var course = _.extend(_.pick(course_attributes, 
             "description", "tag_id", "additional_information", "place_id",
-             "price", "pictures", "contact", "required_materiel","price_explanation")
+             "price", "pictures", "contact", "required_materiel","price_explanation"),{user_id: user._id});
 
         var course_id = Courses.insert(course);
 

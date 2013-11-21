@@ -1,9 +1,13 @@
-<template name="create_time_slot_modal">
+<template name="edit_time_slot_modal">
   <div class="modal" id="create_time_slot_modal">
   
     <div class="modal-header">
       <button type="button" class="close cancel">&times;</button>
-      <h3>Ajouter un créneau horaire</h3>
+        {{#if update_time_slot}}
+        <h3>Modifier un créneau horaire</h3>
+        {{else}}
+        <h3>Ajouter un créneau horaire</h3>
+        {{/if}}
     </div>
     <div class="modal-body">
     {{> alerts}}
@@ -18,36 +22,16 @@
         </div>
 
         <div class="control-group">
-          <label class="control-label" for="input-day-starts">Jour de début</label>
+          <label class="control-label" for="input-day-starts">Début</label>
           <div class="controls">
             <input id="date-starts" type="text" name="input-day-starts" >
           </div>
         </div> 
 
         <div class="control-group">
-          <label class="control-label" for="input-hour-starts">Heure de début</label>
-          <div class="controls">
-            <select id="input-hour-starts" name="input-hour-starts">
-            </select>
-            :
-            <select id="input-minute-starts"></select>
-          </div>
-        </div>        
-
-        <div class="control-group">
-          <label class="control-label" for="input-day-ends">Jour de fin</label>
+          <label class="control-label" for="input-day-ends">Fin</label>
           <div class="controls">
             <input id="date-ends" type="text" name="input-day-ends" >
-          </div>
-        </div> 
-
-        <div class="control-group">
-          <label class="control-label" for="input-hour-ends">Heure de fin</label>
-          <div class="controls">
-            <select id="input-hour-ends">
-            </select>
-            :
-            <select id="input-minute-ends"></select>
           </div>
         </div> 
 
@@ -60,8 +44,13 @@
     </form>
 
     <div class="modal-footer">
-      <a href="#" class="btn cancel">Annuler</a>
-      <a href="#" class="btn btn-primary save">Ajouter le créneau</a>
+        <a href="#" class="btn cancel">Annuler</a>
+        {{#if update_time_slot}}
+            <a href="#" class="btn btn-danger delete">Supprimer le créneau</a>              
+            <a href="#" class="btn btn-primary save">Modifier le créneau</a>      
+        {{else}}
+            <a href="#" class="btn btn-primary save">Ajouter le créneau</a>
+        {{/ if}}
     </div>
 
   </div>

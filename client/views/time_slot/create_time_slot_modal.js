@@ -1,63 +1,37 @@
-Template.create_time_slot_modal.rendered = function(){
+Template.edit_time_slot_modal.rendered = function(){
     Session.set("show_modal", true);
-    var date = Session.get("new_time_slot_date");
-    var month = date.getMonth() + 1;
-    var formated_date = date.getDate() + "/" + month + "/" + date.getFullYear()
-    $("#date-starts").val(formated_date);
-    $("#date-starts").datepicker();
-    $("#date-ends").val(formated_date);
-    $("#date-ends").datepicker();
-    for (var i = 0; i < 24; i++)
-    {
-        if(i<10)
-            i = "0"+i;
+    var date = Session.get("time_slot_date");
 
-        $("#input-hour-starts")
-            .append($("<option></option>")
-            .attr("value",i)
-            .text(i));
-        $("#input-hour-ends")
-            .append($("<option></option>")
-            .attr("value",i)
-            .text(i));
+    var time1 = new Date();
+    // Set start and end time according to where the user clicked on the calendar
+    $("#date-starts").datetimepicker();
+    $("#date-starts").datetimepicker('setDate', date);
+    $("#date-ends").datetimepicker();
+    $("#date-ends").datetimepicker('setDate', new Date(date.getTime() + 60*60000));
 
-        if(i<12){
-            var j = 5 * i;
-            if (j<10)
-                j = "0" + j;
-            $("#input-minute-starts")
-                .append($("<option></option>")
-                .attr("value",j)
-                .text(j));
-            $("#input-minute-ends")
-                .append($("<option></option>")
-                .attr("value", j)
-                .text(j));
-        }
-    }  
-
-    var hours = Session.get("new_time_slot_date").getHours();
-    var minutes = Session.get("new_time_slot_date").getMinutes();
-    $("#input-hour-starts option").each(function() { this.selected = (this.text == hours); });
-    $("#input-minute-starts option").each(function() { this.selected = (this.text == minutes); }); 
-    $("#input-hour-ends option").each(function() { this.selected = (this.text == hours + 1); }); 
-    $("#input-minute-ends option").each(function() { this.selected = (this.text == minutes); }); 
-    $("#all-day").prop("checked",Session.get("new_time_slot_all_day"))
-
+    // Not used for now as the all day zone is hidden
+    $("#all-day").prop("checked",Session.get("time_slot_all_day"));
 }
 
-Template.create_time_slot_modal.events({
+Template.edit_time_slot_modal.helpers({
+    update_time_slot : function(){
+        return Session.get("current_time_slot");
+    }
+
+});
+
+Template.edit_time_slot_modal.events({
     "click .cancel" : function(){
         Session.set("show_create_time_slot", false);
         clear_alerts();
     },
     "click .save" : function(){
         clear_alerts();
-        var time_slots = Session.get("new_time_slots");
-        var start = new Date($("#date-starts").datepicker("getDate").getTime() + 1000 * 60 * (Number($("#input-hour-starts").val()) * 60 + Number($("#input-minute-starts").val())));
-        var end = new Date($("#date-starts").datepicker("getDate").getTime() + 1000 * 60 * (Number($("#input-hour-ends").val()) * 60 + Number($("#input-minute-ends").val())));
+        var start = $("#date-starts").datetimepicker("getDate");
+        var end = $("#date-ends").datetimepicker("getDate");
         var new_time_slot = {
             title : $("#input-title").val(),
+            course_id : Session.get("current_course")._id,
             start : start,
             end : end,
             all_day : false,
@@ -67,21 +41,32 @@ Template.create_time_slot_modal.events({
             repeat : $("#repeat").prop("checked"),
             repeat_frequency : $("#repeat").prop("checked") ? 7 : 0
         };
+
         Meteor.call("insert_time_slot", new_time_slot, function(error, result){
             if(error){
                 insert_alert(error.reason,"error");
             }
             else{
-                time_slot_id = result;
-                time_slots.push(time_slot_id);
-                Session.set("new_time_slots", time_slots);
+                insert_alert("Votre créneau horaire à bien été ajouté", "success");
+                console.log(result);
                 Session.set("show_create_time_slot", false);
             }
         });
+    },
+    "click .delete" : function(){
+        var time_slots = Session.get("new_time_slots");
+        var current_time_slot_id = Session.get("current_time_slot");
+        for(var i = time_slots.length - 1; i >=0 ; i--){
+            if(time_slots[i]._id === current_time_slot_id)
+                time_slots.splice(i,1);
+        }
+        TimeSlots.remove(current_time_slot_id);
+        Session.set("show_create_time_slot", false);
     }
 
 });
 
-Template.create_time_slot_modal.destroyed = function(){
+Template.edit_time_slot_modal.destroyed = function(){
     Session.set("show_modal", false);
+    Session.set("current_time_slot", false);
 }

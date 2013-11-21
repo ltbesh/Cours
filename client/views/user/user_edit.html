@@ -8,16 +8,16 @@
         {{user.email}}</br>
         {{user.username}}</br></br>
 
-        <a href="{{place_creation_formPath}}">Ajouter un lieux</a>
+        <a href="{{place_edit_formPath}}" class="btn btn-default">Ajouter un lieux</a>
         <p>Mes lieux :</p>
         {{#each places}}
             {{> place_item}}</br>
-            <a href="{{place_update_formPath this._id}}" class=" button btn">Modifier ce lieu</a></br>
+            <a href="{{place_update_formPath this._id}}" class="btn btn-default">Modifier ce lieu</a></br>
             <a class="button btn btn-danger delete-place" id="{{this._id}}">Supprimer ce lieu</a></br>
 
         {{/each}}
 
-        <a href="{{course_creation_formPath}}">Ajouter un cours</a>
+        <a href="{{course_edit_formPath}}" class="btn btn-default">Ajouter un cours</a>
         <p>Mes cours :</p>
         {{#each courses}}
             {{> course_item}}</br>

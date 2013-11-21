@@ -1,4 +1,7 @@
 Template.course_item.helpers({
+	valid_status:function(){
+		return this.status!=="adding";
+	},
 	subject: function(){
 		return Tags.findOne(this.tag_id).title;
 	}

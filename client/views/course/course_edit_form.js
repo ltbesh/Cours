@@ -1,4 +1,24 @@
-Template.course_creation_form.rendered = function(){
+Template.course_edit_form.rendered = function(){
+    var user_id = Meteor.userId();
+    var new_course = Courses.findOne({user_id: user_id, status:"adding"});
+
+    if(!new_course){
+        Meteor.call("insert_base_course",{}, function(result, error){
+            if(error){
+                insert_alert(error.reason, "error");
+                new_course = null;
+                Meteor.Router("user_edit");
+            }
+            else{
+                new_course = result;
+            }
+        });
+    }
+    
+    if(new_course){
+        Session.set("current_course", new_course);
+    }
+
     function format(item) { return item.title; };
     Deps.autorun(function(){
         var tags = Tags.find().fetch();
@@ -27,7 +47,10 @@ Template.course_creation_form.rendered = function(){
                 formatSelection: format,
                 formatResult: format,
             });
-            var events = repeat_events(Session.get("new_time_slots"));
+
+            var time_slots = TimeSlots.find({course_id:new_course._id}).fetch();
+
+            var events = repeat_events(time_slots);
             // page is now ready, initialize the calendar...
                 $('#calendar').fullCalendar({
                     weekends: true,
@@ -41,15 +64,21 @@ Template.course_creation_form.rendered = function(){
                     dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
                     dayClick : function(date, allDay, jsEvent, view){
                         clear_alerts();
-                        Session.set("new_time_slot_date", date);
-                        Session.set("new_time_slot_all_day", allDay);
+                        Session.set("time_slot_date", date);
+                        Session.set("time_slot_all_day", allDay);
+                        Session.set("show_create_time_slot", true);
+                    },
+                    eventClick : function(time_slot, jsEvent, view){
+                        clear_alerts();
+                        Session.set("current_time_slot", time_slot._id);
+                        Session.set("time_slot_date", time_slot.start);
+                        Session.set("time_slot_all_day", time_slot.allDay);
                         Session.set("show_create_time_slot", true);
                     },
                     allDaySlot: false,
                     minTime : 6,
                     axisFormat : "HH:mm",
                     events: events
-
                 });
         
             var element = document.getElementById("image-picker");
@@ -69,13 +98,13 @@ Template.course_creation_form.rendered = function(){
     });
 }
 
-Template.course_creation_form.helpers({
+Template.course_edit_form.helpers({
         show_create_time_slot : function () {
             return Session.get("show_create_time_slot");
         }    
 });
 
-Template.course_creation_form.events({ 
+Template.course_edit_form.events({ 
     "submit form": function(e) {
         e.preventDefault();
 
@@ -114,7 +143,7 @@ Template.course_creation_form.events({
     }
 });
 
-Template.course_creation_form.destroyed = function(){
+Template.course_edit_form.destroyed = function(){
     Session.set("create_course_pictures", []);
     Session.set("new_time_slots",[])
 }
