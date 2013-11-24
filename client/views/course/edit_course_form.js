@@ -1,5 +1,6 @@
 Template.edit_course_form.rendered = function(){
     function format(item) { return item.title; };
+
     Deps.autorun(function(){
         var user_id = Meteor.userId();
 
@@ -38,7 +39,7 @@ Template.edit_course_form.rendered = function(){
                     callback(data);
                 }
             });
-            
+
             // Set default tag value
             if(current_tag){
                 $("#input-tags").select2("val", current_tag._id);
@@ -71,8 +72,6 @@ Template.edit_course_form.rendered = function(){
             if(current_place){
                 $("#input-place").select2("val", current_place._id);
             }
-
-     
 
             // Calendar
             var time_slots = TimeSlots.find({course_id:course._id}).fetch();
@@ -112,26 +111,24 @@ Template.edit_course_form.rendered = function(){
             // If the file-picker widget is not already rendered, render it
             if($("#image-picker").attr("style") !== "display: none;"){
                 var element = document.getElementById("image-picker");
-                element.type="filepicker-dragdrop"; 
-            
-                element.onchange = function(e){        
-                    e.preventDefault();
-                    var images = Session.get("edit_course_pictures");
-                    for(var i = 0; i< e.fpfiles.length;i++){
-                        images.push(e.fpfiles[i].url);
-                    }
-                    Session.set("edit_course_pictures", images);
-                };
-                filepicker.constructWidget(element);
+                if(element){
+                    element.type="filepicker-dragdrop"; 
+                
+                    element.onchange = function(e){        
+                        e.preventDefault();
+                        var images = Session.get("edit_course_pictures");
+                        for(var i = 0; i< e.fpfiles.length;i++){
+                            images.push(e.fpfiles[i].url);
+                        }
+                        Session.set("edit_course_pictures", images);
+                    };
+                    filepicker.constructWidget(element);
+                }
             }
 
-            if(Session.get("edit_course_pictures").length === 0 && course.pictures)
-                Session.set("edit_course_pictures", course.pictures)
-
-            Galleria.loadTheme('/galleria_themes/classic/galleria.classic.min.js');
-            
             if(Session.get("edit_course_pictures").length > 0){
-                Galleria.run('#galleria');
+                Galleria.loadTheme('/galleria_themes/classic/galleria.classic.min.js');
+                Galleria.run('#edit_course_galleria');
             }
         }
     });

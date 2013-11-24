@@ -34,6 +34,7 @@
             if(id!=="new"){
                 var course = Courses.findOne(id);
                 Session.set("current_course", course);
+                Session.set("edit_course_pictures", course.pictures);
             }
             else
             {
