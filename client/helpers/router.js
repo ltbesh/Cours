@@ -11,20 +11,24 @@
             }
         }
     },
-    "/edit/place": "place_edit_form",
-    "/update/place:_id": {
-        to: "place_update_form",
+    "/edit/place/:_id": {
+        to : "edit_place_form",
         and: function(id){
-            var place = Places.find(id).fetch()[0];
-            Session.set("current_place", id);
-
-            Session.set('geographical_search', 
-                { 
-                    address :place.address,
-                    location: place.location
+            if(id!=="new"){
+                var place = Places.findOne(id);
+                Session.set("current_place", place);
+                Session.set('geographical_search', 
+                    { 
+                        address :place.address,
+                        location: place.location
                 });
+            }
+            else{
+                Session.set("current_place", null);
+            }
         }
     },
+
     "/edit/course": "course_edit_form",
     "/user/:_id": {
         to: "user_page", 

@@ -6,7 +6,7 @@ Template.geographical_selector.rendered = function(){
     Deps.autorun(function(){
 
         //Used for geographical search and place update
-        if(Session.get('geographical_search').address && (Session.get("search_page")||Session.get("place_update_page")))
+        if(Session.get('geographical_search').address && (Session.get("search_page")||Session.get("edit_place")))
             $('#geographical-search').attr('value', Session.get("geographical_search").address);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function() {

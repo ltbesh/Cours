@@ -16,7 +16,9 @@ Session.set("place_detail_information_active_tab", "photo_tab");
 
 Session.set("create_course_pictures",[]);
 Session.set("show_create_time_slot", false);
-Session.set("place_update_page", false);
+
+// Set the geographical selector with the place location if user edits a place
+Session.set("edit_place", false); // Boolean
 // Used to draw the map
 Session.set("map", false);
 

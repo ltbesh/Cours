@@ -6,7 +6,6 @@ TimeSlots.allow({
 
 Meteor.methods({
     upsert_time_slot : function(time_slot_attributes){
-    console.log("time slot id upsert : ", time_slot_attributes._id);
     var user = Meteor.user();
     //user
     if(!user)
@@ -28,9 +27,7 @@ Meteor.methods({
             "Votre créneau horaire doit être attaché à un cours");
     }
     else{
-        console.log(time_slot_attributes.course_id);
         var course = Courses.findOne(time_slot_attributes.course_id);
-        console.log("course : ", course);
         if(course.user_id !==user._id){
             throw new Meteor.Error(422, 
                 "Vous ne pouvez pas ajouter de créneau horaire à un cours qui ne vous appartient pas");            

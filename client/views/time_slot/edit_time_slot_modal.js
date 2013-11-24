@@ -29,7 +29,6 @@ Template.edit_time_slot_modal.helpers({
             return "";
     },
     repeat : function(){
-        console.log(Session.get("current_time_slot"));
         if(Session.get("current_time_slot").repeat)
             return "checked";
         else
@@ -68,6 +67,7 @@ Template.edit_time_slot_modal.events({
                 insert_alert("Votre créneau horaire à bien été ajouté", "success");
                 Session.set("show_edit_time_slot", false);
             }
+
         });
     },
     "click .delete" : function(){
