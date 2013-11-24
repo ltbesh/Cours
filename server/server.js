@@ -100,6 +100,7 @@ Meteor.startup(function () {
 
         for (var j = 1; j < 4; j ++){
             for(var k = 1; k < 6; k ++){
+                var user_id = k<4 ? id_ltbesh : id_alex;
                 var is_course = get_random_int(1,3);
                 if(is_course !==3){
                     var id = Courses.insert({
@@ -111,7 +112,8 @@ Meteor.startup(function () {
                         price: get_random_int(10, 200),
                         contact : contacts[get_random_int(0,4)],
                         required_materiel : materiels[get_random_int(0,4)],
-                        price_explanation : price_explanations[get_random_int(0,2)]
+                        price_explanation : price_explanations[get_random_int(0,2)],
+                        user_id : user_id
                     });
 
                     var number_of_slots = get_random_int(1,4);
@@ -129,7 +131,8 @@ Meteor.startup(function () {
                             start_time: start.getHours() * 60 + start.getMinutes(),
                             end_time: end.getHours() * 60 + end.getMinutes(),
                             repeat : true,
-                            repeat_frequency : 7
+                            repeat_frequency : 7,
+                            user_id : user_id
                         });
                     }
                 }

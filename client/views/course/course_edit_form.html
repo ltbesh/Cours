@@ -1,7 +1,7 @@
 <template name="course_edit_form">
 
-  {{#if show_create_time_slot}}
-    {{> create_time_slot_modal}}
+  {{#if show_edit_time_slot}}
+    {{> edit_time_slot_modal}}
   {{/if}}
 
     <form method="POST" class="form-horizontal">                        
@@ -34,7 +34,7 @@
         </div> 
 
         <div class="control-group">
-            <label class="control-label" for="input-price">Photos</label>
+            <label class="control-label" for="image-picker">Photos</label>
             <div class="controls">
                 <input type="text" id="image-picker" data-fp-button-class="btn btn-primary" data-fp-multiple="true">
             </div>

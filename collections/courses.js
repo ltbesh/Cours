@@ -11,7 +11,6 @@ Meteor.methods({
         var new_course = {user_id: user._id, status:"adding"};
 
         new_course._id = Courses.insert(new_course);
-
         return new_course;
 
     },

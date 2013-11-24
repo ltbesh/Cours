@@ -55,7 +55,7 @@ Meteor.Router.filters({
             return page;
         }
         else{
-            return "place_creation_form";
+            return "place_edit_form";
         }
     },
     "clear_alerts": function(page) {
@@ -64,6 +64,6 @@ Meteor.Router.filters({
     }
 });
 
-Meteor.Router.filter("login_required", {only: ["course_creation_form", "place_creation_form"]});
-Meteor.Router.filter("place_required", {only: "course_creation_form"});
+Meteor.Router.filter("login_required", {only: ["course_edit_form", "place_edit_form"]});
+Meteor.Router.filter("place_required", {only: "course_edit_form"});
 Meteor.Router.filter('clear_alerts');
