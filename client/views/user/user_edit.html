@@ -12,12 +12,9 @@
         <p>Mes lieux :</p>
         {{#each places}}
             {{> place_item}}</br>
-            <a href="{{edit_place_formPath this._id}}" class="btn btn-default">Modifier ce lieu</a></br>
-            <a class="button btn btn-danger delete-place" id="{{this._id}}">Supprimer ce lieu</a></br>
-
         {{/each}}
 
-        <a href="{{course_edit_formPath}}" class="btn btn-default">Ajouter un cours</a>
+        <a href="{{edit_course_formPath 'new'}}" class="btn btn-default">Ajouter un cours</a>
         <p>Mes cours :</p>
         {{#each courses}}
             {{> course_item}}</br>

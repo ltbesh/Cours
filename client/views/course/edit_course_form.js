@@ -1,42 +1,81 @@
-Template.course_edit_form.rendered = function(){
+Template.edit_course_form.rendered = function(){
     function format(item) { return item.title; };
     Deps.autorun(function(){
         var user_id = Meteor.userId();
-        var new_course = Courses.findOne({user_id: user_id, status:"adding"});
 
-        if(!new_course){
-            var new_course = Meteor.call("insert_base_course",{});
+        if(Session.get("current_course")){
+            var course = Session.get("current_course");
         }
         else{
-            Session.set("current_course", new_course);
-            var tags = Tags.find().fetch();
-            var tags_name =[];
+            var course = Courses.findOne({user_id: user_id, status:"adding"});
+        }
 
+        if(!course){
+            var course = Meteor.call("insert_base_course",{});
+        }
+        else{
+            // Tags
+            Session.set("current_course", course);
+
+            var tags = Tags.find().fetch();
             for(var i = 0; i < tags.length; i++){
                 tags[i].id = tags[i]["_id"];
                 delete tags[i]._id;
             }
+
+            if(Session.get("current_course").tag_id){
+                var current_tag = Tags.findOne(Session.get("current_course").tag_id);
+                current_tag.id = current_tag._id;
+            }
+
             $("#input-tags").select2({
                 data: { results: tags, text: "title" },
-                placeholder: "Matière ?",
+                placeholder: "Matière",
                 formatSelection: format,
                 formatResult: format,
+                initSelection : function (element, callback) {
+                    var data = current_tag;
+                    callback(data);
+                }
             });
+            
+            // Set default tag value
+            if(current_tag){
+                $("#input-tags").select2("val", current_tag._id);
+            } 
 
+            // Place
             var places = Places.find({user_id : Meteor.userId()}).fetch();           
-
             for(var i = 0; i < places.length; i++){
                 places[i].id = places[i]["_id"];
                 delete places[i]._id;
             }
+
+            if(Session.get("current_course").place_id){
+                var current_place = Places.findOne(Session.get("current_course").place_id);
+                current_place.id = current_place._id;
+            }
+
             $("#input-place").select2({
                 data: { results: places, text: "title" },
-                placeholder: "Lieu ?",
+                placeholder: "Lieu",
                 formatSelection: format,
                 formatResult: format,
+                initSelection : function (element, callback) {
+                    var data = current_place;
+                    callback(data);
+                }
             });
 
-            var time_slots = TimeSlots.find({course_id:new_course._id}).fetch();
+            // Set default place value
+            if(current_place){
+                $("#input-place").select2("val", current_place._id);
+            }
+
+     
+
+            // Calendar
+            var time_slots = TimeSlots.find({course_id:course._id}).fetch();
             var events = repeat_events(time_slots);
             // If the calendar is not already present on the page add it
                 if(!$("#calendar").hasClass("fc")){
@@ -69,6 +108,7 @@ Template.course_edit_form.rendered = function(){
                     });
                 }
 
+            // Pictures
             // If the file-picker widget is not already rendered, render it
             if($("#image-picker").attr("style") !== "display: none;"){
                 var element = document.getElementById("image-picker");
@@ -80,25 +120,55 @@ Template.course_edit_form.rendered = function(){
                     for(var i = 0; i< e.fpfiles.length;i++){
                         images.push(e.fpfiles[i].url);
                     }
-                    Session.set("edit_course_pictures", images); 
+                    Session.set("edit_course_pictures", images);
                 };
                 filepicker.constructWidget(element);
+            }
+
+            if(Session.get("edit_course_pictures").length === 0 && course.pictures)
+                Session.set("edit_course_pictures", course.pictures)
+
+            Galleria.loadTheme('/galleria_themes/classic/galleria.classic.min.js');
+            
+            if(Session.get("edit_course_pictures").length > 0){
+                Galleria.run('#galleria');
             }
         }
     });
 }
 
-Template.course_edit_form.helpers({
-        show_edit_time_slot : function () {
-            return Session.get("show_edit_time_slot");
-        }    
+Template.edit_course_form.helpers({
+    show_edit_time_slot : function () {
+        return Session.get("show_edit_time_slot");
+    },
+    place_address : function(){
+        if(Session.get("current_course")){
+            var place = Places.findOne(Session.get("current_course").place_id);
+            return place.address;
+        }
+        else
+        {
+            return {};
+        }
+    },
+    current_course : function(){
+        var course = Session.get("current_course");
+        if(course)
+            return course;
+        else
+            return {};
+    },
+    pictures : function(){
+        return Session.get("edit_course_pictures");
+    }
 });
 
-Template.course_edit_form.events({ 
+Template.edit_course_form.events({ 
     "submit form": function(e) {
         e.preventDefault();
 
         var course = {
+            _id : Session.get("current_course") ? Session.get("current_course")._id : null,
             description: $(e.target).find("#input-description").val(), 
             tag_id: $(e.target).find("#input-tags").select2("val")[0],
             additional_information: $(e.target).find("#input-additional-information").val(),
@@ -133,7 +203,7 @@ Template.course_edit_form.events({
     }
 });
 
-Template.course_edit_form.destroyed = function(){
-    Session.set("create_course_pictures", []);
+Template.edit_course_form.destroyed = function(){
+    Session.set("edit_course_pictures", []);
     Session.set("new_time_slots",[])
 }

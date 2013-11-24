@@ -13,7 +13,7 @@
     },
     "/edit/place/:_id": {
         to : "edit_place_form",
-        and: function(id){
+        and : function(id){
             if(id!=="new"){
                 var place = Places.findOne(id);
                 Session.set("current_place", place);
@@ -28,8 +28,19 @@
             }
         }
     },
-
-    "/edit/course": "course_edit_form",
+    "/edit/course/:_id":{
+        to : "edit_course_form",
+        and : function(id){
+            if(id!=="new"){
+                var course = Courses.findOne(id);
+                Session.set("current_course", course);
+            }
+            else
+            {
+                Session.set("current_course", null);
+            }
+        }
+    },
     "/user/:_id": {
         to: "user_page", 
         and: function(id) {Session.set("current_user", id);}

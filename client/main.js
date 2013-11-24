@@ -14,7 +14,7 @@ Session.set("current_place", null);
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
 
-Session.set("create_course_pictures",[]);
+Session.set("edit_course_pictures",[]); // Array of URL
 Session.set("show_create_time_slot", false);
 
 // Set the geographical selector with the place location if user edits a place

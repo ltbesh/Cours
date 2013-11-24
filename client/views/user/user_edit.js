@@ -18,5 +18,13 @@ Template.user_edit.events({
             var place_id = e.target.id
             Places.remove(place_id);
         }
+    },
+    "click .delete-course": function(e){
+        e.preventDefault();
+        
+        if(confirm("Supprimer ce cours ?")){
+            var course_id = e.target.id
+            Courses.remove(course_id);
+        }
     }
 });

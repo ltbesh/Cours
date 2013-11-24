@@ -1,35 +1,36 @@
-<template name="course_edit_form">
+<template name="edit_course_form">
 
   {{#if show_edit_time_slot}}
     {{> edit_time_slot_modal}}
   {{/if}}
 
+    {{# with current_course}}
     <form method="POST" class="form-horizontal">                        
         <div class="control-group">
             <label class="control-label" for="input-place">Lieu</label>
             <div class="controls">
-                <input type="hidden" id="input-place"></input>
+                <input type="hidden" id="input-place" ></input>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-tags">Matière</label>   
             <div class="controls">
-                <input type="hidden" id="input-tags"></input>
+                <input type="hidden" id="input-tags" ></input>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-description">Description</label>
             <div class="controls">
-                <textarea id="input-description" rows="5" placeholder="Description"></textarea>
+                <textarea id="input-description" rows="5" placeholder="Description">{{description}}</textarea>
             </div>
         </div>  
 
         <div class="control-group">
             <label class="control-label" for="input-price">Prix</label>
             <div class="controls">
-                <input type="number" min ="0" id="input-price" rows="5" placeholder="Prix">
+                <input type="number" min ="0" id="input-price" rows="5" placeholder="Prix" value="{{price}}">
             </div>
         </div> 
 
@@ -38,6 +39,12 @@
             <div class="controls">
                 <input type="text" id="image-picker" data-fp-button-class="btn btn-primary" data-fp-multiple="true">
             </div>
+        </div>
+
+        <div id="galleria">
+            {{#each pictures}}
+                <img src="{{this}}">
+            {{/each}}
         </div>
 
         <div class="row-fluid">     
@@ -54,35 +61,36 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input-price_explanation">Précision sur les prix</label>
+            <label class="control-label" for="input-price-explanation">Précision sur les prix</label>
             <div class="controls">
-                <textarea id="input-price_explanation" rows="5" placeholder="Précision sur les prix"></textarea>
+                <textarea id="input-price-explanation" rows="5" placeholder="Précision sur les prix">{{price_explanation}}</textarea>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-contact">Contact</label>
             <div class="controls">
-                <input type="email" id="input-contact" rows="5" placeholder="Contact">
+                <input type="email" id="input-contact" rows="5" placeholder="Contact" value="{{contact}}">
             </div>
         </div> 
 
         <div class="control-group">
             <label class="control-label" for="input-required_material">Materiel nécessaire</label>
             <div class="controls">
-                <textarea id="input-required-material" rows="5" placeholder="Materiel nécéssaire"></textarea>
+                <textarea id="input-required-material" rows="5" placeholder="Materiel nécéssaire">{{required_materiel}}</textarea>
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-additional-information">Information complementaire</label>
             <div class="controls">
-                <textarea rows="10" cols="140" id="input-additional-information" placeholder="Information complementaire"></textarea>
+                <textarea rows="10" cols="140" id="input-additional-information" placeholder="Information complementaire">{{additional_information}}</textarea>
             </div>
         </div>
         <div class="control-group"> <div class="controls">
             <input type="submit" value="Submit" class="btn btn-primary"/> </div>
         </div>
     </form>
+    {{/with}}
 
 </template>

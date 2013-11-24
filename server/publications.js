@@ -21,7 +21,6 @@ Meteor.publish("current_place", function(place_id){
 
 Meteor.publish("current_course_time_slots", function(course_id){
     var time_slots = TimeSlots.find({course_id : course_id});
-    //console.log(time_slots.fetch());
     return time_slots;
 });
 

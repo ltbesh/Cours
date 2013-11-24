@@ -1,5 +1,9 @@
 Courses = new Meteor.Collection("courses");
 
+Courses.allow({
+    remove: owns_document
+});
+
 Meteor.methods({
     insert_base_course: function(course_attributes){
         var user = Meteor.user();
@@ -28,7 +32,7 @@ Meteor.methods({
                 "Merci de renseigner un lieu pour votre cours");
         }
         else{
-            var place = Places.find({_id:course_attributes.place_id}).fetch()[0];
+            var place = Places.findOne({_id:course_attributes.place_id});
             if (place.user_id !== user._id){
                 throw new Meteor.Error(422, "Ce lieu ne vous appartient pas, vous ne pouvez pas y ajouter de cours");
             }
@@ -40,11 +44,10 @@ Meteor.methods({
                 "Merci de renseigner un sujet pour votre cours");
         }
         else{
-
-            var course = Courses.find({tag_id : course_attributes.tag_id, place_id : course_attributes.place_id}).fetch();
-            if(course.length > 0)
+            var course = Courses.findOne({tag_id : course_attributes.tag_id, place_id : course_attributes.place_id});
+            if(course && course._id !== course_attributes._id)
                 throw new Meteor.Error(422, 
-                    "Un cours sur ce sujet existe déjà pour ce lieu, choisissez un autre lieu ou un autre sujet");
+                    "Un autre cours sur ce sujet existe déjà pour ce lieu, choisissez un autre lieu ou un autre sujet");
         }
 
         //Description
@@ -84,7 +87,7 @@ Meteor.methods({
             "description", "tag_id", "additional_information", "place_id",
              "price", "pictures", "contact", "required_materiel","price_explanation"),{user_id: user._id});
 
-        var course_id = Courses.insert(course);
+        var course_id = Courses.upsert({_id:course_attributes._id},course);
 
         return course_id;
 
