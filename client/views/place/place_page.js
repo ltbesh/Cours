@@ -4,7 +4,7 @@ Template.place_page.helpers({
     },
     course: function(){
         if(Session.get("current_course"))
-            return Courses.findOne(Session.get("current_course"));
+            return Session.get("current_course");
     },
 });
 Template.place_page.destroyed = function(){

@@ -3,7 +3,7 @@ Template.place_tab_photo.helpers ({
         return Places.findOne(Session.get("current_place"));
     },
     pictures: function(){
-        var course =  Courses.findOne({_id : Session.get("current_course")}, {fields : {pictures: 1}});        
+        var course =  Courses.findOne({_id : Session.get("current_course")._id}, {fields : {pictures: 1}});        
         var pictures = course.pictures;
         console.log(pictures);
         return pictures

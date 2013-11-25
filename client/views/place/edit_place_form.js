@@ -5,11 +5,7 @@ Template.edit_place_form.rendered = function(){
 
 Template.edit_place_form.helpers({
     current_place : function(){
-        var place = Session.get("current_place");
-        if(place)
-            return place;
-        else
-            return {};
+        return Session.get("current_place") ? Session.get("current_place") : {};
     }
 });
 

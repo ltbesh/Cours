@@ -8,8 +8,10 @@ Session.set("subject_search", null);
 Session.set("geographical_search", {address : null, location: null});
 Session.set("search_page", false);
 // Id of the place and course that the user is currently looking at
-Session.set("current_course", null);
-Session.set("current_place", null);
+Session.set("current_course", null); // course object
+Session.set("current_place", null); // place object
+
+
 
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
@@ -19,11 +21,16 @@ Session.set("show_create_time_slot", false);
 
 // Set the geographical selector with the place location if user edits a place
 Session.set("edit_place", false); // Boolean
+
+// Set function when user clicks on the calendar
+Session.set("edit_course", false) // Boolean
+
+// User preference for calendar view
+Session.set("user_pref_calendar_view", "agendaWeek");
 // Used to draw the map
 Session.set("map", false);
 
 $.datepicker.setDefaults($.datepicker.regional[ "fr" ]);
-Session.set("new_time_slots", []);
 Session.set("show_modal", false);
 
 Meteor.startup( function() {
@@ -31,16 +38,15 @@ Meteor.startup( function() {
 });
 
 Deps.autorun(function () {
-    Meteor.subscribe("current_place", Session.get("current_place"));
+    if(Session.get("current_place"))
+        Meteor.subscribe("current_place", Session.get("current_place")._id);
 });
 
 Deps.autorun(function () {
-    Meteor.subscribe("current_course_time_slots", Session.get("current_course"));
+    if(Session.get("current_course"))
+        Meteor.subscribe("current_course_time_slots", Session.get("current_course")._id);
 });
 
-Deps.autorun(function () {
-Meteor.subscribe("new_time_slots", Session.get("new_time_slots"));
-});
 
 Handlebars.registerHelper('show_modal', function() {
   return Session.get("show_modal");

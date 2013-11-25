@@ -1,4 +1,5 @@
 Template.edit_course_form.rendered = function(){
+    Session.set("edit_course", true);
     function format(item) { return item.title; };
 
     Deps.autorun(function(){
@@ -73,40 +74,6 @@ Template.edit_course_form.rendered = function(){
                 $("#input-place").select2("val", current_place._id);
             }
 
-            // Calendar
-            var time_slots = TimeSlots.find({course_id:course._id}).fetch();
-            var events = repeat_events(time_slots);
-            // If the calendar is not already present on the page add it
-                if(!$("#calendar").hasClass("fc")){
-                    $('#calendar').fullCalendar({
-                        weekends: true,
-                        defaultView : "agendaWeek",
-                        header: {
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'month, agendaWeek'
-                        },
-                        dayNames : ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-                        dayNamesShort : ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-                        dayClick : function(date, allDay, jsEvent, view){
-                            clear_alerts();
-                            var time_slot = {start: date, all_day: allDay};
-                            Session.set("current_time_slot", time_slot);
-                            Session.set("show_edit_time_slot", true);
-                        },
-                        eventClick : function(calEvent, jsEvent, view){
-                            clear_alerts();
-                            var time_slot = TimeSlots.findOne(calEvent._id);
-                            Session.set("current_time_slot", time_slot);
-                            Session.set("show_edit_time_slot", true);
-                        },
-                        allDaySlot: false,
-                        minTime : 6,
-                        axisFormat : "HH:mm",
-                        events: events
-                    });
-                }
-
             // Pictures
             // If the file-picker widget is not already rendered, render it
             if($("#image-picker").attr("style") !== "display: none;"){
@@ -138,22 +105,8 @@ Template.edit_course_form.helpers({
     show_edit_time_slot : function () {
         return Session.get("show_edit_time_slot");
     },
-    place_address : function(){
-        if(Session.get("current_course")){
-            var place = Places.findOne(Session.get("current_course").place_id);
-            return place.address;
-        }
-        else
-        {
-            return {};
-        }
-    },
     current_course : function(){
-        var course = Session.get("current_course");
-        if(course)
-            return course;
-        else
-            return {};
+        return Session.get("current_course")? Session.get("current_course") : {};
     },
     pictures : function(){
         return Session.get("edit_course_pictures");
@@ -201,6 +154,8 @@ Template.edit_course_form.events({
 });
 
 Template.edit_course_form.destroyed = function(){
+    Session.set("edit_course", false);
+    Session.set("current_course", null);
     Session.set("edit_course_pictures", []);
     Session.set("new_time_slots",[])
 }

@@ -4,9 +4,10 @@ Template.map.rendered = function() {
 
     Deps.autorun(function(){
 
+        // Map on the detail page
         if (Session.get("current_place")){
-            var places = Places.find(Session.get("current_place")).fetch();
-        }
+            var places = Session.get("current_place");
+        }//Map on the search page
         else{
             var places_cursor =  get_searched_places(   
                 Session.get('day_selector'), 
