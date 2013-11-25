@@ -8,13 +8,13 @@
         {{user.email}}</br>
         {{user.username}}</br></br>
 
-        <a href="{{edit_place_formPath 'new'}}" class="btn btn-default">Ajouter un lieux</a>
+        <a class="btn btn-default add-place">Ajouter un lieux</a>
         <p>Mes lieux :</p>
         {{#each places}}
             {{> place_item}}</br>
         {{/each}}
 
-        <a href="{{edit_course_formPath 'new'}}" class="btn btn-default">Ajouter un cours</a>
+        <a class="btn btn-default add-course">Ajouter un cours</a>
         <p>Mes cours :</p>
         {{#each courses}}
             {{> course_item}}</br>

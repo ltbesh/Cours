@@ -80,6 +80,12 @@ Meteor.Router.filters({
         return page; 
     }
 });
+Meteor.Router.beforeRouting = function(){
+    Session.set("current_course", null); // course object
+    Session.set("current_place", null); // place object
+}
+
+
 
 Meteor.Router.filter("login_required", {only: ["course_edit_form", "place_edit_form"]});
 Meteor.Router.filter("place_required", {only: "course_edit_form"});
