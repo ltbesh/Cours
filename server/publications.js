@@ -1,4 +1,3 @@
-
 // Publish the Courses and Places that corresponds to selectors passed as arguments
 Meteor.publish("searched_places",function(  
     day_selector /* Array of int beetwen 1 and 7 */, 
@@ -35,12 +34,4 @@ Meteor.publish("owned_places", function(){
 
 Meteor.publish("owned_courses", function(){
     return get_owned_courses(this.userId);
-});
-
-Meteor.publish("owned_time_slots", function(){
-    return get_owned_time_slots(this.userId);
-});
-
-Meteor.publish("new_time_slots", function(time_slots_id){
-    return TimeSlots.find({_id : {$in : time_slots_id}});
 });

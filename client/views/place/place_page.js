@@ -1,6 +1,6 @@
 Template.place_page.helpers({
     place: function(){
-        return place =  Places.findOne(Session.get('current_place'));
+        return place =  Places.findOne(Session.get('current_place')._id);
     },
     course: function(){
         if(Session.get("current_course"))

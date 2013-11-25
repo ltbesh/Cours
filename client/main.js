@@ -12,7 +12,6 @@ Session.set("current_course", null); // course object
 Session.set("current_place", null); // place object
 
 
-
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
 
@@ -37,6 +36,12 @@ Meteor.startup( function() {
     filepicker.setKey("AbMQbak12TuefvS5Uz1mVz");
 });
 
+Handlebars.registerHelper('show_modal', function() {
+  return Session.get("show_modal");
+});
+
+
+// Subscription)
 Deps.autorun(function () {
     if(Session.get("current_place"))
         Meteor.subscribe("current_place", Session.get("current_place")._id);
@@ -48,12 +53,7 @@ Deps.autorun(function () {
 });
 
 
-Handlebars.registerHelper('show_modal', function() {
-  return Session.get("show_modal");
-});
-
 // Suscribe to the places the user owns
-Meteor.subscribe("owned_time_slots");
 Meteor.subscribe("owned_places");
 Meteor.subscribe("owned_courses");
 Meteor.subscribe("tags");

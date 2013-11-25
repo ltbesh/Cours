@@ -4,8 +4,8 @@
     "/place/:_id" : {
         to: "place_page", 
         and: function(id) {
+            Session.set("current_place", {_id:id});
             var place = Places.findOne(id);
-            Session.set("current_place", place);
             if(Session.get("subject_search")){
                 var course = Courses.findOne({place_id : id, tag_id : Session.get("subject_search")});
                 Session.set("current_course", course);
