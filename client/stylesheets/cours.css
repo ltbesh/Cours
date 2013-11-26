@@ -27,6 +27,13 @@
 	width: 100%;
 }
 
+.container{
+	padding-right: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
 /*-------------------HEADER--------------------*/
 
 #header{
@@ -36,7 +43,7 @@
 
 .sign-in li a{
 	color: white;
-	text-shadow: 0 0px 0 ;
+
 }
 
 .sign-in{
@@ -86,19 +93,19 @@ margin-bottom: 0px;
 h1{
 	color: white;
 	text-shadow:
-	-1px -1px 0 #000,  
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000;
+	-1px -1px 0 #424242,  
+	1px -1px 0 #424242,
+	-1px 1px 0 #424242,
+	1px 1px 0 #424242;
 }
 
 #tag-line{
 	color: white;
 	text-shadow:
-	-1px -1px 0 #000,  
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000;
+	-1px -1px 0 #424242,  
+	1px -1px 0 #424242,
+	-1px 1px 0 #424242,
+	1px 1px 0 #424242;
 	font-size: 1,3em;
 }
 
