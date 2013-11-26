@@ -1,5 +1,30 @@
+Template.home.rendered = function(){
+    Session.set("search_page", true);
+}
+
+Template.home.helpers({
+    search_disabled : function(){
+        if(!Session.get("geographical_search").location || !Session.get("subject_search")){
+            return "disabled";
+        }
+        else{
+            return "";
+        }
+    }
+});
+
 Template.home.events({
-  'click #find-btn': function(e){
-  	Meteor.Router.to('/search');
-  }
-})
+    'click #find-btn': function(e){
+        if(!Session.get("geographical_search").location || !Session.get("subject_search")){
+            clear_alerts();
+            insert_alert("Merci d'entrer une recherche", "error")
+        }
+        else{
+            Meteor.Router.to("/search");
+        }
+    }
+});
+
+Template.home.destroyed = function(){
+    Session.set("search_page", false);
+}

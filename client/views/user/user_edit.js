@@ -11,13 +11,12 @@ Template.user_edit.helpers({
 });
 
 Template.user_edit.events({
-	"click .delete-place": function(e){
-		e.preventDefault();
-		
-		if(confirm("Supprimer ce lieu ?")){
-			var place_id = e.target.id
-			Places.remove(place_id);
-		}
-	}
-
+    "click .add-place" : function(e){
+        e.preventDefault();
+        Meteor.Router.to("edit_place_form", "new");
+    },
+    "click .add-course" : function(e){
+        e.preventDefault();
+        Meteor.Router.to("edit_course_form", "new");
+    }
 });

@@ -1,4 +1,9 @@
 <template name="place_item">
 	<a href="{{place_pagePath this}}" class='detail'>{{title}}</a></br>
 	adresse : {{address}}</br>
+	{{#if not_search_page}}
+	    <a class="btn btn-default edit-place" id="{{this._id}}">Modifier ce lieu</a></br>
+        <a class="button btn btn-danger delete-place" id="{{this._id}}">Supprimer ce lieu</a></br>
+	{{/if}}
+
 </template>

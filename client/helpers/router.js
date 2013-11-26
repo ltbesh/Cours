@@ -4,26 +4,43 @@
     "/place/:_id" : {
         to: "place_page", 
         and: function(id) {
-            Session.set("current_place", id);
+            Session.set("current_place", {_id:id});
+            var place = Places.findOne(id);
             if(Session.get("subject_search")){
                 var course = Courses.findOne({place_id : id, tag_id : Session.get("subject_search")});
-                Session.set("current_course", course._id);
+                Session.set("current_course", course);
             }
         }
     },
-    "/create/place": "place_creation_form",
-    "/create/course": "course_creation_form",
-    "/update/place:_id": {
-        to: "place_update_form",
-        and: function(id){
-            var place = Places.find(id).fetch()[0];
-            Session.set("current_place", id);
-
-            Session.set('geographical_search', 
-                { 
-                    address :place.address,
-                    location: place.location
+    "/edit/place/:_id": {
+        to : "edit_place_form",
+        and : function(id){
+            if(id!=="new"){
+                var place = Places.findOne(id);
+                Session.set("current_place", place);
+                Session.set('geographical_search', 
+                    { 
+                        address :place.address,
+                        location: place.location
                 });
+            }
+            else{
+                Session.set("current_place", null);
+            }
+        }
+    },
+    "/edit/course/:_id":{
+        to : "edit_course_form",
+        and : function(id){
+            if(id!=="new"){
+                var course = Courses.findOne(id);
+                Session.set("current_course", course);
+                Session.set("edit_course_pictures", course.pictures);
+            }
+            else
+            {
+                Session.set("current_course", null);
+            }
         }
     },
     "/user/:_id": {
@@ -55,7 +72,7 @@ Meteor.Router.filters({
             return page;
         }
         else{
-            return "place_creation_form";
+            return "place_edit_form";
         }
     },
     "clear_alerts": function(page) {
@@ -63,7 +80,15 @@ Meteor.Router.filters({
         return page; 
     }
 });
+Meteor.Router.beforeRouting = function(){
+    Session.set("current_course", null); // course object
+    Session.set("current_place", null); // place object
+    Session.set("show_edit_time_slot", false);
 
-Meteor.Router.filter("login_required", {only: ["course_creation_form", "place_creation_form"]});
-Meteor.Router.filter("place_required", {only: "course_creation_form"});
+}
+
+
+
+Meteor.Router.filter("login_required", {only: ["course_edit_form", "place_edit_form"]});
+Meteor.Router.filter("place_required", {only: "course_edit_form"});
 Meteor.Router.filter('clear_alerts');

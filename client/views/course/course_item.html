@@ -1,11 +1,10 @@
 <template name="course_item">
-	<!-- <a href="{{course_pagePath this}}" class='detail'>Aller au cours</a></br> -->
-
-	description : {{description}}</br>
-	jour : {{day_of_week}}</br>
-	starts : {{start_time}}</br>
-	ends : {{end_time}}</br>
-  	prix : {{price}}</br>
-  	place id : {{place_id}}</br>
-  	subject : {{subject}}</br>
+    {{#if valid_status}}
+        description : {{description}}</br>
+        prix : {{price}}</br>
+        place : {{place}}</br>
+        subject : {{subject}}</br>
+        <a class="btn btn-default edit-course" id="{{this._id}}">Modifier ce cours</a></br>
+        <a class="button btn btn-danger delete-course" id="{{this._id}}">Supprimer ce cours</a></br>
+    {{/if}}
 </template>

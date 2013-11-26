@@ -1,31 +1,33 @@
-<template name="place_creation_form">
+<template name="edit_place_form">
+    {{#with current_place}}
     <form class="form-horizontal">
 
         <div class="control-group">
             <label class="control-label" for="input-title">Titre</label>
-            <div>
-                <input type="text" id="input-title" placeholder="Titre" value={{title}}>
+            <div class="controls">
+                <input type="text" id="input-title" placeholder="Title" value="{{title}}">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="input-description">Description</label>
-            <div>
-                <textarea id="input-description" rows="5" placeholder="Description"></textarea>
+            <div class="controls">
+                <textarea id="input-description" rows="5" placeholder="Description">{{description}}</textarea>
             </div>
         </div>  
 
         <div class="control-group">
             <label class="control-label" for="input-description">Adresse</label>
-            <div>
+            <div class="controls">
                 {{> geographical_selector}}
             </div>
         </div>
 
         <div class="control-group"> 
-            <div>
-                <button type="submit" value="Submit" class="btn btn-sm btn-primary"></button> 
+            <div class="controls">
+                <input type="submit" value="Submit" class="btn btn-primary"/> 
             </div>
         </div>
     </form>
+    {{/with}}
 </template>

@@ -44,6 +44,7 @@ Meteor.methods({
         var place = _.extend(_.pick(place_attributes, "title", "description", "location", "address"), {
             user_id: user._id
         });
+        
         var place_id = Places.upsert({_id:place_attributes._id}, place);
 
         return place_id;

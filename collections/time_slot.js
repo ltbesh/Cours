@@ -1,12 +1,16 @@
-TimeSlots = new Meteor.Collection('time_slot');
+TimeSlots = new Meteor.Collection('time_slots');
+
+TimeSlots.allow({
+    remove: owns_time_slot
+});
 
 Meteor.methods({
-    insert_time_slot : function(time_slot_attributes){
+    upsert_time_slot : function(time_slot_attributes){
     var user = Meteor.user();
     //user
     if(!user)
         throw new Meteor.Error(401, 
-            "Vous devez être connecté pour pouvoir créer des cours");
+            "Vous devez être connecté pour pouvoir créer des créneau horaire");
 
     //Tile
     if(!time_slot_attributes.title){
@@ -15,6 +19,19 @@ Meteor.methods({
     }
     else{
         Match.test(time_slot_attributes.title, String);
+    }
+
+    // Course_id
+    if(!time_slot_attributes.course_id){
+        throw new Meteor.Error(422, 
+            "Votre créneau horaire doit être attaché à un cours");
+    }
+    else{
+        var course = Courses.findOne(time_slot_attributes.course_id);
+        if(course.user_id !==user._id){
+            throw new Meteor.Error(422, 
+                "Vous ne pouvez pas ajouter de créneau horaire à un cours qui ne vous appartient pas");            
+        }
     }
 
     //Start
@@ -34,15 +51,6 @@ Meteor.methods({
     else{
         Match.test(time_slot_attributes.end, Date);
     }
-
-    // All day
-    // if(!time_slot_attributes.all_day){
-    //      throw new Meteor.Error(422, 
-    //         "Merci de préciser si votre créneau dure toute la journée");   	
-    // }
-    // else{
-    //     Match.test(time_slot_attributes.end, Boolean);
-    // }	
 
     // Day of week
     if(!time_slot_attributes.day_of_week){
@@ -82,9 +90,13 @@ Meteor.methods({
         }
         Match.test(time_slot_attributes.end_time, Number);
     }
-    var time_slot_id = TimeSlots.insert(time_slot_attributes);
 
-    return time_slot_id;
+    var time_slot = _.extend(_.pick(time_slot_attributes, 
+                "title", "course_id", "start", "end", "all_day", 
+                "day_of_week", "start_time", "end_time", "repeat", "repeat_frequency"),{user_id: user._id});
 
+    time_slot._id = TimeSlots.upsert({_id:time_slot_attributes._id}, time_slot).insertedId;
+
+    return time_slot;
     }
 });

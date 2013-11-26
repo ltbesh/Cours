@@ -4,7 +4,7 @@ Template.tag_selector.rendered = function(){
     Deps.autorun(function(){
         // If the template is used on a place detail page display only the tags available for this place 
         if(Session.get("current_place")){
-            var courses = Courses.find({place_id: Session.get("current_place")},{fields : {tag_id: 1}}).fetch();
+            var courses = Courses.find({place_id: Session.get("current_place")._id},{fields : {tag_id: 1}}).fetch();
             courses = _.pluck(courses, "tag_id");
             var tags = Tags.find({_id : {$in : courses}}).fetch();
         }
@@ -12,7 +12,6 @@ Template.tag_selector.rendered = function(){
         else{
             var tags = Tags.find().fetch();
         }
-
         if(tags){
             for(var i = 0; i < tags.length; i++){
                 tags[i].id = tags[i]['_id'];
@@ -28,11 +27,11 @@ Template.tag_selector.rendered = function(){
             // For the detail page
             if(Session.get("current_place")){
                 if(Session.get("current_course")){
-                    var current_course_tag = Courses.findOne(Session.get("current_course")).tag_id;
+                    var current_course_tag = Courses.findOne(Session.get("current_course")._id).tag_id;
                     $("#subject-search").select2("val", current_course_tag); 
                 }
                 $("#subject-search").on("change", function(e) { 
-                    var current_course = Courses.findOne({place_id : Session.get("current_place"), tag_id : e.val}, {field : {_id : true}})._id;
+                    var current_course = Courses.findOne({place_id : Session.get("current_place")._id, tag_id : e.val});
                     Session.set("current_course",current_course);
                 });
             }
