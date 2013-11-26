@@ -1,23 +1,25 @@
 <template name="place_search_page">
-    <div class="span6">
+  <div class="row">
+    <div class="col-md-6">
       {{>map}}
     </div>
 
-    <div class="span6">
-      <div class="row-fluid">
-        <div class="span4">{{>tag_selector}}</div>
-        <div class="span4">{{>geographical_selector}}</div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">{{>tag_selector}}</div>
+        <div class="col-md-4">{{>geographical_selector}}</div>
       </div>
 
-      <div class="row-fluid">  
+      <div class="row">  
         {{> calendar_selector}}
         <br>
         {{> price_selector}}<br>
         {{> time_selector}}<br>
       <br>
       </div>
-      <div class="row-fluid">  
+      <div class="row">  
         {{> place_list}}   
       </div>
     </div>
+  </div>
 </template>
