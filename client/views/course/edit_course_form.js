@@ -2,33 +2,21 @@ Template.edit_course_form.rendered = function(){
     Session.set("edit_course", true);
 
     function format(item) { return item.title; };
-
+    var user_id = Meteor.userId();
+    
     Deps.autorun(function(){
-        var user_id = Meteor.userId();
 
-        if(Session.get("current_course")){
-            var course = Session.get("current_course");
-            console.log(course);
-        }
-        else{
-            var course = Courses.findOne({user_id: user_id, status:"adding"});
-        }
+        var course = Session.get("current_course");
 
-        if(!course){
-            var course = Meteor.call("insert_base_course",{});
-        }
-        else{
-            // Tags
-            Session.set("current_course", course);
-
+        if(course){
             var tags = Tags.find().fetch();
             for(var i = 0; i < tags.length; i++){
                 tags[i].id = tags[i]["_id"];
                 delete tags[i]._id;
             }
 
-            if(Session.get("current_course").tag_id){
-                var current_tag = Tags.findOne(Session.get("current_course").tag_id);
+            if(course.tag_id){
+                var current_tag = Tags.findOne(course.tag_id);
                 current_tag.id = current_tag._id;
             }
 
@@ -55,8 +43,8 @@ Template.edit_course_form.rendered = function(){
                 delete places[i]._id;
             }
 
-            if(Session.get("current_course").place_id){
-                var current_place = Places.findOne(Session.get("current_course").place_id);
+            if(course.place_id){
+                var current_place = Places.findOne(course.place_id);
                 current_place.id = current_place._id;
             }
 

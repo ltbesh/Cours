@@ -34,13 +34,17 @@
         and : function(id){
             if(id!=="new"){
                 var course = Courses.findOne(id);
-                Session.set("current_course", course);
                 Session.set("edit_course_pictures", course.pictures);
             }
-            else
-            {
-                Session.set("current_course", null);
+            else{
+                var user_id = Meteor.userId();
+                var course = Courses.findOne({user_id: user_id, status:"adding"});
+                if(! course)
+                    course = Meteor.call("insert_base_course",{});
             }
+            if(course)
+                Session.set("current_course", course);
+                // FIX ME Add routing if course does not exist.
         }
     },
     "/user/:_id": {

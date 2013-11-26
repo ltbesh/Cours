@@ -3,6 +3,10 @@
   {{#if show_edit_time_slot}}
     {{> edit_time_slot_modal}}
   {{/if}}
+<div class="row"> 
+    <div class="col-md-3">
+    </div>  
+    <div class="col-md-6">
 
     {{# with current_course}}
     <form method="POST" class="form-horizontal">                        
@@ -99,5 +103,8 @@
         </div>
     </form>
     {{/with}}
-
+    </div>
+    <div class="col-md-3">
+    </div>  
+</div>
 </template>
