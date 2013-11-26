@@ -54,10 +54,17 @@
             </div>
         </div>
 
-        <div id="edit_course_galleria" class="galleria">
-            {{#each pictures}}
-                <img src="{{this}}">
-            {{/each}}
+        <div class="row-fluid">     
+            <div class="span8">
+                <div id="edit-course-galleria" class="galleria">
+                    {{#each pictures}}
+                        <img src="{{this}}">
+                    {{/each}}
+                </div>
+            </div>
+            <div class="span4">
+                Place description :  {{place.description}}
+            </div>
         </div>
 
         <div class="control-group">

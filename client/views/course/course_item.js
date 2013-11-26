@@ -21,7 +21,6 @@ Template.user_edit.events({
     "click .edit-course": function(e){
         e.preventDefault();
         var course_id = e.target.id;
-        console.log(course_id);
         Meteor.Router.to("edit_course_form", course_id);
     }
 });

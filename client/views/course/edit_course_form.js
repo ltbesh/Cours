@@ -1,5 +1,6 @@
 Template.edit_course_form.rendered = function(){
     Session.set("edit_course", true);
+
     function format(item) { return item.title; };
 
     Deps.autorun(function(){
@@ -95,7 +96,7 @@ Template.edit_course_form.rendered = function(){
 
             if(Session.get("edit_course_pictures").length > 0){
                 Galleria.loadTheme('/galleria_themes/classic/galleria.classic.min.js');
-                Galleria.run('#edit_course_galleria');
+                Galleria.run('#edit-course-galleria');
             }
         }
     });

@@ -83,6 +83,8 @@ Meteor.Router.filters({
 Meteor.Router.beforeRouting = function(){
     Session.set("current_course", null); // course object
     Session.set("current_place", null); // place object
+    Session.set("show_edit_time_slot", false);
+
 }
 
 
