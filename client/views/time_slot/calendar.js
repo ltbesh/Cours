@@ -1,6 +1,6 @@
 Template.calendar.rendered = function(){
     // Calendar
-    console.log("calendar");
+    console.log("calendar : ", Session.get("current_course"));
     Deps.autorun(function(){
         if(Session.get("current_course")){
             var time_slots = TimeSlots.find({course_id:Session.get("current_course")._id}).fetch();

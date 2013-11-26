@@ -1,14 +1,14 @@
 Template.map.rendered = function() {
     if(!map)
-        var map = new Course_map('#map');
-    console.log(Session.get("current_place"));
+    var map = new Course_map('#map');
     Deps.autorun(function(){
-
         // Map on the detail page
         if (Session.get("current_place")){
-            var places = Session.get("current_place");
+            var places = new Array();
+            places.push(Places.findOne(Session.get("current_place")._id));
         }//Map on the search page
         else{
+            console.log("no place found");
             var places_cursor =  get_searched_places(   
                 Session.get('day_selector'), 
                 Session.get('price_min'), 

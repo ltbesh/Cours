@@ -9,6 +9,10 @@ Template.nav.rendered=function(){
 Template.nav.events({
 	"click .account-link" : function(){
 		Meteor.Router.to("user_edit");
-	}
+	},
+    "click .add-course" : function(e){
+        e.preventDefault();
+        Meteor.Router.to("edit_course_form", "new");
+    }
 
 })
