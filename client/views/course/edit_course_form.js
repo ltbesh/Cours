@@ -1,6 +1,5 @@
 Template.edit_course_form.rendered = function(){
     Session.set("edit_course", true);
-    console.log(Session.get("edit_course"));
 
     function format(item) { return item.title; };
     var user_id = Meteor.userId();
@@ -101,6 +100,9 @@ Template.edit_course_form.helpers({
     },
     pictures : function(){
         return Session.get("edit_course_pictures");
+    },
+    show_galleria : function(){
+        return Session.get("edit_course_pictures");
     }
 });
 
@@ -147,6 +149,5 @@ Template.edit_course_form.events({
 Template.edit_course_form.destroyed = function(){
     Session.set("edit_course", false);
     Session.set("current_course", null);
-    Session.set("edit_course_pictures", []);
     Session.set("new_time_slots",[])
 }
