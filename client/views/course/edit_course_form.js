@@ -8,6 +8,7 @@ Template.edit_course_form.rendered = function(){
 
         if(Session.get("current_course")){
             var course = Session.get("current_course");
+            console.log(course);
         }
         else{
             var course = Courses.findOne({user_id: user_id, status:"adding"});

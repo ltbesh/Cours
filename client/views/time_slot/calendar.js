@@ -1,5 +1,6 @@
 Template.calendar.rendered = function(){
     // Calendar
+    console.log("calendar");
     Deps.autorun(function(){
         if(Session.get("current_course")){
             var time_slots = TimeSlots.find({course_id:Session.get("current_course")._id}).fetch();
@@ -31,9 +32,6 @@ Template.calendar.rendered = function(){
                             var time_slot = TimeSlots.findOne(calEvent._id);
                             Session.set("current_time_slot", time_slot);
                             Session.set("show_edit_time_slot", true);
-                        }
-                        else{
-                            console.log("no modif");
                         }
                     },
                     viewRender : function(view, element){

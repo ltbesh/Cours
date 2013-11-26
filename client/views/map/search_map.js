@@ -1,7 +1,7 @@
 Template.map.rendered = function() {
     if(!map)
         var map = new Course_map('#map');
-
+    console.log(Session.get("current_place"));
     Deps.autorun(function(){
 
         // Map on the detail page
@@ -26,7 +26,7 @@ Template.map.rendered = function() {
             }
         }
         if(places){
-            // Add all the marker in places
+            // Add all the marker in places 
             for(var i = 0, places_length = places.length; i < places_length; i ++){
                 map.add_marker(places[i]);
             }
