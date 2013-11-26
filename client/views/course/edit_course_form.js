@@ -1,5 +1,6 @@
 Template.edit_course_form.rendered = function(){
     Session.set("edit_course", true);
+    console.log(Session.get("edit_course"));
 
     function format(item) { return item.title; };
     var user_id = Meteor.userId();

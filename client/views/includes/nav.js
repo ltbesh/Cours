@@ -2,7 +2,7 @@ Template.nav.rendered=function(){
   if(!Meteor.user()){
     $('.login-link-text').text("Sign Up/Sign In");
   }else{
-    $('#login-buttons-logout').before('<a class="account-link button btn">My Account</a>');
+    $('#login-buttons-logout').before('<button class="btn btn-default btn-block account-link">My Account</button>');
   }
 };
 

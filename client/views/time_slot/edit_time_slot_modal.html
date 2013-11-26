@@ -1,57 +1,65 @@
 <template name="edit_time_slot_modal">
-  <div class="modal" id="create_time_slot_modal">
-  
-    <div class="modal-header">
-      <button type="button" class="close cancel">&times;</button>
+
+<div class="modal fade" role="dialog" tabindex="-1" id="create_time_slot_modal" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         {{#if update_time_slot}}
         <h3>Modifier un créneau horaire</h3>
         {{else}}
         <h3>Ajouter un créneau horaire</h3>
-        {{/if}}
-    </div>
-    <div class="modal-body">
-    {{> alerts}}
+        {{/if}}      
+      </div>
 
-    <form method="POST" class="form-horizontal"> 
+      <div class="modal-body">
+        {{> alerts}}
 
-        <div class="control-group">
-          <label class="control-label" for="input-title">Titre</label>
-          <div class="controls">
-            <input type="text" name="input-title" id="input-title" value="{{title}}">
-          </div>
-        </div>
+        <form method="POST" class="form-horizontal"> 
 
-        <div class="control-group">
-          <label class="control-label" for="input-day-starts">Début</label>
-          <div class="controls">
-            <input id="date-starts" type="text" name="input-day-starts" >
-          </div>
-        </div> 
+            <div class="control-group">
+              <label class="control-label" for="input-title">Titre</label>
+              <div class="controls">
+                <input type="text" name="input-title" id="input-title" value="{{title}}">
+              </div>
+            </div>
 
-        <div class="control-group">
-          <label class="control-label" for="input-day-ends">Fin</label>
-          <div class="controls">
-            <input id="date-ends" type="text" name="input-day-ends" >
-          </div>
-        </div> 
+            <div class="control-group">
+              <label class="control-label" for="input-day-starts">Début</label>
+              <div class="controls">
+                <input id="date-starts" type="text" name="input-day-starts" >
+              </div>
+            </div> 
 
-        <div class="control-group">
-          <label class="control-label" for="input-repeat">Repeter toutes les semaines</label>
-          <div class="controls">
-            <input id="repeat" type="checkbox" name="input-repeat" {{repeat}}>
-          </div>
-        </div>
-    </form>
+            <div class="control-group">
+              <label class="control-label" for="input-day-ends">Fin</label>
+              <div class="controls">
+                <input id="date-ends" type="text" name="input-day-ends" >
+              </div>
+            </div> 
 
-    <div class="modal-footer">
-        <a href="#" class="btn cancel">Annuler</a>
-        {{#if update_time_slot}}
-            <a href="#" class="btn btn-danger delete">Supprimer le créneau</a>              
-            <a href="#" class="btn btn-primary save">Modifier le créneau</a>      
-        {{else}}
-            <a href="#" class="btn btn-primary save">Ajouter le créneau</a>
-        {{/ if}}
-    </div>
+            <div class="control-group">
+              <label class="control-label" for="input-repeat">Repeter toutes les semaines</label>
+              <div class="controls">
+                <input id="repeat" type="checkbox" name="input-repeat" {{repeat}}>
+              </div>
+            </div>
+        </form>
 
-  </div>
+      </div>
+      <div class="modal-footer">
+          <a href="#" class="btn cancel">Annuler</a>
+          {{#if update_time_slot}}
+              <a href="#" class="btn btn-danger delete">Supprimer le créneau</a>              
+              <a href="#" class="btn btn-primary save">Modifier le créneau</a>      
+          {{else}}
+              <a href="#" class="btn btn-primary save">Ajouter le créneau</a>
+          {{/ if}}
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </template>
