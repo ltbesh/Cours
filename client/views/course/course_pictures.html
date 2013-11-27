@@ -1,0 +1,9 @@
+<template name="course_pictures">
+    {{#if pictures}}
+        <div id="galleria">
+            {{#each pictures}}
+                <img src="{{this}}">
+            {{/each}}
+        </div>
+    {{/if}}
+</template>

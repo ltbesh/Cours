@@ -82,11 +82,6 @@ Template.edit_course_form.rendered = function(){
                     filepicker.constructWidget(element);
                 }
             }
-
-            if(Session.get("edit_course_pictures").length > 0){
-                Galleria.loadTheme('/galleria_themes/classic/galleria.classic.min.js');
-                Galleria.run('#edit-course-galleria');
-            }
         }
     });
 }
@@ -94,12 +89,6 @@ Template.edit_course_form.rendered = function(){
 Template.edit_course_form.helpers({
     current_course : function(){
         return Session.get("current_course")? Session.get("current_course") : {};
-    },
-    pictures : function(){
-        return Session.get("edit_course_pictures");
-    },
-    show_galleria : function(){
-        return Session.get("edit_course_pictures");
     }
 });
 
@@ -127,15 +116,6 @@ Template.edit_course_form.events({
             }
             else{
                 var course_id = result;
-                var new_time_slots = Session.get("new_time_slots");
-                for(var i = 0, nb_time_slots = new_time_slots.length; i < nb_time_slots;i++){
-                    new_time_slots[i].course_id = course_id;
-                    Meteor.call("insert_time_slot", new_time_slots[i], function(error, result){
-                        if(error){
-                            // Display error
-                        }
-                    });
-                }
                 insert_alert("Votre cours a été ajouté avec succès","success");
                 Meteor.Router.to("user_edit");
             }
@@ -146,5 +126,4 @@ Template.edit_course_form.events({
 Template.edit_course_form.destroyed = function(){
     Session.set("edit_course", false);
     Session.set("current_course", null);
-    Session.set("new_time_slots",[])
 }

@@ -55,19 +55,13 @@
             </div>
         </div>
         
-        {{#if show_galleria}}
         <div class="row">     
             <div class="col-md-8">
-                <div id="edit-course-galleria" class="galleria">
-                    {{#each pictures}}
-                        <img src="{{this}}">
-                    {{/each}}
-                </div>
+                {{> course_pictures}}
             </div>
             <div class="col-md-4">
             </div>
         </div>
-        {{/if}}
 
         <div class="form-group">
             <label class="control-label" for="input-price-explanation">Précision sur les prix</label>
