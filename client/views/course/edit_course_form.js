@@ -92,9 +92,6 @@ Template.edit_course_form.rendered = function(){
 }
 
 Template.edit_course_form.helpers({
-    show_edit_time_slot : function () {
-        return Session.get("show_edit_time_slot");
-    },
     current_course : function(){
         return Session.get("current_course")? Session.get("current_course") : {};
     },

@@ -1,48 +1,55 @@
 Template.edit_time_slot_modal.rendered = function(){
     Session.set("show_modal", true);
     var time_slot = Session.get("current_time_slot");
+    if(time_slot){
+        // Set start and end time according to where the user clicked on the calendar
+        $("#date-starts").datetimepicker();
+        $("#date-starts").datetimepicker('setDate', time_slot.start);
+        $("#date-ends").datetimepicker();
+        if(time_slot.end)
+            end = time_slot.end;
+        else
+            end = new Date(time_slot.start.getTime() + 60*60000);
+        $("#date-ends").datetimepicker('setDate', end);
 
-    // Set start and end time according to where the user clicked on the calendar
-    $("#date-starts").datetimepicker();
-    $("#date-starts").datetimepicker('setDate', time_slot.start);
-    $("#date-ends").datetimepicker();
-    if(time_slot.end)
-        end = time_slot.end;
-    else
-        end = new Date(time_slot.start.getTime() + 60*60000);
-    $("#date-ends").datetimepicker('setDate', end);
-
-    // Not used for now as the all day zone is hidden
-    $("#all-day").prop("checked",time_slot.all_day);
-
-
+        // Not used for now as the all day zone is hidden
+        $("#all-day").prop("checked",time_slot.all_day);
+    }
 }
 
 Template.edit_time_slot_modal.helpers({
     update_time_slot : function(){
-        return Session.get("current_time_slot")._id;
+        if(Session.get("current_time_slot"))
+            return Session.get("current_time_slot")._id;
     },
     title : function(){
-        if(Session.get("current_time_slot").title)
-            return Session.get("current_time_slot").title;
+        if(Session.get("current_time_slot")){
+            if(Session.get("current_time_slot").title)
+                return Session.get("current_time_slot").title;
+        }
+
         else
             return "";
     },
     repeat : function(){
-        if(Session.get("current_time_slot").repeat)
-            return "checked";
-        else
-           return "";
+        if(Session.get("current_time_slot")){
+            if(Session.get("current_time_slot").repeat)
+                return "checked";
+            else
+                return "";
+        }
     }
 
 });
 
 Template.edit_time_slot_modal.events({
-    "click .cancel" : function(){
+    "click .close" : function(e){
+        e.preventDefault();
         clear_alerts();
-        Session.set("show_edit_time_slot", false);
+        $('#edit-time-slot-modal').modal('hide')
     },
-    "click .save" : function(){
+    "click .save" : function(e){
+        e.preventDefault();
         clear_alerts();
         var start = $("#date-starts").datetimepicker("getDate");
         var end = $("#date-ends").datetimepicker("getDate");
@@ -65,21 +72,20 @@ Template.edit_time_slot_modal.events({
             }
             else{
                 insert_alert("Votre créneau horaire à bien été ajouté", "success");
-                Session.set("show_edit_time_slot", false);
+                $('#edit-time-slot-modal').modal('hide')    
             }
-
         });
     },
-    "click .delete" : function(){
+    "click .delete" : function(e){
+        e.preventDefault();
         clear_alerts();
         TimeSlots.remove(Session.get("current_time_slot")._id);
         insert_alert("Votre créneau horaire à bien été supprimé", "success");
-        Session.set("show_edit_time_slot", false);
+        $('#edit-time-slot-modal').modal('hide')
     }
-
 });
 
 Template.edit_time_slot_modal.destroyed = function(){
     Session.set("show_modal", false);
-    Session.set("current_time_slot", false);
+    Session.set("current_time_slot", null);
 }

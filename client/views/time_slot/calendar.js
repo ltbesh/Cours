@@ -21,7 +21,8 @@ Template.calendar.rendered = function(){
                         clear_alerts();
                         var time_slot = {start: date, all_day: allDay};
                         Session.set("current_time_slot", time_slot);
-                        Session.set("show_edit_time_slot", true);
+                        $('#edit-time-slot-modal').modal();
+
                     }
                 },
                 eventClick : function(calEvent, jsEvent, view){
@@ -29,8 +30,8 @@ Template.calendar.rendered = function(){
                         clear_alerts();
                         var time_slot = TimeSlots.findOne(calEvent._id);
                         Session.set("current_time_slot", time_slot);
-                        Session.set("show_edit_time_slot", true);
                     }
+                    $('#edit-time-slot-modal').modal();
                 },
                 viewRender : function(view, element){
                     Session.set("user_pref_calendar_view", view.name);
