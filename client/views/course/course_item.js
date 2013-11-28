@@ -3,8 +3,8 @@ Template.course_item.helpers({
         return this.status!=="adding" || this.status ==="undefined";
     },
     subject: function(){
-        var tag = Tags.findOne(this.tag_id);
-        return tag ? tag.title : "";
+        var tag = Tags.findOne({_id : this.tag_id});
+        return tag ? tag._id : "";
     },
     place: function(){
     	return Places.findOne(this.place_id).title;

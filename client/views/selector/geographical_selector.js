@@ -10,15 +10,14 @@ Template.geographical_selector.rendered = function(){
             $('#geographical-search').attr('value', Session.get("geographical_search").address);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            Session.set('geographical_search', 
-                { 
+            Session.set('geographical_search', { 
                     address :autocomplete.getPlace().formatted_address,
                     location: {
                         type : 'Point', 
                         coordinates: [autocomplete.getPlace().geometry.location.lng(), 
                                     autocomplete.getPlace().geometry.location.lat()]
                     }
-                });
+            });
         });
     });
 

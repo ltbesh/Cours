@@ -18,7 +18,7 @@ Meteor.methods({
         return new_course;
 
     },
-    insert_course : function(course_attributes){
+    upsert_course : function(course_attributes){
         var user = Meteor.user();
 
         //user
@@ -44,7 +44,7 @@ Meteor.methods({
                 "Merci de renseigner un sujet pour votre cours");
         }
         else{
-            var course = Courses.findOne({tag_id : course_attributes.tag_id, place_id : course_attributes.place_id});
+            var course = Courses.findOne({tag_id : course_attributes.tag_id[0], place_id : course_attributes.place_id});
             if(course && course._id !== course_attributes._id)
                 throw new Meteor.Error(422, 
                     "Un autre cours sur ce sujet existe déjà pour ce lieu, choisissez un autre lieu ou un autre sujet");
@@ -90,6 +90,5 @@ Meteor.methods({
         var course_id = Courses.upsert({_id:course_attributes._id},course);
 
         return course_id;
-
     }
 });

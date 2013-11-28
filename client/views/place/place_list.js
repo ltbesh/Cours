@@ -6,7 +6,7 @@ Template.place_list.helpers({
 			Session.get('price_max'), 
 			Session.get('schedule_min'), 
 			Session.get('schedule_max'),
-			Session.get('subject_search'), 
+			Session.get('tag_selector'), 
 			Session.get('geographical_search').location, 
 			5);
 	    if (places_cursor)
@@ -20,7 +20,7 @@ Template.place_list.helpers({
 
 	},
 	search: function(){
-		return Session.get("geographical_search").location !== null && Session.get("subject_search") !== null;
+		return Session.get("geographical_search").location !== null && Session.get("tag_selector") !== null;
 	},
 
 	places_ready: function(){

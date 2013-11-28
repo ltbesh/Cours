@@ -8,7 +8,6 @@ Template.map.rendered = function() {
             places.push(Places.findOne(Session.get("current_place")._id));
         }//Map on the search page
         else{
-            console.log("no place found");
             var places_cursor =  get_searched_places(   
                 Session.get('day_selector'), 
                 Session.get('price_min'), 

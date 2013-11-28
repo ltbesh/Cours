@@ -4,7 +4,7 @@ Session.set("price_min", 0);
 Session.set("price_max", 200);
 Session.set("schedule_min", 0);
 Session.set("schedule_max", 1440);
-Session.set("subject_search", null);
+Session.set("tag_selector", null); // tag object
 Session.set("geographical_search", {address : null, location: null});
 Session.set("search_page", false);
 // Id of the place and course that the user is currently looking at
@@ -58,7 +58,7 @@ Meteor.subscribe("owned_places");
 Meteor.subscribe("owned_courses");
 Meteor.subscribe("tags");
 
-
+Deps.autorun(function(){
 // Subscribe to the courses and places that match the user criterion
 place_handle = Meteor.subscribeWithPagination(
     "searched_places", 
@@ -67,6 +67,7 @@ place_handle = Meteor.subscribeWithPagination(
     function(){return Session.get("price_max")}, 
     function(){return Session.get("schedule_min")}, 
     function(){return Session.get("schedule_max")},
-    function(){return Session.get("subject_search")},
+    function(){return Session.get("tag_selector")},
     function(){return Session.get("geographical_search").location},
     5);
+});

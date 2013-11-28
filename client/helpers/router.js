@@ -6,8 +6,8 @@
         and: function(id) {
             Session.set("current_place", {_id:id});
             var place = Places.findOne(id);
-            if(Session.get("subject_search")){
-                var course = Courses.findOne({place_id : id, tag_id : Session.get("subject_search")});
+            if(Session.get("tag_selector")){
+                var course = Courses.findOne({place_id : id, tag_id : Session.get("tag_selector")});
                 Session.set("current_course", course);
             }
         }
@@ -43,9 +43,11 @@
                 if(! course)
                     course = Meteor.call("insert_base_course",{});
             }
-            if(course)
+            if(course){
+                Session.set("edit_course", true);
                 Session.set("current_course", course);
-                // FIX ME Add routing if course does not exist.
+            }
+            // FIX ME Add routing if course does not exist.
         }
     },
     "/user/:_id": {

@@ -51,18 +51,17 @@ Meteor.startup(function () {
       });
     }
 
+    var tags_array = ["Danse", "Poterie", "Tennis"];
+
     if(Tags.find().count() === 0){
       Tags.insert({
-        _id : '1',
-        title : "Danse"
+        _id : "Danse"
       });
       Tags.insert({
-        _id : '2',
-        title : "Poterie"
+        _id : "Poterie"
       });
       Tags.insert({
-        _id : '3',
-        title : "Tennis"
+        _id : "Tennis"
       });
     }
 
@@ -83,7 +82,7 @@ Meteor.startup(function () {
                                       "Cours pour les connards",
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
-        var contacts = ["Jean Paul Dubois "," Robert Duval", "Martine Mato", "Ahmed Berkane", "Jules Bodineau"];
+        var contacts = ["JeanPaul@Dubois.com "," Robert@Duval.fr", "Martine@Mato.net", "Ahmed@Berkane.eu", "Jules@bodineau.org"];
         var materiels = [ "one pair black boots", "String léopard", "Gant de boxe", "Marteau et enclume", "Ventilateur"];
         var price_explanations = ["C'est cher mais c'est bien", "Si vous êtes une fille c'est gratos", "Si vous trouvez ça trop cher, vous pouvez toujours allez voir ailleurs"];
         var photos = [["/8.jpg", "/9.jpg", "/10.jpg"], ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"], ["/5.jpg", "/6.jpg", "/7.jpg"]];
@@ -103,9 +102,11 @@ Meteor.startup(function () {
                 var user_id = k<4 ? id_ltbesh : id_alex;
                 var is_course = get_random_int(1,3);
                 if(is_course !==3){
+                  var course_tag_array = new Array(tags_array[j-1]);
+                  console.log(course_tag_array);
                     var id = Courses.insert({
                         description: course_description[get_random_int(0,6)],
-                        tag_id : String(j),
+                        tag_id : course_tag_array ,
                         additional_information: course_additional_information[get_random_int(0,8)],
                         place_id: String(k),
                         pictures : photos[j-1],
