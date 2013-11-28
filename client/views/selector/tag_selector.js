@@ -5,7 +5,6 @@ Template.tag_selector.rendered = function(){
     if(Session.get("current_place")){
         var courses = Courses.find({place_id: Session.get("current_place")._id},{fields : {tag_id: 1}}).fetch();
         var course_tags = _.flatten(_.pluck(courses, "tag_id"));
-        //console.log(course_tags);
         var tags = Tags.find({_id : {$in : course_tags}}).fetch();
     }
     // If the template is used in search then return all the tags
@@ -61,7 +60,6 @@ Template.tag_selector.rendered = function(){
             else {
                 $("#tag-selector").on("change", function(e) { 
                     Session.set('tag_selector',e.val);
-                    console.log(Session.get("tag_selector"));
                 });
                 if (Session.get('tag_selector'))
                     $("#tag-selector").select2("val", Session.get('tag_selector'));

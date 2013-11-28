@@ -14,7 +14,7 @@ Template.map.rendered = function() {
                 Session.get('price_max'), 
                 Session.get('schedule_min'), 
                 Session.get('schedule_max'),
-                Session.get('subject_search'), 
+                Session.get('tag_selector'), 
                 Session.get('geographical_search').location, 
                 5);
             if (places_cursor){

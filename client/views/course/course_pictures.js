@@ -5,15 +5,11 @@ Template.course_pictures.rendered = function(){
 
 Template.course_pictures.helpers({
     pictures: function(){
-        if(Session.get("edit_course_pictures"))
+        if(Session.get("edit_course_pictures").length>0){
             return Session.get("edit_course_pictures");
-        else if (Session.get("current_course"))
+        }
+        else if (Session.get("current_course")){
             return Session.get("current_course").pictures;      
+        }
     }   
 });
-
-Template.course_pictures.events({});
-
-Template.course_pictures.destroyed = function(){
-    
-}

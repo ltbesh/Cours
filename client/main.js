@@ -7,7 +7,6 @@ Session.set("schedule_max", 1440);
 Session.set("tag_selector", null); // tag object
 Session.set("geographical_search", {address : null, location: null});
 Session.set("search_page", false);
-// Id of the place and course that the user is currently looking at
 Session.set("current_course", null); // course object
 Session.set("current_place", null); // place object
 

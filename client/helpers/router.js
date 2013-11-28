@@ -1,4 +1,4 @@
-    Meteor.Router.add({
+Meteor.Router.add({
     "/" : "home",
     "/search" : "place_search_page",
     "/place/:_id" : {
@@ -91,10 +91,9 @@ Meteor.Router.beforeRouting = function(){
     Session.set("current_course", null); // course object
     Session.set("current_place", null); // place object
     Session.set("show_edit_time_slot", false);
-
+    Session.set("edit_course", false);
+    Session.set("edit_course_pictures", []); // Array of URL
 }
-
-
 
 Meteor.Router.filter("login_required", {only: ["course_edit_form", "place_edit_form"]});
 Meteor.Router.filter("place_required", {only: "course_edit_form"});
