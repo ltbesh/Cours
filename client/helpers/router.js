@@ -32,7 +32,6 @@ Meteor.Router.add({
     "/edit/course/:_id":{
         to : "edit_course_form",
         and : function(id){
-            Session.set("edit_course_pictures", []);
             if(id!=="new"){
                 var course = Courses.findOne(id);
                 Session.set("edit_course_pictures", course.pictures);

@@ -51,7 +51,6 @@ Deps.autorun(function () {
         Meteor.subscribe("current_course_time_slots", Session.get("current_course")._id);
 });
 
-
 // Suscribe to the places the user owns
 Meteor.subscribe("owned_places");
 Meteor.subscribe("owned_courses");

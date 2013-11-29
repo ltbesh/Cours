@@ -22,7 +22,6 @@ Template.calendar.rendered = function(){
                         var time_slot = {start: date, all_day: allDay};
                         Session.set("current_time_slot", time_slot);
                         $('#edit-time-slot-modal').modal();
-
                     }
                 },
                 eventClick : function(calEvent, jsEvent, view){
