@@ -7,7 +7,10 @@ Template.course_item.helpers({
         return tag ? tag._id : "";
     },
     place: function(){
-    	return Places.findOne(this.place_id).title;
+        var place = Places.findOne(this.place_id);
+        if(place){
+            return place.title;
+        }
     }
 });
 

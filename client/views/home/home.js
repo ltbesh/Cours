@@ -17,7 +17,7 @@ Template.home.events({
     'click #find-btn': function(e){
         if(!Session.get("geographical_search").location || !Session.get("tag_selector")){
             clear_alerts();
-            insert_alert("Merci d'entrer une recherche", "error")
+            insert_alert("Merci d'entrer une recherche", "danger")
         }
         else{
             Meteor.Router.to("/search");

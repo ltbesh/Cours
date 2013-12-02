@@ -12,6 +12,7 @@ Template.edit_place_form.helpers({
 Template.edit_place_form.events({   
     "submit form": function(e){
         e.preventDefault();
+        clear_alerts();
         var place ={
 	        _id: Session.get("current_place") ? Session.get("current_place")._id : null,
 	        title: $("#input-title").val(),

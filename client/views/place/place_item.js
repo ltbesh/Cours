@@ -15,9 +15,9 @@ Template.user_edit.events({
     "click .delete-place": function(e){
         e.preventDefault();
         
-        if(confirm("Supprimer ce lieu ?")){
+        if(confirm("Supprimer ce lieu ? Cette action supprimera également tout les cours associés à ce lieu.")){
             var place_id = e.target.id
-            Places.remove(place_id);
+            Meteor.call("remove_place", place_id);
         }
     },
     "click .edit-place": function(e){

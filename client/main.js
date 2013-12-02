@@ -7,9 +7,6 @@ Session.set("schedule_max", 1440);
 Session.set("tag_selector", null); // tag object
 Session.set("geographical_search", {address : null, location: null});
 Session.set("search_page", false);
-Session.set("current_course", null); // course object
-Session.set("current_place", null); // place object
-
 
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
@@ -40,7 +37,7 @@ Handlebars.registerHelper('show_modal', function() {
 });
 
 
-// Subscription)
+// Subscription
 Deps.autorun(function () {
     if(Session.get("current_place"))
         Meteor.subscribe("current_place", Session.get("current_place")._id);
@@ -52,10 +49,11 @@ Deps.autorun(function () {
 });
 
 // Suscribe to the places the user owns
-Meteor.subscribe("owned_places");
-Meteor.subscribe("owned_courses");
-Meteor.subscribe("tags");
-
+Deps.autorun(function () {
+    Meteor.subscribe("owned_places");
+    Meteor.subscribe("owned_courses");
+    Meteor.subscribe("tags");
+});
 Deps.autorun(function(){
 // Subscribe to the courses and places that match the user criterion
 place_handle = Meteor.subscribeWithPagination(

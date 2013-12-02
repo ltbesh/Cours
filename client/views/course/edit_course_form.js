@@ -65,6 +65,7 @@ Template.edit_course_form.helpers({
 Template.edit_course_form.events({ 
     "submit form": function(e) {
         e.preventDefault();
+        clear_alerts();
         var user_id = Meteor.userId();
         clear_alerts()
         var course = {
@@ -89,7 +90,7 @@ Template.edit_course_form.events({
 
         Meteor.call("upsert_course", course, function(error, result){
             if(error){
-                insert_alert(error.reason,"error");
+                insert_alert(error.reason,"danger");
             }
             else{
                 insert_alert("Votre cours a été ajouté avec succès","success");

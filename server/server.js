@@ -117,11 +117,16 @@ Meteor.startup(function () {
                         user_id : user_id
                     });
 
-                    var number_of_slots = get_random_int(1,4);
+                    var number_of_slots = get_random_int(2,5);
                     for (var l = 1; l <= number_of_slots; l++){
                         var time_november = get_random_int(0,104);
                         var start = new Date(time_slots_november[time_november] * 1000);
+                        while (start.getHours() * 60 + start.getMinutes() < 480 || start.getHours() * 60 + start.getMinutes() >= 1380){
+                          var time_november = get_random_int(0,104);
+                          var start = new Date(time_slots_november[time_november] * 1000);
+                        }
                         var end = new Date(time_slots_november[time_november] * 1000 + 60 * 60 * 1000);
+
                         TimeSlots.insert({
                             course_id : id,
                             title : time_slots_title[get_random_int(0,2)],

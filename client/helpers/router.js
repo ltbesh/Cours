@@ -78,7 +78,7 @@ Meteor.Router.filters({
             return page;
         }
         else{
-            return "place_edit_form";
+            return "edit_place_form";
         }
     },
     "clear_alerts": function(page) {
@@ -94,6 +94,6 @@ Meteor.Router.beforeRouting = function(){
     Session.set("edit_course_pictures", []); // Array of URL
 }
 
-Meteor.Router.filter("login_required", {only: ["course_edit_form", "place_edit_form"]});
-Meteor.Router.filter("place_required", {only: "course_edit_form"});
+Meteor.Router.filter("login_required", {only: ["edit_course_form", "edit_place_form", "user_edit"]});
+Meteor.Router.filter("place_required", {only: "edit_course_form"});
 Meteor.Router.filter('clear_alerts');

@@ -1,5 +1,4 @@
 Template.edit_time_slot_modal.rendered = function(){
-    Session.set("show_modal", true);
     var time_slot = Session.get("current_time_slot");
     if(time_slot){
         // Set start and end time according to where the user clicked on the calendar
@@ -15,6 +14,15 @@ Template.edit_time_slot_modal.rendered = function(){
         // Not used for now as the all day zone is hidden
         $("#all-day").prop("checked",time_slot.all_day);
     }
+    $('#edit_time_slot_modal').on('hidden.bs.modal', function () {
+        Session.set("show_modal", false);
+        console.log("hide");
+    });
+
+    $('#edit_time_slot_modal').on('shown.bs.modal', function () {
+        Session.set("show_modal", true);
+        console.log("show");
+    });
 }
 
 Template.edit_time_slot_modal.helpers({
@@ -50,7 +58,7 @@ Template.edit_time_slot_modal.events({
     },
     "click .save" : function(e){
         e.preventDefault();
-        clear_alerts();
+        //clear_alerts();
         var start = $("#date-starts").datetimepicker("getDate");
         var end = $("#date-ends").datetimepicker("getDate");
         var new_time_slot = {
@@ -68,7 +76,7 @@ Template.edit_time_slot_modal.events({
         };
         Meteor.call("upsert_time_slot", new_time_slot, function(error, result){
             if(error){
-                insert_alert(error.reason,"error");
+                insert_alert(error.reason,"danger");
             }
             else{
                 insert_alert("Votre créneau horaire à bien été ajouté", "success");

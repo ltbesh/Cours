@@ -1,11 +1,14 @@
 Courses = new Meteor.Collection("courses");
 
-Courses.allow({
-    remove: owns_document
-});
-
 Meteor.methods({
-    insert_base_course: function(course_attributes){
+    remove_course : function(course_id){
+        var course = Courses.findOne(course_id);
+        if(owns_document(this.userId, course)){
+            Courses.remove(course_id);
+            var number = TimeSlots.remove({course_id : course_id});
+        }
+    },
+    insert_base_course : function(course_attributes){
         var user = Meteor.user();
         //user
         if(!user)
@@ -39,7 +42,7 @@ Meteor.methods({
         }
 
         //Tag
-        if(!course_attributes.tag_id){
+        if(!course_attributes.tag_id || course_attributes.tag_id.length === 0){
             throw new Meteor.Error(422, 
                 "Merci de renseigner un sujet pour votre cours");
         }
