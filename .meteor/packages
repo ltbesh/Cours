@@ -7,7 +7,6 @@ standard-app-packages
 preserve-inputs
 jquery-ui
 jquery-ui-bootstrap
-router
 paginated-subscription
 spin
 underscore
@@ -16,3 +15,4 @@ accounts-password
 filepicker
 bootstrap-3
 accounts-ui-bootstrap-3
+iron-router
