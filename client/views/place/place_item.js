@@ -23,7 +23,8 @@ Template.user_edit.events({
     "click .edit-place": function(e){
         e.preventDefault();
         var place_id = e.target.id;
-        Meteor.Router.to("edit_place_form", place_id);
+        console.log(e.target.id);
+        Router.go("edit_place_form", {_id : place_id});
     }
 });
 

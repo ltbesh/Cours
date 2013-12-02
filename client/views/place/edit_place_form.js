@@ -1,8 +1,3 @@
-Template.edit_place_form.rendered = function(){
-    if(Session.get("current_place"))
-        Session.set("edit_place", true);
-}
-
 Template.edit_place_form.helpers({
     current_place : function(){
         return Session.get("current_place") ? Session.get("current_place") : {};
@@ -14,7 +9,7 @@ Template.edit_place_form.events({
         e.preventDefault();
         clear_alerts();
         var place ={
-	        _id: Session.get("current_place") ? Session.get("current_place")._id : null,
+	        _id: this._id,
 	        title: $("#input-title").val(),
 	        description: $("#input-description").val(), 
 	        location: Session.get("geographical_search").location,
