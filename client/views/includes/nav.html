@@ -1,6 +1,5 @@
 <template name="nav">
-<nav role="navigation">
-
+<nav class="navbar-default navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -11,8 +10,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-            <li><button id='find-btn' class='btn btn-sm btn-warning sign-in add-course' >Poster votre course </button></li>
-            <li>{{loginButtons}}</li>
+            <li class="add-course"><a href="">Poster un cours</a></li>
+            <li class="sign-in">{{loginButtons}}</li>
         </ul>
         </form>
     </div>
