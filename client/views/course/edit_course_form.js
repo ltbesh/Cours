@@ -56,12 +56,6 @@ Template.edit_course_form.rendered = function(){
     });
 }
 
-Template.edit_course_form.helpers({
-    current_course : function(){
-        return Session.get("current_course")? Session.get("current_course") : {};
-    }
-});
-
 Template.edit_course_form.events({ 
     "submit form": function(e) {
         e.preventDefault();
@@ -81,7 +75,6 @@ Template.edit_course_form.events({
             price_explanation: $("#input-price-explanation").val(),
             user_id : user_id
         };
-        console.log(course);
         // Try to add all the tags entered in the field
         for(var i = 0, nb_tags = $("#tag-selector").select2("val").length; i < nb_tags; i++){
             var tag = {_id : $("#tag-selector").select2("val")[i]};
@@ -93,8 +86,13 @@ Template.edit_course_form.events({
                 insert_alert(error.reason,"danger");
             }
             else{
-                insert_alert("Votre cours a été ajouté avec succès","success");
-                Meteor.Router.to("user_edit");
+                if(course._id){
+                    insert_alert("Votre cours a été modifié avec succès","success");
+                }
+                else{
+                    insert_alert("Votre cours a été ajouté avec succès","success");
+                }
+                Router.go("user_edit");
             }
         });
     }

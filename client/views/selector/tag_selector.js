@@ -4,11 +4,8 @@ Template.tag_selector.rendered = function(){
     // If the template is used on a place detail page display only the tags available for this place
     Deps.autorun(function () {
         if(Session.get("current_place")){
-            console.log(Session.get("current_place"));
             var courses = Courses.find({place_id: Session.get("current_place")._id},{fields : {tag_id: 1}}).fetch();
-            console.log(courses);
             var course_tags = _.flatten(_.pluck(courses, "tag_id"));
-            console.log(course_tags);
             var tags = Tags.find({_id : {$in : course_tags}}).fetch();
         }
         // If the template is used in search then return all the tags
@@ -26,6 +23,7 @@ Template.tag_selector.rendered = function(){
                     tags_name.push(tags[i]._id);
                 }
                 var course = Session.get("current_course");
+                console.log("course tag : ", course.tag_id);
                 if(course.tag_id){
                     var current_tag = course.tag_id;
                 }
@@ -35,7 +33,8 @@ Template.tag_selector.rendered = function(){
                     placeholder: "Matière",
                     maximumSelectionSize: 1
                 }); 
-                $("#tag-selector").val(current_tag);  
+                console.log("current_tag : ", current_tag);
+                $("#tag-selector").select2("val", current_tag);
             }
             else{
                 console.log("no edit course");

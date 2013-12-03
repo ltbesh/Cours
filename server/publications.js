@@ -14,12 +14,8 @@ Meteor.publish("searched_places",function(
 });
 
 // Publish only one place given an id
-Meteor.publish("current_place", function(place_id){
+Meteor.publish("place_detail", function(place_id){
     return [Places.find(place_id), Courses.find({place_id : place_id})];
-});
-
-Meteor.publish("edit_place", function(place_id){
-    return Places.find(place_id);
 });
 
 Meteor.publish("current_course_time_slots", function(course_id){

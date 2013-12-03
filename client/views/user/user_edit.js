@@ -17,6 +17,6 @@ Template.user_edit.events({
     },
     "click .add-course" : function(e){
         e.preventDefault();
-        Meteor.Router.to("edit_course_form", {_id : "new"});
+        Router.go("edit_course_form", {_id : "new"});
     }
 });

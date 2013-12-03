@@ -49,11 +49,8 @@ Deps.autorun(function () {
 });
 
 // Suscribe to the places the user owns
-Deps.autorun(function () {
-    Meteor.subscribe("owned_places");
-    Meteor.subscribe("owned_courses");
-    Meteor.subscribe("tags");
-});
+Meteor.subscribe("tags");
+    
 Deps.autorun(function(){
 // Subscribe to the courses and places that match the user criterion
 place_handle = Meteor.subscribeWithPagination(
