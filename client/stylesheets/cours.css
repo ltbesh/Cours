@@ -21,6 +21,7 @@
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	border-radius: none;
 }
 
 #container-main{
@@ -50,9 +51,14 @@
 	margin-right: 10px;
 	margin-top: 10px;
 }
-	
+
+#signup-link{
+color: #428bca;
+}
+
 .navbar{
 margin-bottom: 0px;
+border-radius: none;
 }
 
 /*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
@@ -169,4 +175,8 @@ h1{
 	position: absolute;
 	z-index: 1;
 }
+
+/*---------------NAVBAR---------------------------*/
+
+
 
