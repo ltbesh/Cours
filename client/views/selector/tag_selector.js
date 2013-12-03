@@ -16,14 +16,12 @@ Template.tag_selector.rendered = function(){
         if(tags){
             // For the course edit page use a select2 with tags enabled
             if(Session.get("edit_course")){
-                console.log("edit course");
                 var tags_name = new Array();
 
                 for(var i = 0; i < tags.length;i++){
                     tags_name.push(tags[i]._id);
                 }
                 var course = Session.get("current_course");
-                console.log("course tag : ", course.tag_id);
                 if(course.tag_id){
                     var current_tag = course.tag_id;
                 }
@@ -33,11 +31,9 @@ Template.tag_selector.rendered = function(){
                     placeholder: "Matière",
                     maximumSelectionSize: 1
                 }); 
-                console.log("current_tag : ", current_tag);
                 $("#tag-selector").select2("val", current_tag);
             }
             else{
-                console.log("no edit course");
                 for(var i = 0; i < tags.length; i++){
                     tags[i].id = tags[i]['_id'];
                     delete tags[i]._id;

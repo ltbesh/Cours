@@ -20,7 +20,7 @@ Template.home.events({
             insert_alert("Merci d'entrer une recherche", "danger")
         }
         else{
-            Meteor.Router.to("/search");
+            Router.go("/search");
         }
     }
 });
