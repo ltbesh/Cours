@@ -16,12 +16,10 @@ Template.edit_time_slot_modal.rendered = function(){
     }
     $('#edit_time_slot_modal').on('hidden.bs.modal', function () {
         Session.set("show_modal", false);
-        console.log("hide");
     });
 
     $('#edit_time_slot_modal').on('shown.bs.modal', function () {
         Session.set("show_modal", true);
-        console.log("show");
     });
 }
 
@@ -94,6 +92,5 @@ Template.edit_time_slot_modal.events({
 });
 
 Template.edit_time_slot_modal.destroyed = function(){
-    Session.set("show_modal", false);
     Session.set("current_time_slot", null);
 }

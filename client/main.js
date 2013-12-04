@@ -1,4 +1,3 @@
-
 // Selector for courses search
 Session.set("day_selector", [0,1,2,3,4,5,6]);
 Session.set("price_min", 0);
@@ -8,18 +7,8 @@ Session.set("schedule_max", 1440);
 Session.set("tag_selector", null); // tag object
 Session.set("geographical_search", {address : null, location: null});
 
-
-// PAGE MARKERS
-
-// Used to know where to display alerts
-Session.set("show_modal", false);
-
-
-
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
-
-Session.set("show_create_time_slot", false);
 
 // User preference for calendar view
 Session.set("user_pref_calendar_view", "agendaWeek");
@@ -27,12 +16,15 @@ Session.set("user_pref_calendar_view", "agendaWeek");
 // Used to draw the map
 Session.set("map", false);
 
-$.datepicker.setDefaults($.datepicker.regional[ "fr" ]);
-
+// Set filepicker key
 Meteor.startup( function() {
     filepicker.setKey("AbMQbak12TuefvS5Uz1mVz");
 });
 
+// Datepicker used in timeslot modal
+$.datepicker.setDefaults($.datepicker.regional[ "fr" ]);
+
+// Used to know where to display errors
 Handlebars.registerHelper("show_modal", function() {
   return Session.get("show_modal");
 });
