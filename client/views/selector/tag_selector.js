@@ -1,20 +1,20 @@
 Template.tag_selector.rendered = function(){
     function format(item) { return item.id; };
 
-    // If the template is used on a place detail page display only the tags available for this place
     Deps.autorun(function () {
+        // DETAIL
         if(Session.get("current_place")){
             var courses = Courses.find({place_id: Session.get("current_place")._id},{fields : {tag_id: 1}}).fetch();
             var course_tags = _.flatten(_.pluck(courses, "tag_id"));
             var tags = Tags.find({_id : {$in : course_tags}}).fetch();
         }
-        // If the template is used in search then return all the tags
+        // SEARCH AND EDIT
         else{
             var tags = Tags.find().fetch();
         }
 
         if(tags){
-            // For the course edit page use a select2 with tags enabled
+            // EDIT
             if(Session.get("edit_course")){
                 var tags_name = new Array();
 
@@ -32,7 +32,8 @@ Template.tag_selector.rendered = function(){
                     maximumSelectionSize: 1
                 }); 
                 $("#tag-selector").select2("val", current_tag);
-            }
+            } 
+            // SEARCH AND DETAIL
             else{
                 for(var i = 0; i < tags.length; i++){
                     tags[i].id = tags[i]["_id"];
@@ -48,7 +49,7 @@ Template.tag_selector.rendered = function(){
         }
     });
 
-    // For place the detail page
+    // DETAIL
     if(Session.get("current_place")){
         if(Session.get("current_course")){
             var current_course_tag = Courses.findOne(Session.get("current_course")._id).tag_id;
@@ -59,8 +60,9 @@ Template.tag_selector.rendered = function(){
             Session.set("current_course",current_course);
         });
     }
-    // For the search page
+    // SEARCH AND EDIT
     else {
+        console.log("else");
         $("#tag-selector").on("change", function(e) { 
             Session.set("tag_selector",e.val);
         });
