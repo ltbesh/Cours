@@ -19,6 +19,3 @@ Template.edit_place_form.events({
     }
 });
 
-Template.edit_place_form.destroyed = function(){
-    Session.set("geographical_search", {address : null, location: null});
-}
