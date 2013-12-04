@@ -1,3 +1,8 @@
+
+// Validated Sessions : 
+Session.set("edit_course_pictures",[]); // Array of URL used by course_pictures and edit_course_form, set in the router
+
+
 // Selector for courses search
 Session.set("day_selector", [0,1,2,3,4,5,6]);
 Session.set("price_min", 0);
@@ -11,7 +16,6 @@ Session.set("search_page", false);
 // Set the default active tab for course detail
 Session.set("place_detail_information_active_tab", "photo_tab");
 
-Session.set("edit_course_pictures",[]); // Array of URL
 Session.set("show_create_time_slot", false);
 
 // Set the geographical selector with the place location if user edits a place

@@ -63,7 +63,7 @@ Template.edit_course_form.events({
         var user_id = Meteor.userId();
         clear_alerts()
         var course = {
-            _id : Session.get("current_course") ? Session.get("current_course")._id : null,
+            _id : this._id ? this._id : null,
             description: $("#input-description").val(), 
             tag_id: $("#tag-selector").select2("val"),
             additional_information: $("#input-additional-information").val(),
