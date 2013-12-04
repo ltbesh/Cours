@@ -1,4 +1,4 @@
-Tags = new Meteor.Collection('tags');
+Tags = new Meteor.Collection("tags");
 
 Meteor.methods({
     insert_tag : function(tag_attributes){

@@ -36,7 +36,7 @@ Meteor.startup( function() {
     filepicker.setKey("AbMQbak12TuefvS5Uz1mVz");
 });
 
-Handlebars.registerHelper('show_modal', function() {
+Handlebars.registerHelper("show_modal", function() {
   return Session.get("show_modal");
 });
 

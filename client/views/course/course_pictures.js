@@ -1,6 +1,6 @@
 Template.course_pictures.rendered = function(){
-        Galleria.loadTheme('/galleria_themes/classic/galleria.classic.min.js');
-        Galleria.run('#galleria', {wait:true});
+        Galleria.loadTheme("/galleria_themes/classic/galleria.classic.min.js");
+        Galleria.run("#galleria", {wait:true});
 }
 
 Template.course_pictures.helpers({

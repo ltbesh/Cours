@@ -9,12 +9,12 @@ Template.edit_place_form.events({
         e.preventDefault();
         clear_alerts();
         var place ={
-	        _id: this._id,
-	        title: $("#input-title").val(),
-	        description: $("#input-description").val(), 
-	        location: Session.get("geographical_search").location,
-	        address: Session.get("geographical_search").address
-    	};
+            _id: this._id,
+            title: $("#input-title").val(),
+            description: $("#input-description").val(), 
+            location: Session.get("geographical_search").location,
+            address: Session.get("geographical_search").address
+        };
         upsert_place(place);
     }
 });

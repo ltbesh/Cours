@@ -35,12 +35,12 @@ Template.tag_selector.rendered = function(){
             }
             else{
                 for(var i = 0; i < tags.length; i++){
-                    tags[i].id = tags[i]['_id'];
+                    tags[i].id = tags[i]["_id"];
                     delete tags[i]._id;
                 }
                 $("#tag-selector").select2({
-                    data: { results: tags, text: 'id' },
-                    placeholder: 'Chercher un sport', 
+                    data: { results: tags, text: "id" },
+                    placeholder: "Chercher un sport", 
                     formatSelection: format,
                     formatResult: format,
                 });
@@ -62,9 +62,9 @@ Template.tag_selector.rendered = function(){
     // For the search page
     else {
         $("#tag-selector").on("change", function(e) { 
-            Session.set('tag_selector',e.val);
+            Session.set("tag_selector",e.val);
         });
-        if (Session.get('tag_selector'))
-            $("#tag-selector").select2("val", Session.get('tag_selector'));
+        if (Session.get("tag_selector"))
+            $("#tag-selector").select2("val", Session.get("tag_selector"));
     }
 }
