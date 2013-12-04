@@ -86,12 +86,13 @@ Template.edit_course_form.events({
                 insert_alert(error.reason,"danger");
             }
             else{
-                if(course._id){
-                    insert_alert("Votre cours a été modifié avec succès","success");
-                }
-                else{
+                if(this.status = "adding"){
                     insert_alert("Votre cours a été ajouté avec succès","success");
                 }
+                else{
+                    insert_alert("Votre cours a été modifié avec succès","success");
+                }
+                Session.set("first_course", false);
                 Router.go("user_edit");
             }
         });

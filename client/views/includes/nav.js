@@ -2,7 +2,7 @@ Template.nav.rendered =     function(){
     if(!Meteor.user()){
         $(".login-link-text").text("Sign Up/Sign In");
     }else{
-        $("#login-buttons-logout").before("<button class="btn btn-default btn-block account-link">My Account</button>");
+        $("#login-buttons-logout").before("<button class='btn btn-default btn-block account-link'>My Account</button>");
     }
 };
 
@@ -13,7 +13,7 @@ Template.nav.events({
     },
     "click .add-course" : function(e){
         e.preventDefault();
-        Router.go("edit_course_form", "new");
+        Router.go("edit_course_form", {_id : "new"});
     }
 
 })

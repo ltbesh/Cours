@@ -18,13 +18,11 @@ Template.user_edit.events({
     "click .delete-course": function(e){
         e.preventDefault();        
         if(confirm("Supprimer ce cours ?")){
-            var course_id = e.target.id;
-            Courses.remove(course_id);
+            Meteor.call("remove_course", this._id);
         }
     },
     "click .edit-course": function(e){
         e.preventDefault();
-        var course_id = e.target.id;
-        Router.go("edit_course_form", {_id : course_id});
+        Router.go("edit_course_form", {_id : this._id});
     }
 });

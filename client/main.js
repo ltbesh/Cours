@@ -1,6 +1,5 @@
 
 // Validated Sessions : 
-Session.set("edit_course_pictures",[]); // Array of URL used by course_pictures and edit_course_form, set in the router
 
 
 // Selector for courses search
