@@ -3,25 +3,26 @@ Template.course_item.helpers({
         return this.status!=="adding" || this.status ==="undefined";
     },
     subject: function(){
-        var tag = Tags.findOne(this.tag_id);
-        return tag ? tag.title : "";
+        var tag = Tags.findOne({_id : this.tag_id});
+        return tag ? tag._id : "";
     },
     place: function(){
-    	return Places.findOne(this.place_id).title;
+        var place = Places.findOne(this.place_id);
+        if(place){
+            return place.title;
+        }
     }
 });
 
-Template.user_edit.events({
+Template.course_item.events({
     "click .delete-course": function(e){
         e.preventDefault();        
         if(confirm("Supprimer ce cours ?")){
-            var course_id = e.target.id;
-            Courses.remove(course_id);
+            Meteor.call("remove_course", this._id);
         }
     },
     "click .edit-course": function(e){
         e.preventDefault();
-        var course_id = e.target.id;
-        Meteor.Router.to("edit_course_form", course_id);
+        Router.go("edit_course_form", {_id : this._id});
     }
 });

@@ -1,5 +1,4 @@
 <template name="edit_place_form">
-    {{#with current_place}}
     <form class="form-horizontal">
 
         <div class="control-group">
@@ -19,7 +18,9 @@
         <div class="control-group">
             <label class="control-label" for="input-description">Adresse</label>
             <div class="controls">
+            {{#with this}}
                 {{> geographical_selector}}
+            {{/with}}
             </div>
         </div>
 
@@ -29,5 +30,4 @@
             </div>
         </div>
     </form>
-    {{/with}}
 </template>

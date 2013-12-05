@@ -1,11 +1,14 @@
 Courses = new Meteor.Collection("courses");
 
-Courses.allow({
-    remove: owns_document
-});
-
 Meteor.methods({
-    insert_base_course: function(course_attributes){
+    remove_course : function(course_id){
+        var course = Courses.findOne(course_id);
+        if(owns_document(this.userId, course)){
+            Courses.remove(course_id);
+            var number = TimeSlots.remove({course_id : course_id});
+        }
+    },
+    insert_base_course : function(course_attributes){
         var user = Meteor.user();
         //user
         if(!user)
@@ -18,7 +21,7 @@ Meteor.methods({
         return new_course;
 
     },
-    insert_course : function(course_attributes){
+    upsert_course : function(course_attributes){
         var user = Meteor.user();
 
         //user
@@ -39,12 +42,12 @@ Meteor.methods({
         }
 
         //Tag
-        if(!course_attributes.tag_id){
+        if(!course_attributes.tag_id || course_attributes.tag_id.length === 0){
             throw new Meteor.Error(422, 
                 "Merci de renseigner un sujet pour votre cours");
         }
         else{
-            var course = Courses.findOne({tag_id : course_attributes.tag_id, place_id : course_attributes.place_id});
+            var course = Courses.findOne({tag_id : course_attributes.tag_id[0], place_id : course_attributes.place_id});
             if(course && course._id !== course_attributes._id)
                 throw new Meteor.Error(422, 
                     "Un autre cours sur ce sujet existe déjà pour ce lieu, choisissez un autre lieu ou un autre sujet");
@@ -90,6 +93,5 @@ Meteor.methods({
         var course_id = Courses.upsert({_id:course_attributes._id},course);
 
         return course_id;
-
     }
 });

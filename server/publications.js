@@ -5,16 +5,16 @@ Meteor.publish("searched_places",function(
     price_max /* int course price must be lower*/, 
     schedule_min /* int beetwen 0 and 1440, courses must start after that time*/, 
     schedule_max /* int beetwen 0 and 1440, courses must finish before that time*/,
-    subject_search /* id of a tag object, tag_id of course must match this*/, 
+    tag_selector /* id of a tag object, tag_id of course must match this*/, 
     geographical_search /* geoJSON point, Places are looked for around that point*/, 
     limit /* number of results per page*/){
 
     // Return both cursor, one for places and one for courses
-    return get_searched_places(day_selector, price_min, price_max, schedule_min, schedule_max, subject_search, geographical_search, limit)
+    return get_searched_places(day_selector, price_min, price_max, schedule_min, schedule_max, tag_selector, geographical_search, limit);
 });
 
 // Publish only one place given an id
-Meteor.publish("current_place", function(place_id){
+Meteor.publish("place_detail", function(place_id){
     return [Places.find(place_id), Courses.find({place_id : place_id})];
 });
 

@@ -1,5 +1,4 @@
 Template.edit_course_form.rendered = function(){
-    Session.set("edit_course", true);
 
     function format(item) { return item.title; };
     var user_id = Meteor.userId();
@@ -9,35 +8,9 @@ Template.edit_course_form.rendered = function(){
         var course = Session.get("current_course");
 
         if(course){
-            var tags = Tags.find().fetch();
-            for(var i = 0; i < tags.length; i++){
-                tags[i].id = tags[i]["_id"];
-                delete tags[i]._id;
-            }
-
-            if(course.tag_id){
-                var current_tag = Tags.findOne(course.tag_id);
-                current_tag.id = current_tag._id;
-            }
-
-            $("#input-tags").select2({
-                data: { results: tags, text: "title" },
-                placeholder: "Matière",
-                formatSelection: format,
-                formatResult: format,
-                initSelection : function (element, callback) {
-                    var data = current_tag;
-                    callback(data);
-                }
-            });
-
-            // Set default tag value
-            if(current_tag){
-                $("#input-tags").select2("val", current_tag._id);
-            } 
 
             // Place
-            var places = Places.find({user_id : Meteor.userId()}).fetch();           
+            var places = Places.find({user_id : Meteor.userId()}).fetch();      
             for(var i = 0; i < places.length; i++){
                 places[i].id = places[i]["_id"];
                 delete places[i]._id;
@@ -59,10 +32,7 @@ Template.edit_course_form.rendered = function(){
                 }
             });
 
-            // Set default place value
-            if(current_place){
-                $("#input-place").select2("val", current_place._id);
-            }
+            $("#input-place").select2("val",current_place);
 
             // Pictures
             // If the file-picker widget is not already rendered, render it
@@ -86,44 +56,45 @@ Template.edit_course_form.rendered = function(){
     });
 }
 
-Template.edit_course_form.helpers({
-    current_course : function(){
-        return Session.get("current_course")? Session.get("current_course") : {};
-    }
-});
-
 Template.edit_course_form.events({ 
     "submit form": function(e) {
         e.preventDefault();
-
+        clear_alerts();
+        var user_id = Meteor.userId();
+        clear_alerts()
         var course = {
-            _id : Session.get("current_course") ? Session.get("current_course")._id : null,
-            description: $(e.target).find("#input-description").val(), 
-            tag_id: $(e.target).find("#input-tags").select2("val")[0],
-            additional_information: $(e.target).find("#input-additional-information").val(),
-            place_id: $(e.target).find("#input-place").select2("val"),
+            _id : this._id ? this._id : null,
+            description: $("#input-description").val(), 
+            tag_id: $("#tag-selector").select2("val"),
+            additional_information: $("#input-additional-information").val(),
+            place_id: $("#input-place").select2("val"),
             pictures: Session.get("edit_course_pictures"),
-            price: $(e.target).find("#input-price").val(),
-            contact: $(e.target).find("#input-contact").val(),
-            required_materiel: $(e.target).find("#input-required-material").val(),
-            price_explanation: $(e.target).find("#input-price-explanation").val()
+            price: parseInt($("#input-price").val()),
+            contact: $("#input-contact").val(),
+            required_materiel: $("#input-required-material").val(),
+            price_explanation: $("#input-price-explanation").val(),
+            user_id : user_id
         };
+        // Try to add all the tags entered in the field
+        for(var i = 0, nb_tags = $("#tag-selector").select2("val").length; i < nb_tags; i++){
+            var tag = {_id : $("#tag-selector").select2("val")[i]};
+            Meteor.call("insert_tag", tag);
+        }
 
-        Meteor.call("insert_course", course, function(error, result){
-            clear_alerts();
+        Meteor.call("upsert_course", course, function(error, result){
             if(error){
-                insert_alert(error.reason,"error");
+                insert_alert(error.reason,"danger");
             }
             else{
-                var course_id = result;
-                insert_alert("Votre cours a été ajouté avec succès","success");
-                Meteor.Router.to("user_edit");
+                if(this.status = "adding"){
+                    insert_alert("Votre cours a été ajouté avec succès","success");
+                }
+                else{
+                    insert_alert("Votre cours a été modifié avec succès","success");
+                }
+                Session.set("first_course", false);
+                Router.go("user_edit");
             }
         });
     }
 });
-
-Template.edit_course_form.destroyed = function(){
-    Session.set("edit_course", false);
-    Session.set("current_course", null);
-}

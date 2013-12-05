@@ -1,0 +1,12 @@
+<template name="layout">
+    <div id="container-header" class="container"> 
+        {{> nav}}
+        {{#unless show_modal}}
+            {{> alerts}}
+        {{/unless}}
+    </div>
+
+    <div id="main" class="row-fluid">
+        {{yield}}
+    </div>
+</template>

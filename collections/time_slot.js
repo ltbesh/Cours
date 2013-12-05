@@ -1,4 +1,4 @@
-TimeSlots = new Meteor.Collection('time_slots');
+TimeSlots = new Meteor.Collection("time_slots");
 
 TimeSlots.allow({
     remove: owns_time_slot

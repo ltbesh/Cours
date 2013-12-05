@@ -1,30 +1,29 @@
-<template name='place_page'>
-	<a href="{{place_search_pagePath}}" class='detail'>Retour à la recherche</a>
-		<div class="row">
-			<div class="col-md-8">
-				<h3>{{place.title}}</h3>	
-				<h6> {{place.address}}</h6>
-				{{#if course}}
-				<p>prix : {{course.price}}</p>
-				{{/ if}}
-				{{> tag_selector}}
-			</div>
-			<div class="col-md-4">
-			</div>
-		</div>
-		
-		{{# with course}}
-			{{> place_tabs}}
-		{{/ with}}
+<template name="place_page">
+    <a href="{{pathFor 'place_search_page'}}" class="detail">Retour à la recherche</a>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>{{title}}</h3>    
+                <h6> {{address}}</h6>
+                {{#if course}}
+                <p>prix : {{course.price}}</p>
+                {{/ if}}
+                {{> tag_selector}}
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        
+        {{# with course}}
+            {{> place_tabs}}
+        {{/ with}}
 
-		<div class="row">
-			<div class="col-md-12">
-			{{#if course}}
-				course description : {{course.description}}
-			{{/ if}}
+        <div class="row">
+            <div class="col-md-12">
+            {{#if course}}
+                course description : {{course.description}}
+            {{/ if}}
 
-			</div>
-			
-		</div>
+            </div>
+            
+        </div>
 </template>
-

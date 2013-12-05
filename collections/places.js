@@ -1,10 +1,18 @@
 Places = new Meteor.Collection("places");
 
-Places.allow({
-    remove: owns_document
-});
-
 Meteor.methods({
+    remove_place : function(place_id){
+        var place = Places.findOne(place_id);
+        if(owns_document(this.userId, place)){
+            Places.remove(place_id);
+            courses_id_array = Courses.find({place_id : place_id}, {fields : {_id : true}}).fetch();
+            for(var i = 0; i < courses_id_array.length;i ++)
+            {
+                Meteor.call("remove_course", courses_id_array[i]._id);
+            }
+        }
+
+    },
     insert_or_update_place : function(place_attributes){
         var user = Meteor.user();
         //user

@@ -13,10 +13,10 @@ Template.user_edit.helpers({
 Template.user_edit.events({
     "click .add-place" : function(e){
         e.preventDefault();
-        Meteor.Router.to("edit_place_form", "new");
+        Router.go("edit_place_form", {_id : "new"});
     },
     "click .add-course" : function(e){
         e.preventDefault();
-        Meteor.Router.to("edit_course_form", "new");
+        Router.go("edit_course_form", {_id : "new"});
     }
 });

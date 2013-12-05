@@ -3,66 +3,65 @@ Meteor.startup(function () {
     Places._ensureIndex({ location : "2dsphere" });
 
     if(Meteor.users.find().count() === 0){
-      var id_ltbesh = Accounts.createUser({username: 'ltbesh', password: 'admin'});
-      var id_alex = Accounts.createUser({username: 'dada', password: 'admin'});
-      var id_lucas = Accounts.createUser({username: 'lucas', password: 'admin'});
+      var id_ltbesh = Accounts.createUser({username: "ltbesh", password: "admin"});
+      var id_alex = Accounts.createUser({username: "dada", password: "admin"});
+      var id_lucas = Accounts.createUser({username: "lucas", password: "admin"});
     }
 
     if (Places.find().count() === 0) {
       Places.insert({
-        title: 'Sofitel de New York',
-        description: 'Un très bel hotel situé au centre de new york ou l\'on peut croiser des personnalités politiques diverses et variées.',
-        address: '8 rue des françs bourgeois 75003 Paris',
-        location : { type : 'Point', coordinates: [2.3636317000000417, 48.8566874]}, 
+        title: "Sofitel de New York",
+        description: "Un très bel hotel situé au centre de new york ou l'on peut croiser des personnalités politiques diverses et variées.",
+        address: "8 rue des françs bourgeois 75003 Paris",
+        location : { type : "Point", coordinates: [2.3636317000000417, 48.8566874]}, 
         user_id : id_ltbesh,
-        _id: '1'
+        _id: "1"
       });
       Places.insert({
-        title: 'Théatre de trévise',
-        description: 'Un très bel endroit insalubre, plein de poussière de toile d\'araignées et de sueurs',
-        address: '3 rue de trévise',
-        location : { type : 'Point', coordinates: [2.345295599999986, 48.8734518]},
+        title: "Théatre de trévise",
+        description: "Un très bel endroit insalubre, plein de poussière de toile d'araignées et de sueurs",
+        address: "3 rue de trévise",
+        location : { type : "Point", coordinates: [2.345295599999986, 48.8734518]},
         user_id : id_ltbesh,
-        _id: '2'
+        _id: "2"
       });
       Places.insert({
-        title: 'Games Workshop',
-        description: 'Attention geek en liberté',
-        address: '20 rue de l\'est 75020 Paris',
-        location : { type : 'Point', coordinates: [2.3940036999999847, 48.8710324]},
+        title: "Games Workshop",
+        description: "Attention geek en liberté",
+        address: "20 rue de l'est 75020 Paris",
+        location : { type : "Point", coordinates: [2.3940036999999847, 48.8710324]},
         user_id : id_ltbesh,
-        _id: '3'
+        _id: "3"
       });
       Places.insert({
-        title: 'Collège François Couperin',
-        description: 'Vous y ferez les meilleures rencontres',
-        address: '10 rue valadon Paris',
-        location : { type : 'Point', coordinates: [2.3055378999999903, 48.8570848]},
+        title: "Collège François Couperin",
+        description: "Vous y ferez les meilleures rencontres",
+        address: "10 rue valadon Paris",
+        location : { type : "Point", coordinates: [2.3055378999999903, 48.8570848]},
         user_id : id_alex,
-        _id: '4'
+        _id: "4"
       });
       Places.insert({
-        title: 'LE GREAT',
-        description: 'Le café a fait la renommé de cet endroit',
-        address: '3 rue seguier',
-        location :  {type : 'Point', coordinates: [2.342209300000036, 48.854216]},
+        title: "LE GREAT",
+        description: "Le café a fait la renommé de cet endroit",
+        address: "3 rue seguier",
+        location :  {type : "Point", coordinates: [2.342209300000036, 48.854216]},
         user_id : id_alex,
-        _id: '5'
+        _id: "5"
       });
     }
 
+    var tags_array = ["Danse", "Poterie", "Tennis"];
+
     if(Tags.find().count() === 0){
       Tags.insert({
-        _id : '1',
-        title : "Danse"
+        _id : "Danse"
       });
       Tags.insert({
-        _id : '2',
-        title : "Poterie"
+        _id : "Poterie"
       });
       Tags.insert({
-        _id : '3',
-        title : "Tennis"
+        _id : "Tennis"
       });
     }
 
@@ -83,7 +82,7 @@ Meteor.startup(function () {
                                       "Cours pour les connards",
                                       "Cassez vous ia pas d'ambiance",
                                       "J'ai préféré Singapour"];
-        var contacts = ["Jean Paul Dubois "," Robert Duval", "Martine Mato", "Ahmed Berkane", "Jules Bodineau"];
+        var contacts = ["JeanPaul@Dubois.com "," Robert@Duval.fr", "Martine@Mato.net", "Ahmed@Berkane.eu", "Jules@bodineau.org"];
         var materiels = [ "one pair black boots", "String léopard", "Gant de boxe", "Marteau et enclume", "Ventilateur"];
         var price_explanations = ["C'est cher mais c'est bien", "Si vous êtes une fille c'est gratos", "Si vous trouvez ça trop cher, vous pouvez toujours allez voir ailleurs"];
         var photos = [["/8.jpg", "/9.jpg", "/10.jpg"], ["/1.jpg", "/2.jpg", "/3.jpg", "/4.jpg"], ["/5.jpg", "/6.jpg", "/7.jpg"]];
@@ -103,9 +102,11 @@ Meteor.startup(function () {
                 var user_id = k<4 ? id_ltbesh : id_alex;
                 var is_course = get_random_int(1,3);
                 if(is_course !==3){
+                  var course_tag_array = new Array(tags_array[j-1]);
+                  console.log(course_tag_array);
                     var id = Courses.insert({
                         description: course_description[get_random_int(0,6)],
-                        tag_id : String(j),
+                        tag_id : course_tag_array ,
                         additional_information: course_additional_information[get_random_int(0,8)],
                         place_id: String(k),
                         pictures : photos[j-1],
@@ -116,11 +117,16 @@ Meteor.startup(function () {
                         user_id : user_id
                     });
 
-                    var number_of_slots = get_random_int(1,4);
+                    var number_of_slots = get_random_int(2,5);
                     for (var l = 1; l <= number_of_slots; l++){
                         var time_november = get_random_int(0,104);
                         var start = new Date(time_slots_november[time_november] * 1000);
+                        while (start.getHours() * 60 + start.getMinutes() < 480 || start.getHours() * 60 + start.getMinutes() >= 1380){
+                          var time_november = get_random_int(0,104);
+                          var start = new Date(time_slots_november[time_november] * 1000);
+                        }
                         var end = new Date(time_slots_november[time_november] * 1000 + 60 * 60 * 1000);
+
                         TimeSlots.insert({
                             course_id : id,
                             title : time_slots_title[get_random_int(0,2)],

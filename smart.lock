@@ -13,7 +13,8 @@
       "impicker": {},
       "bootstrap-3": {},
       "filepicker": {},
-      "accounts-ui-bootstrap-3": {}
+      "accounts-ui-bootstrap-3": {},
+      "iron-router": {}
     },
     "packages": {
       "jquery-ui": {
@@ -75,6 +76,11 @@
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.2.4",
         "commit": "cdbd20eb065310c0cc302bbd5f22e5b2121c769a"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.6.1",
+        "commit": "4e1ee0581d68bff422a915dacb0bd30eae10fe08"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
