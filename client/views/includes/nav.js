@@ -7,6 +7,10 @@ Template.nav.rendered =     function(){
 };
 
 Template.nav.events({
+    "click .home" : function(e){
+        e.preventDefault();
+        Router.go("home");
+    },
     "click .account-link" : function(e){
         e.preventDefault();
         Router.go("user_edit");
