@@ -1,17 +1,18 @@
 <template name="nav">
-<nav class="navbar-default navbar navbar-inverse" role="navigation">
+<nav role="navigation">
+
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="{{homePath}}">touslescours.fr</a>
+        <a class="navbar-brand home" href="#">touslescours.fr</a>
     </div>
         
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-            <li class="add-course"><a href="">Poster un cours</a></li>
-            <li class="sign-in">{{loginButtons}}</li>
+            <li><button id="find-btn" class="btn btn-sm btn-warning sign-in add-course" >Poster votre cours </button></li>
+            <li>{{loginButtons}}</li>
         </ul>
         </form>
     </div>
