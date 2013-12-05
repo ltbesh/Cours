@@ -19,7 +19,7 @@ Meteor.startup(function () {
       });
       Places.insert({
         title: "Théatre de trévise",
-        description: "Un très bel endroit insalubre, plein de poussière de toile d\"araignées et de sueurs",
+        description: "Un très bel endroit insalubre, plein de poussière de toile d'araignées et de sueurs",
         address: "3 rue de trévise",
         location : { type : "Point", coordinates: [2.345295599999986, 48.8734518]},
         user_id : id_ltbesh,
@@ -28,7 +28,7 @@ Meteor.startup(function () {
       Places.insert({
         title: "Games Workshop",
         description: "Attention geek en liberté",
-        address: "20 rue de l\"est 75020 Paris",
+        address: "20 rue de l'est 75020 Paris",
         location : { type : "Point", coordinates: [2.3940036999999847, 48.8710324]},
         user_id : id_ltbesh,
         _id: "3"

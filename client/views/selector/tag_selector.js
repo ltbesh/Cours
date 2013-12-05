@@ -55,14 +55,14 @@ Template.tag_selector.rendered = function(){
             var current_course_tag = Courses.findOne(Session.get("current_course")._id).tag_id;
             $("#tag-selector").select2("val", current_course_tag); 
         }
-        $("#tag-selector").on("change", function(e) { 
-            var current_course = Courses.findOne({place_id : Session.get("current_place")._id, tag_id : e.val});
-            Session.set("current_course",current_course);
+        $("#tag-selector").on("change", function(e) {
+            var place_id = Session.get("current_place")._id;
+            var course = Courses.findOne({place_id : place_id, tag_id : e.val});
+            Router.go("place_page", {_id : place_id, course_id : course._id});
         });
     }
     // SEARCH AND EDIT
     else {
-        console.log("else");
         $("#tag-selector").on("change", function(e) { 
             Session.set("tag_selector",e.val);
         });

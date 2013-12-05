@@ -14,7 +14,7 @@ Template.course_item.helpers({
     }
 });
 
-Template.user_edit.events({
+Template.course_item.events({
     "click .delete-course": function(e){
         e.preventDefault();        
         if(confirm("Supprimer ce cours ?")){
