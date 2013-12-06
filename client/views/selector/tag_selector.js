@@ -41,7 +41,7 @@ Template.tag_selector.rendered = function(){
                 }
                 $("#tag-selector").select2({
                     data: { results: tags, text: "id" },
-                    placeholder: "Chercher un sport", 
+                    placeholder: "Sélectionnez un cours", 
                     formatSelection: format,
                     formatResult: format,
                 });
