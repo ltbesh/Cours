@@ -5,14 +5,17 @@ Template.geographical_selector.rendered = function(){
     autocomplete = new google.maps.places.Autocomplete(input, options);
 
     google.maps.event.addListener(autocomplete, "place_changed", function() {
-        Session.set("geographical_search", {
-                address :autocomplete.getPlace().formatted_address,
-                location: {
-                    type : "Point", 
-                    coordinates: [autocomplete.getPlace().geometry.location.lng(), 
-                                autocomplete.getPlace().geometry.location.lat()]
-                }
-        });
+        var g_place = autocomplete.getPlace();
+        if(g_place){
+            Session.set("geographical_search", {
+                    address :g_place.formatted_address,
+                    location: {
+                        type : "Point", 
+                        coordinates: [g_place.geometry.location.lng(), 
+                                    g_place.geometry.location.lat()]
+                    }
+            });
+        }
     });
 }
 
