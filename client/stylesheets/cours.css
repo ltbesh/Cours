@@ -176,6 +176,15 @@ h1{
 	z-index: 1;
 }
 
+/*---------------navbar-----------------------------*/
+
+#salut{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
 /*---------------checkboxes---------------------------*/
 
 /* Cachons la case à cocher */  
@@ -214,8 +223,8 @@ h1{
     position: absolute;
     top: 0; left: 4px;
     font-size: 14px;
-    color: #09ad7e;
-    transition: all .2s; /* on prévoit une animation */
+    color: #6FA2E8;
+    transition: all .1s; /* on prévoit une animation */
 }
 /* Aspect si "pas cochée" */
 [type="checkbox"]:not(:checked) + label:after {
