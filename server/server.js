@@ -12,7 +12,9 @@ Meteor.startup(function () {
       Places.insert({
         title: "Sofitel de New York",
         description: "Un très bel hotel situé au centre de new york ou l'on peut croiser des personnalités politiques diverses et variées.",
-        address: "8 rue des françs bourgeois 75003 Paris",
+        address: "8 rue des françs bourgeois, 75003 Paris, France",
+        postal_code : "75003",
+        locality : "Paris",
         location : { type : "Point", coordinates: [2.3636317000000417, 48.8566874]}, 
         user_id : id_ltbesh,
         _id: "1"
@@ -20,7 +22,9 @@ Meteor.startup(function () {
       Places.insert({
         title: "Théatre de trévise",
         description: "Un très bel endroit insalubre, plein de poussière de toile d'araignées et de sueurs",
-        address: "3 rue de trévise",
+        address: "3 Rue de Trévise, 75009 Paris, France",
+        postal_code : "75009",
+        locality : "Paris",        
         location : { type : "Point", coordinates: [2.345295599999986, 48.8734518]},
         user_id : id_ltbesh,
         _id: "2"
@@ -28,7 +32,9 @@ Meteor.startup(function () {
       Places.insert({
         title: "Games Workshop",
         description: "Attention geek en liberté",
-        address: "20 rue de l'est 75020 Paris",
+        address: "20 Rue de l'Est, 75020 Paris, France",
+        postal_code : "75020",
+        locality : "Paris",   
         location : { type : "Point", coordinates: [2.3940036999999847, 48.8710324]},
         user_id : id_ltbesh,
         _id: "3"
@@ -36,7 +42,9 @@ Meteor.startup(function () {
       Places.insert({
         title: "Collège François Couperin",
         description: "Vous y ferez les meilleures rencontres",
-        address: "10 rue valadon Paris",
+        address: "10 Rue Valadon, 75007 Paris, France",
+        postal_code : "75007",
+        locality : "Paris",  
         location : { type : "Point", coordinates: [2.3055378999999903, 48.8570848]},
         user_id : id_alex,
         _id: "4"
@@ -44,7 +52,9 @@ Meteor.startup(function () {
       Places.insert({
         title: "LE GREAT",
         description: "Le café a fait la renommé de cet endroit",
-        address: "3 rue seguier",
+        address: "3 Rue Séguier, 75006 Paris, France",
+        postal_code : "75006",
+        locality : "Paris",
         location :  {type : "Point", coordinates: [2.342209300000036, 48.854216]},
         user_id : id_alex,
         _id: "5"

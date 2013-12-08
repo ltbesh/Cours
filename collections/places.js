@@ -11,7 +11,6 @@ Meteor.methods({
                 Meteor.call("remove_course", courses_id_array[i]._id);
             }
         }
-
     },
     insert_or_update_place : function(place_attributes){
         var user = Meteor.user();
@@ -37,7 +36,7 @@ Meteor.methods({
         else{
             Match.test(place_attributes.description, String);
         }
-
+        
         //address
         if(!place_attributes.address){
             throw new Meteor.Error(422, 

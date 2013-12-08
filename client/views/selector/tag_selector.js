@@ -2,19 +2,21 @@ Template.tag_selector.rendered = function(){
     function format(item) { return item.id; };
 
     Deps.autorun(function () {
-        // DETAIL
+        // Find relevant tags
+        // Place detail page
         if(Session.get("current_place")){
             var courses = Courses.find({place_id: Session.get("current_place")._id},{fields : {tag_id: 1}}).fetch();
             var course_tags = _.flatten(_.pluck(courses, "tag_id"));
             var tags = Tags.find({_id : {$in : course_tags}}).fetch();
         }
-        // SEARCH AND EDIT
+        // Search and edit place page
         else{
             var tags = Tags.find().fetch();
         }
 
+        // Fill in select 2 with tags
         if(tags){
-            // EDIT
+            // Edit place form
             if(Session.get("edit_course")){
                 var tags_name = new Array();
 
@@ -33,7 +35,7 @@ Template.tag_selector.rendered = function(){
                 }); 
                 $("#tag-selector").select2("val", current_tag);
             } 
-            // SEARCH AND DETAIL
+            // Search and place detail page
             else{
                 for(var i = 0; i < tags.length; i++){
                     tags[i].id = tags[i]["_id"];
@@ -49,7 +51,8 @@ Template.tag_selector.rendered = function(){
         }
     });
 
-    // DETAIL
+    // Set Events
+    // Place detail page
     if(Session.get("current_place")){
         if(Session.get("current_course")){
             var current_course_tag = Courses.findOne(Session.get("current_course")._id).tag_id;
@@ -61,7 +64,7 @@ Template.tag_selector.rendered = function(){
             Router.go("place_page", {_id : place_id, course_id : course._id});
         });
     }
-    // SEARCH AND EDIT
+    // Search and edit place pages
     else {
         $("#tag-selector").on("change", function(e) { 
             Session.set("tag_selector",e.val);

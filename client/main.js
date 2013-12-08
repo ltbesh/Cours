@@ -42,6 +42,6 @@ place_handle = Meteor.subscribeWithPagination(
     function(){return Session.get("schedule_min")}, 
     function(){return Session.get("schedule_max")},
     function(){return Session.get("tag_selector")},
-    function(){return Session.get("geographical_search").location},
+    function(){return Session.get("geographical_search")},
     5);
 });

@@ -12,8 +12,10 @@ Template.edit_place_form.events({
             _id: this._id,
             title: $("#input-title").val(),
             description: $("#input-description").val(), 
-            location: Session.get("geographical_search").location,
-            address: Session.get("geographical_search").address
+            location: Session.get("edit_place_address").location,
+            address: Session.get("edit_place_address").address,
+            postal_code : Session.get("edit_place_address").postal_code,
+            locality : Session.get("edit_place_address").locality
         };
         upsert_place(place);
     }
