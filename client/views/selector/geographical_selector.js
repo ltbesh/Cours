@@ -10,8 +10,8 @@ Template.geographical_selector.rendered = function(){
         var g_place = autocomplete.getPlace();
         var locality = "";
         var postal_code = "";
-        // Find the postal code and locality (city of the current search)
         if(g_place){
+            // Find the postal code and locality (city of the current search)
             for (var i = g_place.address_components.length - 1; i >=0; i--){
                 var current_object = g_place.address_components[i];
                 if(_.contains(current_object.types,"postal_code")){
@@ -22,6 +22,7 @@ Template.geographical_selector.rendered = function(){
                 }
             }
             if(g_place){
+                // For the search page
                 if(Session.get("search_page")){
                     Session.set("geographical_search", {
                             address :g_place.formatted_address,
@@ -35,6 +36,7 @@ Template.geographical_selector.rendered = function(){
                             types : g_place.types
                     });
                 }
+                // For the place edit form
                 else{
                     Session.set("edit_place_address", {
                             address :g_place.formatted_address,

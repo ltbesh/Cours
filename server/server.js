@@ -12,7 +12,7 @@ Meteor.startup(function () {
       Places.insert({
         title: "Sofitel de New York",
         description: "Un très bel hotel situé au centre de new york ou l'on peut croiser des personnalités politiques diverses et variées.",
-        address: "8 rue des françs bourgeois 75003 Paris, France",
+        address: "8 rue des françs bourgeois, 75003 Paris, France",
         postal_code : "75003",
         locality : "Paris",
         location : { type : "Point", coordinates: [2.3636317000000417, 48.8566874]}, 

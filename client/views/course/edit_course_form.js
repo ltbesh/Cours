@@ -9,7 +9,7 @@ Template.edit_course_form.rendered = function(){
 
         if(course){
 
-            // Place
+            // Find the places that belongs to the user
             var places = Places.find({user_id : Meteor.userId()}).fetch();      
             for(var i = 0; i < places.length; i++){
                 places[i].id = places[i]["_id"];
@@ -59,9 +59,8 @@ Template.edit_course_form.rendered = function(){
 Template.edit_course_form.events({ 
     "submit form": function(e) {
         e.preventDefault();
-        clear_alerts();
-        var user_id = Meteor.userId();
         clear_alerts()
+        var user_id = Meteor.userId();
         var course = {
             _id : this._id ? this._id : null,
             description: $("#input-description").val(), 

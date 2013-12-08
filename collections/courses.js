@@ -8,6 +8,7 @@ Meteor.methods({
             var number = TimeSlots.remove({course_id : course_id});
         }
     },
+    // Used when a user start adding a course to save it as "draft"
     insert_base_course : function(course_attributes){
         var user = Meteor.user();
         //user

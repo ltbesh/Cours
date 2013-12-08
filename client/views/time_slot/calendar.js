@@ -4,7 +4,7 @@ Template.calendar.rendered = function(){
         if(Session.get("current_course")){
             var time_slots = TimeSlots.find({course_id:Session.get("current_course")._id}).fetch();
             var events = repeat_events(time_slots);
-            // If the calendar is not already present on the page add it
+            // Destroy previously added calendar
             $("#calendar").fullCalendar( "destroy" );
             $("#calendar").fullCalendar({
                 weekends: true,
@@ -16,6 +16,7 @@ Template.calendar.rendered = function(){
                 },
                 dayNames : ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
                 dayNamesShort : ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+                //For course edit page
                 dayClick : function(date, allDay, jsEvent, view){
                     if(Session.get("edit_course")){
                         clear_alerts();
@@ -24,6 +25,7 @@ Template.calendar.rendered = function(){
                         $("#edit-time-slot-modal").modal();
                     }
                 },
+                //For course edit page
                 eventClick : function(calEvent, jsEvent, view){
                     if(Session.get("edit_course")){
                         clear_alerts();

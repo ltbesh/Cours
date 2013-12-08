@@ -18,6 +18,7 @@ Meteor.publish("place_detail", function(place_id){
     return [Places.find(place_id), Courses.find({place_id : place_id})];
 });
 
+// Publish all time slots linked to a course identified by its id.
 Meteor.publish("current_course_time_slots", function(course_id){
     return TimeSlots.find({course_id : course_id});
 });
@@ -32,6 +33,7 @@ Meteor.publish("owned_places", function(){
     return get_owned_places(this.userId);
 });
 
+// Publish courses owned by the user
 Meteor.publish("owned_courses", function(){
     return get_owned_courses(this.userId);
 });
