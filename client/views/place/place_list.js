@@ -7,7 +7,7 @@ Template.place_list.helpers({
             Session.get("schedule_min"), 
             Session.get("schedule_max"),
             Session.get("tag_selector"), 
-            Session.get("geographical_search").location, 
+            Session.get("geographical_search"), 
             5);
         if (places_cursor)
             var places = places_cursor[0];

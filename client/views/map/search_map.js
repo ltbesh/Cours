@@ -1,6 +1,7 @@
 Template.map.rendered = function() {
     if(!map)
-    var map = new Course_map("#map");
+        var map = new Course_map("#map");
+    
     Deps.autorun(function(){
         // Map on the detail page
         if (Session.get("current_place")){
@@ -15,7 +16,7 @@ Template.map.rendered = function() {
                 Session.get("schedule_min"), 
                 Session.get("schedule_max"),
                 Session.get("tag_selector"), 
-                Session.get("geographical_search").location, 
+                Session.get("geographical_search"), 
                 5);
             if (places_cursor){
                 var places = places_cursor[0].fetch();
