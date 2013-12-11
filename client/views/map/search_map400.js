@@ -1,6 +1,6 @@
 Template.map.rendered = function() {
     if(!map)
-        var map = new Course_map("#map");
+        var map = new Course_map("#map_400");
     
     Deps.autorun(function(){
         // Map on the detail page
