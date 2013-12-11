@@ -1,5 +1,5 @@
 <template name="place_page">
-    <a href="{{pathFor 'place_search_page'}}" class="detail">Retour à la recherche</a>
+    <!--<br><a href="{{pathFor 'place_search_page'}}" class="detail btn btn-primary btn-sm active" role="button">Retour à la recherche</a>-->
         <div class="row">
             <div class="col-md-8">
                 <h3>{{title}}</h3>    
@@ -9,16 +9,14 @@
                 {{/ if}}
                 {{> tag_selector}}
             </div>
-            <div class="col-md-4">
-            </div>
-        </div>
+        
         
         {{# with course}}
             {{> place_tabs}}
         {{/ with}}
 
-        <div class="row">
-            <div class="col-md-12">
+        
+            <div class="col-md-4">
             {{#if course}}
                 course description : {{course.description}}
             {{/ if}}
