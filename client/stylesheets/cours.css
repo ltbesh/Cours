@@ -5,7 +5,6 @@
 	font-weight: bold;
 }
 
-
 .row{
 margin-left: 0px;
 margin-right: 0px;}
@@ -21,8 +20,16 @@ margin-right: 0px;}
 	margin-left: 6px;
 }
 
+.border1px{
+	border: 1px solid #dbdbdb;
+}
+
 body{
 	background-color: rgb(247,247,247);
+}
+
+.red{
+	color: red;
 }
 
 /*--------------------------MAP------------------------*/
@@ -90,6 +97,12 @@ color: #428bca;
 
 .navbar{
 margin-bottom: 0px;
+}
+
+.no_radius{	
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
 
 /*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
@@ -193,15 +206,10 @@ h1{
 #galleria { 
 	width: 529px; 
 	height: 400px;
-	border: 1px solid #dbdbdb;
 }
 
 .galleria-container{
 	background-color: rgb(255,255,255);
-}
-
-.galleria-stage{
-
 }
 
 #create_time_slot_modal .modal-body {

@@ -6,38 +6,38 @@
 
         <form method="POST" class="form-horizontal">                        
             <div class="form-group">
-                <label class="control-label" for="input-place">Lieu</label>
+                <label class="control-label" for="input-place">Lieu <span class="red">*</span></label>
                 <div class="controls">
-                    <input type="hidden" id="input-place" ></input>
+                    <input type="hidden" id="input-place" required></input>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="input-tags">Matière</label>   
-                <div class="controls">
+                <label class="control-label" for="input-tags">Discipline <span class="red">*</span></label>   
+                <div class="controls" required>
                     {{> tag_selector}}
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="input-description">Description</label>
+                <label class="control-label" for="input-description">Description du cours <span class="red">*</span></label>
                 <div class="controls">
-                    <textarea id="input-description" rows="5" placeholder="Description">{{description}}</textarea>
+                    <textarea id="input-description" rows="5" placeholder="Description" required>{{description}}</textarea>
                 </div>
             </div>  
 
             <div class="form-group">
-                <label class="control-label" for="input-price">Prix</label>
+                <label class="control-label" for="input-price">Prix <span class="red">*</span></label>
                 <div class="controls">
-                    <input type="number" min ="0" id="input-price" rows="5" placeholder="Prix" value="{{price}}">
+                    <input type="number" min ="0" id="input-price" rows="5" placeholder="Prix" value="{{price}}" required>
                 </div>
             </div> 
 
             <div class="row">     
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label" for="input-time-slots">Calendrier</label>
-                        <div class="controls">
+                        <label class="control-label" for="input-time-slots">Calendrier <span class="red">*</span></label>
+                        <div class="controls" required>
                             {{> calendar}}
                         </div>
                     </div>
@@ -62,23 +62,23 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="input-price-explanation">Précision sur les prix</label>
+                <label class="control-label" for="input-price-explanation">Précision sur les prix <span class="red">*</span></label>
                 <div class="controls">
-                    <textarea id="input-price-explanation" rows="5" placeholder="Précision sur les prix">{{price_explanation}}</textarea>
+                    <textarea id="input-price-explanation" rows="5" placeholder="Précision sur les prix" required>{{price_explanation}}</textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="input-contact">Contact</label>
+                <label class="control-label" for="input-contact">Contact <span class="red">*</span></label>
                 <div class="controls">
-                    <input type="email" id="input-contact" rows="5" placeholder="Contact" value="{{contact}}">
+                    <input type="email" id="input-contact" rows="5" placeholder="Contact" value="{{contact}}" required>
                 </div>
             </div> 
 
             <div class="form-group">
-                <label class="control-label" for="input-required_material">Materiel nécessaire</label>
+                <label class="control-label" for="input-required_material">Materiel nécessaire <span class="red">*</span></label>
                 <div class="controls">
-                    <textarea id="input-required-material" rows="5" placeholder="Materiel nécéssaire">{{required_materiel}}</textarea>
+                    <textarea id="input-required-material" rows="5" placeholder="Materiel nécéssaire" required>{{required_materiel}}</textarea>
                 </div>
             </div>
 
