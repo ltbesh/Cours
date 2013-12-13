@@ -21,6 +21,10 @@ margin-right: 0px;}
 	margin-left: 6px;
 }
 
+body{
+	background-color: rgb(247,247,247);
+}
+
 /*--------------------------MAP------------------------*/
 
 
@@ -187,9 +191,17 @@ h1{
 /*--------------IMAGE GALLERY--------------------*/
 
 #galleria { 
-	width: 700px; 
-	height: 400px; 
-	background: #000 
+	width: 529px; 
+	height: 400px;
+	border: 1px solid #dbdbdb;
+}
+
+.galleria-container{
+	background-color: rgb(255,255,255);
+}
+
+.galleria-stage{
+
 }
 
 #create_time_slot_modal .modal-body {

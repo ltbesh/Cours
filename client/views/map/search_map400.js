@@ -1,4 +1,4 @@
-Template.map.rendered = function() {
+Template.map400.rendered = function() {
     if(!map)
         var map = new Course_map("#map_400");
     
