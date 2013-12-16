@@ -22,6 +22,19 @@ margin-right: 0px;}
 
 .border1px{
 	border: 1px solid #dbdbdb;
+	overflow: auto;
+}
+
+.frame340{
+	height: 340px;
+}
+
+.frame400{
+	height: 400px;
+}
+
+.frame483{
+	height: 463px;
 }
 
 body{
