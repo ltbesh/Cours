@@ -5,14 +5,66 @@
 	font-weight: bold;
 }
 
+.row{
+margin-left: 0px;
+margin-right: 0px;}
+
+.no_padding{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.margin_5{
+	margin-left: 6px;
+}
+
+.border1px{
+	border: 1px solid #dbdbdb;
+	overflow: auto;
+}
+
+.frame340{
+	height: 340px;
+}
+
+.frame400{
+	height: 400px;
+}
+
+.frame483{
+	height: 463px;
+}
+
+body{
+	background-color: rgb(247,247,247);
+}
+
+.red{
+	color: red;
+}
+
+/*--------------------------MAP------------------------*/
+
+
+#map_630 {
+   	width: 100%;
+    height: 630px;
+}
+
+#map_400 {
+   	width: 100%;
+    height: 400px;
+}
+
 .google-map img{
 	max-width: none;
     vertical-align: baseline; 
 }
 
-#map {
-   	width: 100%;
-    height: 600px;
+.padding_left_0{
+	padding-left: 0px;
 }
 /* -------------------PAGE SIZE-------------------*/
 
@@ -37,9 +89,9 @@
 
 /*-------------------HEADER--------------------*/
 
-#header{
+/*#header{
 	margin: 0;
-}
+}*/
 
 
 .sign-in li a{
@@ -49,7 +101,7 @@
 .sign-in{
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-top: 10px;
+	margin-top: 14px;
 }
 
 #signup-link{
@@ -58,7 +110,12 @@ color: #428bca;
 
 .navbar{
 margin-bottom: 0px;
-border-radius: none;
+}
+
+.no_radius{	
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: none !important;
 }
 
 /*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
@@ -160,9 +217,12 @@ h1{
 /*--------------IMAGE GALLERY--------------------*/
 
 #galleria { 
-	width: 700px; 
-	height: 400px; 
-	background: #000 
+	width: 529px; 
+	height: 400px;
+}
+
+.galleria-container{
+	background-color: rgb(255,255,255);
 }
 
 #create_time_slot_modal .modal-body {
@@ -176,7 +236,86 @@ h1{
 	z-index: 1;
 }
 
-/*---------------NAVBAR---------------------------*/
+/*---------------navbar-----------------------------*/
 
+#salut{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
 
+/*-----------------------checkboxe--s-------------------*/
 
+/* Cachons la case à cocher */  
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+/* on prépare le label */
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative; /* permet de positionner les pseudo-éléments */
+    padding-left: 25px; /* fait un peu d'espace pour notre case à venir */
+    cursor: pointer;    /* affiche un curseur adapté */
+}
+
+/* Aspect des checkboxes */
+/* :before sert à créer la case à cocher */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left:0; top: 2px;
+    width: 17px; height: 17px; /* dim. de la case */
+    border: 1px solid #aaa;
+    background: #f8f8f8;
+    border-radius: 3px; /* angles arrondis */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.3) /* légère ombre interne */
+}
+
+/* Aspect général de la coche */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '✔';
+    position: absolute;
+    top: 0; left: 4px;
+    font-size: 14px;
+    color: #6FA2E8;
+    transition: all .1s; /* on prévoit une animation */
+}
+/* Aspect si "pas cochée" */
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0; /* coche invisible */
+    transform: scale(0); /* mise à l'échelle à 0 */
+}
+/* Aspect si "cochée" */
+[type="checkbox"]:checked + label:after {
+    opacity: 1; /* coche opaque */
+    transform: scale(1); /* mise à l'échelle 1:1 */
+}
+
+/* aspect désactivée */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+    box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+}
+
+/* styles de la coche (si cochée/désactivée) */
+[type="checkbox"]:disabled:checked + label:after {
+    color: #999;
+}
+/* on style aussi le label quand désactivé */
+[type="checkbox"]:disabled + label {
+    color: #aaa;
+}
+
+/* aspect au focus de l'élément */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+    border: 1px dotted blue;
+}

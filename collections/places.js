@@ -45,7 +45,7 @@ Meteor.methods({
         
         if(!place_attributes.location){
             throw new Meteor.Error(422, 
-                "L'adresse que vous avez renseigné n'est pas valide, merci d'utiliser les suggestions" );
+                "L'adresse que vous avez renseignée n'est pas valide, merci d'utiliser les suggestions" );
         }
 
         var place = _.extend(_.pick(place_attributes, "title", "description", "location", "address"), {

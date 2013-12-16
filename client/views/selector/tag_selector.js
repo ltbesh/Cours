@@ -30,7 +30,7 @@ Template.tag_selector.rendered = function(){
 
                 $("#tag-selector").select2({
                     tags:tags_name,
-                    placeholder: "Matière",
+                    placeholder: "Discipline",
                     maximumSelectionSize: 1
                 }); 
                 $("#tag-selector").select2("val", current_tag);
@@ -43,7 +43,7 @@ Template.tag_selector.rendered = function(){
                 }
                 $("#tag-selector").select2({
                     data: { results: tags, text: "id" },
-                    placeholder: "Chercher un sport", 
+                    placeholder: "Sélectionnez un cours", 
                     formatSelection: format,
                     formatResult: format,
                 });

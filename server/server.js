@@ -11,7 +11,7 @@ Meteor.startup(function () {
     if (Places.find().count() === 0) {
       Places.insert({
         title: "Sofitel de New York",
-        description: "Un très bel hotel situé au centre de new york ou l'on peut croiser des personnalités politiques diverses et variées.",
+        description: "Un très bel hotel situé au centre de new york ou l'on peut croiser des personnalités politiques diverses et variées.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         address: "8 rue des françs bourgeois, 75003 Paris, France",
         postal_code : "75003",
         locality : "Paris",
@@ -21,7 +21,7 @@ Meteor.startup(function () {
       });
       Places.insert({
         title: "Théatre de trévise",
-        description: "Un très bel endroit insalubre, plein de poussière de toile d'araignées et de sueurs",
+        description: "Un très bel endroit insalubre, plein de poussière de toile d'araignées et de sueurs, Un très bel endroit insalubre, plein de poussière de toile d'araignées et de sueurs",
         address: "3 Rue de Trévise, 75009 Paris, France",
         postal_code : "75009",
         locality : "Paris",        
@@ -31,7 +31,7 @@ Meteor.startup(function () {
       });
       Places.insert({
         title: "Games Workshop",
-        description: "Attention geek en liberté",
+        description: "Attention geek en liberté, peinture écaillée, heaume d'argent, Danse macabre de Van Helm, Canon à répétition, tank à vapeur, et autres dragons",
         address: "20 Rue de l'Est, 75020 Paris, France",
         postal_code : "75020",
         locality : "Paris",   
@@ -41,7 +41,7 @@ Meteor.startup(function () {
       });
       Places.insert({
         title: "Collège François Couperin",
-        description: "Vous y ferez les meilleures rencontres",
+        description: "Vous y ferez les meilleures rencontres, on peut penser à un homme qui avait peur de se faire opérer du nez, un autre fanatique des armes anciennes, un petit lanois qui court tres vite, des femmes surtout, beaucoup de femme vaches",
         address: "10 Rue Valadon, 75007 Paris, France",
         postal_code : "75007",
         locality : "Paris",  
@@ -51,7 +51,7 @@ Meteor.startup(function () {
       });
       Places.insert({
         title: "LE GREAT",
-        description: "Le café a fait la renommé de cet endroit",
+        description: "Le café a fait la renommé de cet endroit, le gréat a en effet servi de salle d'entretien pour de nombreux game designer particulierement bons, et notoirement homosexuels",
         address: "3 Rue Séguier, 75006 Paris, France",
         postal_code : "75006",
         locality : "Paris",
@@ -76,13 +76,13 @@ Meteor.startup(function () {
     }
 
     if (Courses.find().count() === 0) {
-        var course_description = ["Un très bon cours", 
-                      "Parisien passez votre chemin", 
-                      "Le prof pue des bras", 
+        var course_description = ["Un très bon cours, qui relie les différents courants de pensées du 20eme siecles avec la pensée des anciens, tout en ne sachant absolument pas quoi dire", 
+                      "Parisien passez votre chemin, ici c'est pas pour les petits gugus qui pensent qu'écouter des vinyls ca rend cool ok, nous on veut du vrai bouseux authentique, celui qui roule en 4 chevaux parce qu'il a pas le choix ok?", 
+                      "Le prof pue des bras, et a de fortes tendances lorem ipsum, ca pourrait etre plus rapide pour écrire des conneries", 
                       "Meuf facile à chopper", 
                       "Le prof passe le cours sur Facebook",
                       "On est beaucoup trop nombreux",
-                      "Un cours un peu court"];
+                      "Un cours un peu court, surtout la description, faut écrire un peu pour voire ce que ca fait sur plusieurs lignes, l'idée est de bon bah pas trop dire de la merde non plus"];
         var course_additional_information = ["Distributeur de bonbon cassé",
                                       "Le verrou des douches ne fonctionne pas",
                                       "Interdit aux femmes",

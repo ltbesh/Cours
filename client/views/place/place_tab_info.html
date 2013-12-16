@@ -1,11 +1,11 @@
 <template name="place_tab_info">
     <div class="row">
         <div class="col-md-8">
-            {{> map}}
+            {{> map400}}
         </div>
-        <div class="col-md-4">
-        contact : {{contact}} </br>
-        equipement : {{required_materiel}}
+        <div class="col-md-4 border1px frame400">
+        <br><span class="label label-primary">Contacts</span><br><br>{{contact}} <br><br>
+        <span class="label label-primary">Equipements nécessaires</span><br><br>{{required_materiel}}
         </div>
     </div>
 </template>
