@@ -102,7 +102,7 @@ margin-bottom: 0px;
 .no_radius{	
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  border-radius: 0;
+  border-radius: none !important;
 }
 
 /*-------------------RESEARCH BARRE CENTER - HOME-------------------*/
