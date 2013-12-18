@@ -1,3 +1,4 @@
+/*-----------------------DIVERS---------------*/
 
 #amount, #schedule{
 	border: 0; 
@@ -25,6 +26,16 @@ margin-right: 0px;}
 	overflow: auto;
 }
 
+body{
+	background-color: rgb(247,247,247);
+}
+
+.red{
+	color: red;
+}
+
+/*-----------------------PLACES-----------------------*/
+
 .frame340{
 	height: 340px;
 }
@@ -37,12 +48,18 @@ margin-right: 0px;}
 	height: 463px;
 }
 
-body{
-	background-color: rgb(247,247,247);
+/*------------------------SEARCH----------------------*/
+
+.map_search{
+	padding-left: 0px;
+	left: 0px;
+
+
 }
 
-.red{
-	color: red;
+.sidebar_search{
+	right: 0;	
+	overflow: auto;
 }
 
 /*--------------------------MAP------------------------*/
@@ -63,9 +80,7 @@ body{
     vertical-align: baseline; 
 }
 
-.padding_left_0{
-	padding-left: 0px;
-}
+
 /* -------------------PAGE SIZE-------------------*/
 
 #container-header
@@ -88,11 +103,6 @@ body{
 }
 
 /*-------------------HEADER--------------------*/
-
-/*#header{
-	margin: 0;
-}*/
-
 
 .sign-in li a{
 	color: white;
@@ -234,15 +244,6 @@ h1{
 #imgCarousel{
 	position: absolute;
 	z-index: 1;
-}
-
-/*---------------navbar-----------------------------*/
-
-#salut{
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-top: 0;
 }
 
 /*-----------------------checkboxe--s-------------------*/
